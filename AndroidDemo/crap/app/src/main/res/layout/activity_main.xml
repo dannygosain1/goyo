@@ -8,25 +8,28 @@
         android:id="@+id/text2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:textSize="32sp"
         android:text="TextView" />
 
     <TextView
         android:id="@+id/text3"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:textSize="32sp"
         android:text="TextView" />
 
     <TextView
         android:id="@+id/text4"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:textSize="32sp"
         android:text="TextView" />
 
     <TextView
         android:id="@+id/textView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="Do a thing" />
+        android:text="" />
 
 
 </LinearLayout>
