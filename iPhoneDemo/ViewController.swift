@@ -12,9 +12,6 @@ import CoreMotion
 class ViewController: UIViewController {
     
     var motionManager = CMMotionManager()
-//    var xrawData: [String] = []
-//    var yrawData: [String] = []
-//    var zrawData: [Double] = []
     var timestamprawData = [String]()
     var fileName = "rawData.csv"
     var path: URL?
