@@ -19,10 +19,11 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
     }
-    
+
     @IBOutlet weak var playButton: UIButton!
     
     @IBOutlet weak var pauseButton: UIButton!
+    
     
     func playButtonTapped() {
         motionManager.accelerometerUpdateInterval = 0.2 // update data interval
@@ -34,7 +35,7 @@ class ViewController: UIViewController {
                 self.csvText.append(newLine)
             }
         }
-
+        
     }
     
     func pauseButtonTapped() {
@@ -42,13 +43,13 @@ class ViewController: UIViewController {
         do {
             //try FileManager.default.createFile(atPath: self.path!.absoluteString, contents: csvText)
             try csvText.write(to: self.path!, atomically: true, encoding: String.Encoding.utf8)
-
+            
         } catch {
             print("Failed to create file")
             print("\(error)")
         }
     }
-
+    
     override func viewDidAppear(_ animated: Bool) {
         let documentsDirectory =  NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)[0]
         self.path =  NSURL(fileURLWithPath: documentsDirectory).appendingPathComponent(self.fileName)
