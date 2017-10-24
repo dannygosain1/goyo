@@ -26,7 +26,7 @@ class ViewController: UIViewController {
     
     
     func playButtonTapped() {
-        motionManager.accelerometerUpdateInterval = 0.2 // update data interval
+        motionManager.accelerometerUpdateInterval = 0.5 // update data interval
         motionManager.startAccelerometerUpdates(to: OperationQueue.current!) { (data, error) in
             if let myData = data
             {
