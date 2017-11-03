@@ -6,7 +6,7 @@ import argparse
 
 def main(args):
 
-    print "starting up"
+    print("starting up")
     data_feed = serial.Serial()
     data_feed.port =  args.port[0]
     data_feed.baudrate = 9600
@@ -18,21 +18,21 @@ def main(args):
     collecting = True
 
     with open('data.csv', 'wb') as csvfile:
-        fieldnames = ['timestamp', 'point']
+        fieldnames = ['timestamp', 'fsr_reading']
         writer = csv.DictWriter(csvfile, fieldnames=fieldnames, delimiter=',', quoting=csv.QUOTE_MINIMAL)
             
         writer.writeheader()
         while collecting: 
             dp = data_feed.readline() 
-            writer.writerow({'timestamp': time.time(), 'point': dp.strip()})
+            writer.writerow({'timestamp': time.time(), 'fsr_reading': dp.strip()})
         
             if time.time() > start_time + duration:
                 endtime = time.time()
                 collecting = False
 
     data_feed.close()
-    print "start time: {}".format(start_time)
-    print "end time: {}".format(endtime)
+    print("start time: {}".format(start_time))
+    print("end time: {}".format(endtime))
 
 
 if __name__ == "__main__":
