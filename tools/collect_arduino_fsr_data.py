@@ -2,6 +2,7 @@
 import serial
 import csv
 import time
+import datetime
 import argparse
 
 def main(args):
@@ -24,7 +25,11 @@ def main(args):
         writer.writeheader()
         while collecting: 
             dp = data_feed.readline() 
-            writer.writerow({'timestamp': time.time(), 'fsr_reading': dp.strip()})
+            time_stamp = datetime.datetime.fromtimestamp(
+                time.time()).strftime("%Y-%m-%dT%H:%M:%S")
+            writer.writerow(
+                {'timestamp': time_stamp, 'fsr_reading': dp.strip()
+            })
         
             if time.time() > start_time + duration:
                 endtime = time.time()
