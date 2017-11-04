@@ -45,7 +45,7 @@ figure;
 stem(f,abs(Z));
 xlabel('Frequency)');
 title('Magnitude Response of Z');
-figure;
+figure
 plot(z_accel);
 title('Z Acceleration');
 figure;
@@ -54,4 +54,4 @@ xlabel('Frequency (in hertz)');
 title('Magnitude Response of Y');
 figure;
 plot(y_accel);
-title('Y Acceleration');
+title('Y Acceleration')

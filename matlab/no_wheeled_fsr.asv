@@ -1,3 +1,0 @@
-nwwalker1 = csvread('no-wheels\data_sit_stand_test3.csv', 1, 1);
-nwwalker2 = csvread('no-wheels\data_sit_stand_test4.csv', 1);
-
