@@ -5,3 +5,4 @@ twwalker3 = csvread('two-wheels\walker-3.csv', 1);
 twwalker4 = csvread('two-wheels\walker-3.csv', 1);
 
 AccelerometerAnalysis(twwalker1);
+
