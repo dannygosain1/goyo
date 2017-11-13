@@ -13,18 +13,19 @@ function [ ] = AccelerometerAnalysis( twwalker )
     Z = fftshift(fft(z_accel));
     Y = fftshift(fft(y_accel));
     dF = sampling_rate/N;
+    %f = -sampling_rate/2:dF:sampling_rate/2-dF;
     f = -sampling_rate/2:dF:sampling_rate/2-dF;
-
+    
     figure;
     subplot(2,2,1)
     stem(f,abs(Z));
     xlabel('Frequency)');
     title('Magnitude Response of Z');
     subplot(2,2,2);
-    plot(z_accel);
+    plot(z_accel)
     title('Z Acceleration');
     subplot(2,2,3);
-    stem(f,abs(Y));
+    stem(n,abs(Y));
     xlabel('Frequency (in hertz)');
     title('Magnitude Response of Y');
     subplot(2,2,4);
