@@ -9,24 +9,32 @@
 import UIKit
 import CoreMotion
 
-class ViewController: UIViewController {
+class ViewController: UIViewController, UITextFieldDelegate {
     
     var motionManager = CMMotionManager()
     var timestamprawData = [String]()
-    var fileName = "rawData.csv"
+    // var fileName = "rawData.csv"
     var path: URL?
     var csvText = "x,y,z,timeStamp\n"
-    override func viewDidLoad() {
-        super.viewDidLoad()
-    }
 
+    @IBOutlet weak var fileNameInput: UITextField!
+    
     @IBOutlet weak var playButton: UIButton!
     
     @IBOutlet weak var pauseButton: UIButton!
     
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        self.fileNameInput.delegate = self
+    }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        self.view.endEditing(true)
+        return false
+    }
     
     func playButtonTapped() {
-        motionManager.accelerometerUpdateInterval = 0.5 // update data interval
+        motionManager.accelerometerUpdateInterval = 1/24 // update data interval
         motionManager.startAccelerometerUpdates(to: OperationQueue.current!) { (data, error) in
             if let myData = data
             {
@@ -35,7 +43,6 @@ class ViewController: UIViewController {
                 self.csvText.append(newLine)
             }
         }
-        
     }
     
     func pauseButtonTapped() {
@@ -55,7 +62,6 @@ class ViewController: UIViewController {
         self.path =  NSURL(fileURLWithPath: documentsDirectory).appendingPathComponent(self.fileName)
         playButton.addTarget(self, action: #selector(ViewController.playButtonTapped), for: .touchUpInside)
         pauseButton.addTarget(self, action: #selector(ViewController.pauseButtonTapped), for: .touchUpInside)
-        
     }
     
     override func didReceiveMemoryWarning() {
