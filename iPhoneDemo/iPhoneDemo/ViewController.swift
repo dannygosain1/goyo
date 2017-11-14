@@ -23,6 +23,8 @@ class ViewController: UIViewController, UITextFieldDelegate {
     
     @IBOutlet weak var pauseButton: UIButton!
     
+    @IBOutlet weak var recordingLabel: UILabel!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.fileNameInput.delegate = self
@@ -41,14 +43,14 @@ class ViewController: UIViewController, UITextFieldDelegate {
                 print(myData)
                 let newLine = "\(myData.acceleration.x),\(myData.acceleration.y),\(myData.acceleration.z),\(myData.timestamp)\n"
                 self.csvText.append(newLine)
-//                self.recordingLabel.isHidden = false
+                self.recordingLabel.isHidden = false
             }
         }
     }
     
     func pauseButtonTapped() {
         motionManager.stopAccelerometerUpdates()
-//        self.recordingLabel.isHidden = true
+        self.recordingLabel.isHidden = true
         let documentsDirectory =  NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)[0]
         let date = Date()
         let calender = Calendar.current
@@ -62,7 +64,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
         let today_string = String(year!) + "-" + String(month!) + "-" + String(day!) + "_" + String(hour!)  + "-" + String(minute!) + "-" +  String(second!)
         
         let fileName = fileNameInput.text! + "_" + today_string + ".csv"
-        print(fileName)
+        print("Data saved as: " + fileName)
         // let fileNameTemp="rawData.csv"
         self.path =  NSURL(fileURLWithPath: documentsDirectory).appendingPathComponent(fileName)
         do {
@@ -78,7 +80,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
     override func viewDidAppear(_ animated: Bool) {
         playButton.addTarget(self, action: #selector(ViewController.playButtonTapped), for: .touchUpInside)
         pauseButton.addTarget(self, action: #selector(ViewController.pauseButtonTapped), for: .touchUpInside)
-//        self.recordingLabel.isHidden = true
+        self.recordingLabel.isHidden = true
     }
     
     override func didReceiveMemoryWarning() {

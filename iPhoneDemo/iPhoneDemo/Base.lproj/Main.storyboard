@@ -67,6 +67,7 @@
                         <outlet property="fileNameInput" destination="Nu4-gi-2mP" id="cqP-2V-zfv"/>
                         <outlet property="pauseButton" destination="mgC-oi-Auc" id="55N-t0-hDo"/>
                         <outlet property="playButton" destination="DOx-sx-lRL" id="VW2-H6-0pK"/>
+                        <outlet property="recordingLabel" destination="iHv-mL-rOU" id="oY4-2c-A8F"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
