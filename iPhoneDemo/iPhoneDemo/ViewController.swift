@@ -36,7 +36,8 @@ class ViewController: UIViewController, UITextFieldDelegate {
     }
     
     func playButtonTapped() {
-        motionManager.accelerometerUpdateInterval = 1/24 // update data interval
+        self.csvText = "x,y,z,timeStamp\n"
+        motionManager.accelerometerUpdateInterval = 1 // update data interval
         motionManager.startAccelerometerUpdates(to: OperationQueue.current!) { (data, error) in
             if let myData = data
             {
@@ -75,6 +76,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
             print("Failed to create file")
             print("\(error)")
         }
+        print (csvText)
     }
     
     override func viewDidAppear(_ animated: Bool) {
