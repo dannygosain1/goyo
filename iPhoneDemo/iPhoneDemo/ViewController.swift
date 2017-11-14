@@ -41,12 +41,30 @@ class ViewController: UIViewController, UITextFieldDelegate {
                 print(myData)
                 let newLine = "\(myData.acceleration.x),\(myData.acceleration.y),\(myData.acceleration.z),\(myData.timestamp)\n"
                 self.csvText.append(newLine)
+//                self.recordingLabel.isHidden = false
             }
         }
     }
     
     func pauseButtonTapped() {
         motionManager.stopAccelerometerUpdates()
+//        self.recordingLabel.isHidden = true
+        let documentsDirectory =  NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)[0]
+        let date = Date()
+        let calender = Calendar.current
+        let components = calender.dateComponents([.year,.month,.day,.hour,.minute,.second], from: date)
+        let year = components.year
+        let month = components.month
+        let day = components.day
+        let hour = components.hour
+        let minute = components.minute
+        let second = components.second
+        let today_string = String(year!) + "-" + String(month!) + "-" + String(day!) + "_" + String(hour!)  + "-" + String(minute!) + "-" +  String(second!)
+        
+        let fileName = fileNameInput.text! + "_" + today_string + ".csv"
+        print(fileName)
+        // let fileNameTemp="rawData.csv"
+        self.path =  NSURL(fileURLWithPath: documentsDirectory).appendingPathComponent(fileName)
         do {
             //try FileManager.default.createFile(atPath: self.path!.absoluteString, contents: csvText)
             try csvText.write(to: self.path!, atomically: true, encoding: String.Encoding.utf8)
@@ -58,10 +76,9 @@ class ViewController: UIViewController, UITextFieldDelegate {
     }
     
     override func viewDidAppear(_ animated: Bool) {
-        let documentsDirectory =  NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)[0]
-        self.path =  NSURL(fileURLWithPath: documentsDirectory).appendingPathComponent(self.fileName)
         playButton.addTarget(self, action: #selector(ViewController.playButtonTapped), for: .touchUpInside)
         pauseButton.addTarget(self, action: #selector(ViewController.pauseButtonTapped), for: .touchUpInside)
+//        self.recordingLabel.isHidden = true
     }
     
     override func didReceiveMemoryWarning() {
@@ -69,4 +86,3 @@ class ViewController: UIViewController, UITextFieldDelegate {
         // Dispose of any resources that can be recreated.
     }
 }
-
