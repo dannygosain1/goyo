@@ -6,7 +6,7 @@ function [windows] = WindowCreation(data, rate, window_size, window_overlap)
     windows = {};
     count = 1;
     while(end_idx <= length(data))
-        start_idx = end_idx - window_size*rate  + 1
+        start_idx = end_idx - window_size*rate  + 1;
         windows{count} = data(start_idx : end_idx, :);
         end_idx = end_idx + (window_size - window_overlap) * rate;
         if end_idx > length(data)
