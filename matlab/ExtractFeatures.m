@@ -1,9 +1,15 @@
 % Script that takes data and extracts all the signal features
 
-twwalker1 = csvread('two-wheels\walker-1.csv', 1);
+twwalker1 = csvread('two-wheels\walker-2.csv', 1);
+fsr1 = csvread('two-wheels\data_force_4_axis_test2.csv', 1, 1);
+
 x_accel = twwalker1(:,1);
 y_accel = twwalker1(:,2);
 z_accel = twwalker1(:,3);
+time_fsr = fsr1(:,1);
+outside_fsr = fsr1(:,3);
+top_fsr = fsr1(:,4);
+% oops, matching this will be hard :(
 
 num_features = 9;
 rate = 10;          % Hz
