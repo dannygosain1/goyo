@@ -31,5 +31,5 @@ void loop(void) {
   fsrStr = fsrStr + fsrReading1 + " " + fsrReading2 + " " + fsrReading3 + " " + fsrReading0;
   
   Serial.println(fsrStr);
-  delay(100);
+  delay(24);
 }
