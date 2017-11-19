@@ -5,9 +5,9 @@ function [ ] = AccelerometerAnalysis( twwalker )
     z_accel = (twwalker(:,3));
     y_accel = (twwalker(:,2));
 
-    sampling_rate = 10;
+    sampling_rate = 24;
     dt = 1/sampling_rate;
-    t = (0:dt:length(z_accel)/10 - 0.1)';
+    t = (0:dt:length(z_accel)/24 - 0.0416)';
     N = length(t);
 
     Z = fftshift(fft(z_accel));
