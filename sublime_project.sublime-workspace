@@ -1,0 +1,905 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"prov",
+				"provIdMapping"
+			],
+			[
+				"is",
+				"isProvince"
+			],
+			[
+				"param",
+				"paramObj"
+			],
+			[
+				"create",
+				"create_tables_args"
+			],
+			[
+				"cr",
+				"create_tables"
+			],
+			[
+				"test_data",
+				"test_data_row"
+			],
+			[
+				"get",
+				"get_sql_type"
+			],
+			[
+				"test",
+				"test_get_sql_type"
+			],
+			[
+				"tes",
+				"test_str"
+			],
+			[
+				"test_",
+				"test_data"
+			],
+			[
+				"get_dataset",
+				"get_dataset_list"
+			],
+			[
+				"to",
+				"to_json"
+			],
+			[
+				"dataset",
+				"dataset_name"
+			],
+			[
+				"database",
+				"database_config"
+			],
+			[
+				"datas",
+				"dataset_list"
+			],
+			[
+				"get_co",
+				"get_column_values"
+			],
+			[
+				"tables",
+				"tables_list"
+			],
+			[
+				"data",
+				"dataset_names"
+			],
+			[
+				"table",
+				"table_columns"
+			],
+			[
+				"descri",
+				"describe_table_statement"
+			],
+			[
+				"descr",
+				"describe_table_statement"
+			],
+			[
+				"average",
+				"averageBooking"
+			],
+			[
+				"exerci",
+				"exercise5"
+			],
+			[
+				"max",
+				"maxLateFine"
+			],
+			[
+				"not",
+				"notCheckedOutDrones"
+			],
+			[
+				"unique",
+				"unique2016Clients"
+			],
+			[
+				"mysql",
+				"mysqlClient"
+			],
+			[
+				"mys",
+				"mysqlClient"
+			],
+			[
+				"my",
+				"mysqlClient"
+			],
+			[
+				"bookin",
+				"bookingIn2016"
+			],
+			[
+				"book",
+				"bookingIn2016"
+			],
+			[
+				"booking",
+				"bookingID"
+			],
+			[
+				"client",
+				"clientID"
+			],
+			[
+				"maint",
+				"maintenaceAndBookedSQL"
+			],
+			[
+				"date",
+				"dateTaken"
+			],
+			[
+				"main",
+				"maintenaceAndBookedSQL"
+			],
+			[
+				"exercise",
+				"exercise4"
+			],
+			[
+				"maintenan",
+				"maintenaceAndBookedSQL"
+			],
+			[
+				"quer",
+				"querySuccessful"
+			],
+			[
+				"record",
+				"recordCheckSQL"
+			],
+			[
+				"maintena",
+				"maintenaceAndBookedSQL"
+			],
+			[
+				"mainte",
+				"maintenanceCheckSQL"
+			],
+			[
+				"exer",
+				"exercise2"
+			],
+			[
+				"query",
+				"query"
+			],
+			[
+				"drone",
+				"droneID"
+			],
+			[
+				"empty",
+				"emptyValPlaceholder"
+			],
+			[
+				"insert",
+				"insert_statement"
+			],
+			[
+				"json",
+				"jsonString"
+			],
+			[
+				"gbook",
+				"gBooksData"
+			],
+			[
+				"species",
+				"speciesData"
+			],
+			[
+				"star",
+				"baseStarWarsURL"
+			],
+			[
+				"starship",
+				"starshipData"
+			],
+			[
+				"film",
+				"filmData"
+			],
+			[
+				"getStarwar",
+				"getStarWarsSpaceships"
+			],
+			[
+				"space",
+				"spaceshipObj"
+			],
+			[
+				"cast",
+				"castUrl"
+			],
+			[
+				"do",
+				"document"
+			],
+			[
+				"calculate",
+				"calculatedValue"
+			],
+			[
+				"calcula",
+				"calculatedValue"
+			],
+			[
+				"calcul",
+				"calculatedValue"
+			],
+			[
+				"current",
+				"currentValue"
+			],
+			[
+				"DIV",
+				"DIVISION_INPUT"
+			],
+			[
+				"curre",
+				"currentValue"
+			],
+			[
+				"oper",
+				"operationInput"
+			],
+			[
+				"operation",
+				"operationInput"
+			],
+			[
+				"gra",
+				"graphRequested"
+			],
+			[
+				"document",
+				"documentElement"
+			],
+			[
+				"ran",
+				"randomIdx"
+			],
+			[
+				"random",
+				"randomYoutubeLinks"
+			],
+			[
+				"writeVo",
+				"writeVideo1"
+			],
+			[
+				"writeV",
+				"writeNewPageWithYoutubeVideo"
+			],
+			[
+				"writeNewPageWith",
+				"writeNewPageWithYoutubeVideo"
+			],
+			[
+				"calc",
+				"calcStr"
+			],
+			[
+				"decim",
+				"decimal_used"
+			],
+			[
+				"cal",
+				"calcStr"
+			],
+			[
+				"calcu",
+				"calculatedValue"
+			],
+			[
+				"operati",
+				"operation"
+			],
+			[
+				"backg",
+				"background-color"
+			],
+			[
+				"foo",
+				"fOOTBALLCtrl"
+			],
+			[
+				"landmarks",
+				"landmarks_arr"
+			],
+			[
+				"landmar",
+				"landmark_arr"
+			],
+			[
+				"tag",
+				"tagID"
+			],
+			[
+				"hea",
+				"hEADPHONESCtrl"
+			],
+			[
+				"template",
+				"templateUrl"
+			],
+			[
+				"current_",
+				"current_tag"
+			],
+			[
+				"find",
+				"find_by"
+			],
+			[
+				"javascrip",
+				"javascripts"
+			],
+			[
+				"padding",
+				"padding-left"
+			],
+			[
+				"border",
+				"border-radius"
+			],
+			[
+				"margin",
+				"margin-right"
+			],
+			[
+				"margi",
+				"margin"
+			],
+			[
+				"font",
+				"font-size"
+			],
+			[
+				"text",
+				"text-align"
+			],
+			[
+				"margin-",
+				"margin-left"
+			],
+			[
+				"day",
+				"daysOfWeek"
+			]
+		]
+	},
+	"buffers":
+	[
+		{
+			"settings":
+			{
+				"buffer_size": 0,
+				"line_ending": "Windows"
+			}
+		}
+	],
+	"build_system": "",
+	"build_system_choices":
+	[
+	],
+	"build_varint": "",
+	"command_palette":
+	{
+		"height": 392.0,
+		"last_filter": "auto",
+		"selected_items":
+		[
+			[
+				"auto",
+				"Disable Autorefresh"
+			],
+			[
+				"install",
+				"Package Control: Install Package"
+			],
+			[
+				"enab",
+				"Enable Autorefresh"
+			],
+			[
+				"enable",
+				"Enable Autorefresh"
+			],
+			[
+				"Package Control: list",
+				"Package Control: List Packages"
+			],
+			[
+				"Package Control: ins",
+				"Package Control: Install Package"
+			],
+			[
+				"Package Control: insta",
+				"Package Control: Install Package"
+			],
+			[
+				"Package Control: ",
+				"Package Control: List Packages"
+			],
+			[
+				"Package Control: add",
+				"Package Control: Add Channel"
+			],
+			[
+				"Package Control: de",
+				"Package Control: Add Channel"
+			],
+			[
+				"package control: Install Package ",
+				"Package Control: Install Package"
+			],
+			[
+				"package control: instal",
+				"Package Control: Install Package"
+			],
+			[
+				"p",
+				"Package Control: Install Package"
+			],
+			[
+				"add res",
+				"Package Control: Add Repository"
+			],
+			[
+				"package control instal",
+				"Package Control: Install Package"
+			],
+			[
+				"package control",
+				"Package Control: Install Package"
+			],
+			[
+				"package controll",
+				"Preferences: Package Control Settings – Default"
+			],
+			[
+				"Package Control: install package ",
+				"Package Control: Install Package"
+			],
+			[
+				"Package Control: instal",
+				"Package Control: Install Package"
+			],
+			[
+				"view i",
+				"View In Browser"
+			],
+			[
+				"INstal",
+				"Package Control: Install Package"
+			],
+			[
+				"Instal",
+				"Package Control: Install Package"
+			]
+		],
+		"width": 416.0
+	},
+	"console":
+	{
+		"height": 316.0,
+		"history":
+		[
+			"import urllib.request,os,hashlib; h = 'df21e130d211cfc94d9b0905775a7c0f' + '1e3d39e33b79698005270310898eea76'; pf = 'Package Control.sublime-package'; ipp = sublime.installed_packages_path(); urllib.request.install_opener( urllib.request.build_opener( urllib.request.ProxyHandler()) ); by = urllib.request.urlopen( 'http://packagecontrol.io/' + pf.replace(' ', '%20')).read(); dh = hashlib.sha256(by).hexdigest(); print('Error validating download (got %s instead of %s), please try manual install' % (dh, h)) if dh != h else open(os.path.join( ipp, pf), 'wb' ).write(by)",
+			"print(\"hello\");",
+			"import urllib.request,os,hashlib; h = 'df21e130d211cfc94d9b0905775a7c0f' + '1e3d39e33b79698005270310898eea76'; pf = 'Package Control.sublime-package'; ipp = sublime.installed_packages_path(); urllib.request.install_opener( urllib.request.build_opener( urllib.request.ProxyHandler()) ); by = urllib.request.urlopen( 'http://packagecontrol.io/' + pf.replace(' ', '%20')).read(); dh = hashlib.sha256(by).hexdigest(); print('Error validating download (got %s instead of %s), please try manual install' % (dh, h)) if dh != h else open(os.path.join( ipp, pf), 'wb' ).write(by)",
+			"import urllib.request,os,hashlib; h = '7183a2d3e96f11eeadd761d777e62404' + 'e330c659d4bb41d3bdf022e94cab3cd0'; pf = 'Package Control.sublime-package'; ipp = sublime.installed_packages_path(); urllib.request.install_opener( urllib.request.build_opener( urllib.request.ProxyHandler()) ); by = urllib.request.urlopen( 'http://packagecontrol.io/' + pf.replace(' ', '%20')).read(); dh = hashlib.sha256(by).hexdigest(); print('Error validating download (got %s instead of %s), please try manual install' % (dh, h)) if dh != h else open(os.path.join( ipp, pf), 'wb' ).write(by)"
+		]
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"expanded_folders":
+	[
+		"/C/Users/Raunaq/Desktop/Work/SYDE 461/goyo",
+		"/C/Users/Raunaq/Desktop/Work/SYDE 461/goyo/model"
+	],
+	"file_history":
+	[
+		"/C/Users/Raunaq/Desktop/Work/4A Resume and Cover Letters/bridgewater_pt_2",
+		"/C/Users/Raunaq/AppData/Roaming/Sublime Text 3/Packages/User/Package Control.sublime-settings",
+		"/C/Users/Raunaq/Google Drive/SYDE 312/report.tex",
+		"/C/Users/Raunaq/Desktop/Work/4A Resume and Cover Letters/bridgewater_pt_1",
+		"/C/Users/Raunaq/AppData/Roaming/Sublime Text 3/Packages/User/Preferences.sublime-settings",
+		"/C/Users/Raunaq/AppData/Roaming/Sublime Text 3/Packages/View In Browser/View In Browser.sublime-settings",
+		"/C/Users/Raunaq/AppData/Roaming/Sublime Text 3/Packages/User/View In Browser.sublime-settings",
+		"/C/Users/Raunaq/AppData/Roaming/Sublime Text 3/Packages/Package Control/Package Control.sublime-settings",
+		"/C/Users/Raunaq/Desktop/Work/SYDE 322/CanMap/api/app.rb",
+		"/C/Users/Raunaq/AppData/Local/Temp/Temp1_CanMap-Raunaq-Danny-Cory.zip/client/webserver/karma.conf.js",
+		"/C/Users/Raunaq/Desktop/Work/SYDE 322/CanMap/api/Procfile",
+		"/C/Users/Raunaq/Desktop/Work/SYDE 322/CanMap/client/Procfile",
+		"/C/Users/Raunaq/Desktop/Work/SYDE 322/CanMap/client/webserver/Procfile",
+		"/C/Users/Raunaq/Desktop/Work/SYDE 322/CanMap/client/webserver/config/apiConfig.json",
+		"/C/Users/Raunaq/Desktop/Work/SYDE 322/CanMap/client/webserver/public/js/CanMapUtils.js",
+		"/C/Users/Raunaq/Desktop/Work/SYDE 322/CanMap/client/webserver/public/index.html",
+		"/C/Users/Raunaq/Desktop/Work/SYDE 322/CanMap/client/webserver/public/css/index.css",
+		"/C/Users/Raunaq/Desktop/Work/SYDE 322/CanMap/client/webserver/public/js/CanMapCtrl.js",
+		"/C/Users/Raunaq/Desktop/Work/SYDE 322/CanMap/client/webserver/public/js/app.js",
+		"/C/Users/Raunaq/Desktop/Work/SYDE 322/CanMap/client/webserver/config/provinceIdMapping.json",
+		"/C/Users/Raunaq/Desktop/Work/SYDE 322/CanMap/client/webserver/maps/qc.geo.min.json",
+		"/C/Users/Raunaq/Desktop/Work/SYDE 322/CanMap/client/webserver/maps/ca.geo.min.json",
+		"/C/Users/Raunaq/Desktop/Work/SYDE 322/CanMap/processing/create_tables.py",
+		"/C/Users/Raunaq/Desktop/Work/SYDE 322/CanMap/client/webserver/package.json",
+		"/C/Users/Raunaq/Desktop/Work/SYDE 322/CanMap/client/webserver/webserver.js",
+		"/C/Users/Raunaq/Desktop/Work/SYDE 322/CanMap/processing/process_manager.py",
+		"/C/Users/Raunaq/Desktop/Work/SYDE 322/CanMap/api/Gemfile",
+		"/C/Users/Raunaq/Desktop/Work/SYDE 322/CanMap/client/webserver/public/js/loadMap.js",
+		"/C/Users/Raunaq/Desktop/Work/SYDE 322/CanMap/processing/generate_dataset_list_test.py",
+		"/C/Users/Raunaq/Desktop/Work/SYDE 322/CanMap/processing/processing_utils_test.py",
+		"/C/Users/Raunaq/Desktop/Work/SYDE 322/CanMap/processing/src/processing_utils.py",
+		"/C/Users/Raunaq/Desktop/Work/SYDE 322/CanMap/processing/src/generate_dataset_list.py",
+		"/C/Users/Raunaq/Desktop/Work/SYDE 322/CanMap/processing/src/create_tables.py",
+		"/C/Users/Raunaq/Desktop/Work/SYDE 322/CanMap/api/database.yaml",
+		"/C/Users/Raunaq/Desktop/Work/SYDE 322/CanMap/processing/processing_utils.py",
+		"/C/Users/Raunaq/Desktop/Work/SYDE 322/CanMap/processing/generate_dataset_list.py",
+		"/C/Users/Raunaq/Desktop/Work/SYDE 322/CanMap/processing/2016_Population_Census_Divisions.CSV",
+		"/C/Users/Raunaq/Desktop/Work/SYDE 322/CanMap/api/db/db.log",
+		"/C/Users/Raunaq/Desktop/Work/SYDE 322/CanMap/processing/test.yaml",
+		"/C/Users/Raunaq/Desktop/Work/SYDE 322/CanMap/processing/test_raunaq.yaml",
+		"/C/Users/Raunaq/Desktop/Work/SYDE 322/syde-322-assignment-3/views/exercise5.haml",
+		"/C/Users/Raunaq/Desktop/Work/SYDE 322/syde-322-assignment-3/views/exercise4.haml",
+		"/C/Users/Raunaq/Desktop/Work/SYDE 322/syde-322-assignment-3/views/exercise3.haml",
+		"/C/Users/Raunaq/Desktop/Work/SYDE 322/syde-322-assignment-3/views/exercise1.haml",
+		"/C/Users/Raunaq/Desktop/Work/SYDE 322/syde-322-assignment-3/README.txt",
+		"/C/Users/Raunaq/Desktop/Work/SYDE 322/syde-322-assignment-3/app.rb",
+		"/C/Users/Raunaq/Desktop/Work/SYDE 322/syde-322-assignment-3/views/exercise2.haml",
+		"/C/Users/Raunaq/Desktop/Work/SYDE 322/syde-322-assignment-3/views/insert.haml",
+		"/C/Users/Raunaq/Desktop/Work/SYDE 322/syde-322-assignment-3/views/index.haml",
+		"/C/Users/Raunaq/Desktop/Work/SYDE 322/syde-322-assignment-3/Gemfile",
+		"/C/Users/Raunaq/Desktop/Work/SYDE 322/CanMap/test.geojson",
+		"/C/Users/Raunaq/Desktop/Work/SYDE 322/syde-322-assignment-3/views/exercise_random.haml",
+		"/C/Users/Raunaq/Desktop/Work/SYDE 322/syde-322-assignment-3/Rakefile",
+		"/C/Users/Raunaq/Desktop/Work/SYDE 322/syde-322-assignment-3/a3.sublime-project",
+		"/C/Users/Raunaq/Desktop/Work/SYDE 322/2016_Population_Census_Divisions.CSV",
+		"/C/Users/Raunaq/Desktop/Work/SYDE 362/WeFish/Circuit/mpu6050.lbr.xml",
+		"/C/Users/Raunaq/Downloads/lpr_000b16g_e.gml",
+		"/C/Program Files/AMD/CIM/Reports/Report.xml",
+		"/C/Users/Raunaq/Desktop/Work/SYDE 322/syde-322-assignment-2/chatbot/bot-exercise2-bonus/botframework appid and password",
+		"/C/Users/Raunaq/Desktop/Work/SYDE 322/syde-322-assignment-2/bot-exercise2-bonus/bot.js",
+		"/C/Users/Raunaq/AppData/Local/Temp/Temp1_bot-exercise2-bonus.zip/bot-exercise2-bonus/bot.js",
+		"/C/Users/Raunaq/Desktop/Work/SYDE 322/syde-322-assignment-2/chatbot/bot-exercise2-bonus/bot.js",
+		"/C/Users/Raunaq/Desktop/Work/SYDE 322/syde-322-assignment-2/node-exercise4/custom_api.js",
+		"/C/Users/Raunaq/Desktop/Work/SYDE 322/syde-322-assignment-2/node-exercise3/http_json_api_server.js",
+		"/C/Users/Raunaq/Desktop/Work/SYDE 322/syde-322-assignment-2/node-exercise2/http_file_server.js",
+		"/C/Users/Raunaq/Desktop/Work/SYDE 322/syde-322-assignment-2/node-exercise1/time_server.js",
+		"/C/Users/Raunaq/Desktop/Work/SYDE 322/syde-322-assignment-2/learnyounode4.js",
+		"/C/Users/Raunaq/Desktop/Work/SYDE 322/syde-322-assignment-2/learnyounode3.js",
+		"/C/Users/Raunaq/Desktop/Work/SYDE 322/syde-322-assignment-2/learnyounode13.js",
+		"/C/Users/Raunaq/Desktop/Work/SYDE 322/syde-322-assignment-2/learnyounode11.js",
+		"/C/Users/Raunaq/Desktop/Work/SYDE 322/syde-322-assignment-2/learnyounode9.js",
+		"/C/Users/Raunaq/Desktop/Work/SYDE 322/syde-322-assignment-2/learnyounode10.js",
+		"/C/Users/Raunaq/Desktop/Work/SYDE 322/syde-322-assignment-2/learnyounode6_module.js",
+		"/C/Users/Raunaq/Desktop/Work/SYDE 322/syde-322-assignment-2/learnyounode6.js",
+		"/C/Users/Raunaq/Desktop/Work/SYDE 322/syde-322-assignment-2/learnyounode7.js",
+		"/C/Users/Raunaq/Desktop/Work/SYDE 322/syde-322-assignment-2/node-exercise2/http-collect.js",
+		"/C/Users/Raunaq/Desktop/Work/SYDE 322/syde-322-assignment-2/node-exercise1/filteredls.js",
+		"/C/Users/Raunaq/Desktop/Work/SYDE 322/syde-322-assignment-2/learnyounode8.js",
+		"/C/Users/Raunaq/Desktop/Work/SYDE 322/syde-322-assignment-2/filteredls.js",
+		"/C/Users/Raunaq/Desktop/Work/SYDE 322/syde-322-assignment-2/learnyounode2.js",
+		"/C/Users/Raunaq/Desktop/Work/SYDE 322/Assignment 1 final/json-page-tvmaze.html",
+		"/C/Users/Raunaq/Desktop/Work/SYDE 322/Assignment 1 final/graphic-calculator.js",
+		"/C/Users/Raunaq/Desktop/Work/SYDE 322/Assignment 1/final.html",
+		"/C/Users/Raunaq/Desktop/Work/SYDE 322/Assignment 1/json-page-tvmaze.html",
+		"/C/Users/Raunaq/Desktop/Work/SYDE 322/Assignment 1/json-page-dynamic.notahtml",
+		"/C/Users/Raunaq/Desktop/Work/SYDE 322/Assignment 1/js-page1.html",
+		"/C/Users/Raunaq/Desktop/Work/SYDE 322/Assignment 1/js-page3-graphic.css",
+		"/C/Users/Raunaq/Desktop/Work/SYDE 322/Assignment 1/js-page3-graphic.html",
+		"/C/Users/Raunaq/Desktop/Work/SYDE 322/Assignment 1/js-page3.css",
+		"/C/Users/Raunaq/Desktop/Work/SYDE 322/Assignment 1/calculator.js",
+		"/C/Users/Raunaq/Desktop/Work/SYDE 322/Assignment 1/js-page3.html",
+		"/C/Users/Raunaq/Desktop/Work/SYDE 322/Assignment 1/js-page2.html",
+		"/C/Users/Raunaq/Desktop/Work/SYDE 322/Assignment 1/graphic-calculator.js",
+		"/C/Users/Raunaq/Desktop/Work/SYDE 322/Assignment 1/json-page-dynamic.html",
+		"/C/Users/Raunaq/Desktop/Work/SYDE 322/Assignment 1/d3/README.md",
+		"/C/Users/Raunaq/Desktop/Work/SYDE 322/Assignment 1/d3/LICENSE",
+		"/C/Users/Raunaq/Downloads/JSON-Pt-2/json-page-tvmaze.html",
+		"/C/Users/Raunaq/Downloads/JSON-Pt-2/json-page-dynamic.html",
+		"/C/Users/Raunaq/Desktop/Work/SYDE 322/Assignment 1/bootstrap.min.css",
+		"/C/Users/Raunaq/Desktop/Work/SYDE 322/Assignment 1/js-base.html",
+		"/C/Users/Raunaq/Desktop/Work/SYDE 322/Assignment 1/js-page1-style1.css",
+		"/C/Users/Raunaq/Desktop/Work/SYDE 322/Assignment 1/js-page1-style2.css",
+		"/C/Users/Raunaq/Desktop/Work/SYDE 322/Assignment 1/js-page1-style3.css",
+		"/C/Users/Raunaq/Desktop/Work/SYDE 351/nonlinear_spring.m",
+		"/C/Users/Raunaq/Desktop/Work/SYDE 351/clutch.m",
+		"/C/Users/Raunaq/instafind-app/www/templates/iNSTAFIND.html",
+		"/C/Users/Raunaq/instafind-app/www/templates/fOOTBALL.html",
+		"/C/Users/Raunaq/instafind-app/www/templates/controller.html",
+		"/C/Users/Raunaq/instafind-app/www/js/routes.js",
+		"/C/Users/Raunaq/instafind-app/www/img/FOUND.png",
+		"/C/Users/Raunaq/instafind-app/www/js/controllers.js",
+		"/C/Users/Raunaq/instafind-app/www/templates/hEADPHONES.html",
+		"/C/Users/Raunaq/instafind-app/bower.json",
+		"/C/Users/Raunaq/instafind-server/Procfile",
+		"/C/Users/Raunaq/Numerical-Methods/eulers-method.py",
+		"/C/Users/Raunaq/instafind-server/db/migrate/20160706180428_create_tags.rb",
+		"/C/Users/Raunaq/instafind-server/app.rb",
+		"/C/Users/Raunaq/instafind-server/config/database.yml",
+		"/C/Users/Raunaq/instafind-server/config.ru",
+		"/C/Users/Raunaq/instafind-server/db/migrate/20160705053755_create_articles.rb",
+		"/C/Users/Raunaq/instafind-server/Gemfile",
+		"/C/Users/Raunaq/instafind-server/models/article.rb",
+		"/C/Users/Raunaq/instafind-server/Rakefile",
+		"/C/Users/Raunaq/instafind-server/db/migrate/20160705051248_create_articles.rb",
+		"/C/Users/Raunaq/Desktop/Work/SYDE 292/SYDE292_Lab7_Data_Acquisition_2015_section_4_1_2.ino",
+		"/C/Users/Raunaq/personal-site/index.html",
+		"/C/Users/Raunaq/personal-site/sass/flex.scss",
+		"/C/Users/Raunaq/personal-site/sass/styles.scss"
+	],
+	"find":
+	{
+		"height": 34.0
+	},
+	"find_in_files":
+	{
+		"height": 90.0,
+		"where_history":
+		[
+			""
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": false,
+		"find_history":
+		[
+			"isProvince",
+			"title",
+			"content",
+			"share-group",
+			"value",
+			"NU",
+			"5682",
+			"provIDMapping",
+			"manitoba",
+			"subregion",
+			"replaceAll",
+			"$scope.updateURL",
+			"$rootscope",
+			"location",
+			"url_params",
+			"fav",
+			".cv",
+			"path",
+			"__dirname",
+			"bodyPARSER",
+			"aggergated_dataset_list",
+			"\\t",
+			"os",
+			"puts",
+			"client",
+			"@@client",
+			"unav",
+			"unavial",
+			"available",
+			"records.count",
+			"dateue",
+			"exit",
+			"console.log(",
+			"pokemon",
+			"session",
+			"session.send",
+			"console.log",
+			"res",
+			"resp",
+			"};\n",
+			"err",
+			"getJSON",
+			"url",
+			"index",
+			"url",
+			"starwarslist",
+			"getJSON",
+			"starwarslist.length",
+			"getStarWarsData",
+			"minSort",
+			"drawStarWarsTable",
+			"callsInProgress",
+			"callsInProgres",
+			"cast",
+			"shows",
+			"drawTVMAzeTable",
+			"getTableD",
+			"cast",
+			"parseFloat(",
+			"22*3",
+			"currentValue",
+			"prevVAlue",
+			"operation",
+			"ans",
+			"operationClicked",
+			"currentValue = ",
+			"prevValue = ",
+			"currentValue",
+			"clearValues();",
+			"getData",
+			"<",
+			"iframe",
+			"0",
+			"prevValue",
+			"performOperation",
+			"running",
+			"current",
+			"style",
+			"margin-right",
+			"padding",
+			"t",
+			"tag",
+			"instafind.html",
+			"instafind",
+			"starter",
+			"articles",
+			"FlexVox Mixins",
+			"align-items",
+			"}",
+			"connec",
+			"testApi()"
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+			"aggregated_datasets",
+			"    ",
+			"@@mysqlClient",
+			"firstValue"
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"selected": 0,
+			"sheets":
+			[
+				{
+					"buffer": 0,
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 0,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"default_dir": "C:\\Users\\Raunaq\\Desktop\\Work\\SYDE 461\\goyo\\model",
+							"syntax": "Packages/Text/Plain text.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 0,
+					"type": "text"
+				}
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 26.0
+	},
+	"input":
+	{
+		"height": 31.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"output.find_results":
+	{
+		"height": 0.0
+	},
+	"pinned_build_system": "",
+	"project": "sublime_project.sublime-project",
+	"replace":
+	{
+		"height": 62.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+			[
+				"",
+				"json-page-dynamic.notahtml"
+			]
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_symbol":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"selected_group": 0,
+	"settings":
+	{
+	},
+	"show_minimap": true,
+	"show_open_files": true,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 217.0,
+	"status_bar_visible": true,
+	"template_settings":
+	{
+	}
+}
