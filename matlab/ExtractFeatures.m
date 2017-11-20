@@ -1,17 +1,23 @@
 % Script that takes data and extracts all the signal features
 
-twwalker1 = csvread('two-wheels\walker-2.csv', 1);
-fsr1 = csvread('two-wheels\data_force_4_axis_test2.csv', 1, 1);
+walkclassified = csvread('two-wheels-second-data\Combined Data\walk3_classified.csv', 1);
 
-time_fsr = fsr1(:,1);
-outside_fsr = fsr1(:,3);
-top_fsr = fsr1(:,4);
-% oops, matching this will be hard :(
+is_walking = walkclassified(:,1);
+fsr_data = walkclassified(:,2:3);
+top_data = walkclassified(:,4:6);
+side_data = walkclassified(:,7:9);
+corner_data = walkclassified(:,10:12);
+front_data = walkclassified(:,13:15);
+
+walktop = [is_walking fsr_data corner_data];
+walkside = [is_walking fsr_data side_data];
+walkcorner = [is_walking fsr_data corner_data];
+walkfront = [is_walking fsr_data front_data];
 
 num_features = 12;
 rate = 24;          % Hz
 window_size = 2;    % sec
-window_overlap = 1; %sec
+window_overlap = 1; % sec
 windows = WindowCreation(walk6corner, rate, window_size, window_overlap);
 
 feature_data = zeros(length(windows), num_features);
