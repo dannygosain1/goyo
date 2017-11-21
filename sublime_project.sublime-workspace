@@ -4,6 +4,14 @@
 		"selected_items":
 		[
 			[
+				"walk",
+				"walk6csv_data	statement"
+			],
+			[
+				"wal",
+				"walk6csv_target	statement"
+			],
+			[
 				"prov",
 				"provIdMapping"
 			],
@@ -388,9 +396,18 @@
 	"buffers":
 	[
 		{
+			"file": "model/model.py",
 			"settings":
 			{
-				"buffer_size": 0,
+				"buffer_size": 583,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "model/feature_vectors/walk6corner_standard.csv",
+			"settings":
+			{
+				"buffer_size": 9142,
 				"line_ending": "Windows"
 			}
 		}
@@ -403,9 +420,13 @@
 	"command_palette":
 	{
 		"height": 392.0,
-		"last_filter": "auto",
+		"last_filter": "Package Control: in",
 		"selected_items":
 		[
+			[
+				"Package Control: in",
+				"Package Control: Install Package"
+			],
 			[
 				"auto",
 				"Disable Autorefresh"
@@ -495,7 +516,7 @@
 				"Package Control: Install Package"
 			]
 		],
-		"width": 416.0
+		"width": 363.0
 	},
 	"console":
 	{
@@ -520,7 +541,8 @@
 	"expanded_folders":
 	[
 		"/C/Users/Raunaq/Desktop/Work/SYDE 461/goyo",
-		"/C/Users/Raunaq/Desktop/Work/SYDE 461/goyo/model"
+		"/C/Users/Raunaq/Desktop/Work/SYDE 461/goyo/model",
+		"/C/Users/Raunaq/Desktop/Work/SYDE 461/goyo/model/feature_vectors"
 	],
 	"file_history":
 	[
@@ -787,30 +809,69 @@
 			[
 				{
 					"buffer": 0,
+					"file": "model/model.py",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 0,
+						"buffer_size": 583,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								0,
-								0
+								459,
+								459
 							]
 						],
 						"settings":
 						{
-							"default_dir": "C:\\Users\\Raunaq\\Desktop\\Work\\SYDE 461\\goyo\\model",
-							"syntax": "Packages/Text/Plain text.tmLanguage"
+							"auto_complete_triggers":
+							[
+								{
+									"characters": "<",
+									"selector": "text.html"
+								},
+								{
+									"characters": ".",
+									"selector": "source.python - string - constant.numeric"
+								}
+							],
+							"syntax": "Packages/Python/Python.sublime-syntax"
 						},
 						"translation.x": 0.0,
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
 					"stack_index": 0,
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "model/feature_vectors/walk6corner_standard.csv",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 9142,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								29,
+								29
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Text/Plain text.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 1,
 					"type": "text"
 				}
 			]

@@ -18,7 +18,7 @@ num_features = 12;
 rate = 24;          % Hz
 window_size = 2;    % sec
 window_overlap = 1; % sec
-windows = WindowCreation(walk6corner, rate, window_size, window_overlap);
+windows = WindowCreation(walkfront, rate, window_size, window_overlap);
 
 feature_data = zeros(length(windows), num_features);
 
