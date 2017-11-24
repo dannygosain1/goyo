@@ -23,7 +23,7 @@ def main(args):
 	gnb = GaussianNB()
 
 	walk_predict_pred = gnb.fit(training_set, training_target).predict(walk_predict_data)
-	print("Number of mislabeled points from top sensor with standard features out of a total %d points : %d" % (walk_predict_data.shape[0],(walk_predict_target != walk_predict_pred).sum()))
+	print("Number of detected activity points: %d out of %d" % ((1 == walk_predict_pred).sum(), walk_predict_data.shape[0]))
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Demo model test")

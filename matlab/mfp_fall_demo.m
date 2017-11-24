@@ -1,4 +1,4 @@
-walkData = csvread('demo/raw.csv', 1);
+walkData = csvread('demo/raw_data.csv', 1);
 
 num_features = 12;
 rate = 24;          % Hz
