@@ -46,7 +46,9 @@ def main(args):
     window_size_sec = 2         # sec
     window_size = rate*window_size_sec
     features = extract_windowed_features(raw_data, window_size, rate)
-    features.to_csv('extracted_features.csv')
+
+    features_filename = "%s_extracted_features.csv" % args.filename[0].split(".")[0]
+    features.to_csv(features_filename)
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Extract features")
