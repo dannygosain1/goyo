@@ -89,7 +89,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
         // creating file name with input in text field and current date/time
         let fileName = fileNameInput.text! + "_" + today_string + ".csv"
         print("Data saved as: " + fileName)
-//        let fileNameTemp="rawData.csv"
+//        let fileName="rawData.csv"
         self.path =  NSURL(fileURLWithPath: documentsDirectory).appendingPathComponent(fileName)
         do {
             //try FileManager.default.createFile(atPath: self.path!.absoluteString, contents: csvText)
@@ -98,6 +98,6 @@ class ViewController: UIViewController, UITextFieldDelegate {
             print("Failed to create file")
             print("\(error)")
         }
-        print (csvText)
+//        print (csvText)
     }
 }
