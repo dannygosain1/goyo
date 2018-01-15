@@ -34,7 +34,8 @@ def extract_windowed_features(data, window_size, sample_freq):
         'fsr2_med': data_win.fsr2.median()[sample_win::sample_win+1],
         'is_walking': data_win.is_walking.apply(sample_mode)[sample_win::sample_win+1]
     }
-    return pandas.DataFrame(data=data_features)
+    feature_data = pandas.DataFrame(data=data_features).dropna()
+    return feature_data
 
 def main(args):
     raw_data = pandas.read_csv(args.filename[0])
@@ -46,7 +47,6 @@ def main(args):
     window_size_sec = 2         # sec
     window_size = rate*window_size_sec
     features = extract_windowed_features(raw_data, window_size, rate)
-
     features_filename = "%s_extracted_features.csv" % args.filename[0].split(".")[0]
     features.to_csv(features_filename)
 
