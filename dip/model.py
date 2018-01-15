@@ -25,11 +25,10 @@ def main(args):
 	nn_3 = kNN(3, data_train, target_train)
 	nn_5 = kNN(5, data_train, target_train)
 	gnb = NaiveBayes(data_train, target_train)
-
-	for clf  in [nn_3, nn_5, gnb]:
-		pred = clf.predict(data_test)
-		print("Number of mislabeled points out of a total %d points : %d" % (data_test.shape[0],(target_test != pred).sum()))
-
+	names = ["3nn", "5nn", "GNB"]
+	classifiers = [nn_3, nn_5, gnb]
+	for name, clf in zip(names, classifiers):
+		print("Score for {0}: {1}".format(name, clf.score(data_test, target_test)))
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Run Models")
