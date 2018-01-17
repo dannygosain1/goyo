@@ -9,9 +9,7 @@ from scipy.stats import mode
 
 def bandpower(x, fs, fmin, fmax):
     f, Pxx = periodogram(x, fs=fs)
-    ind_min = scipy.argmax(f > fmin) - 1
-    ind_max = scipy.argmax(f > fmax) - 1
-    return scipy.trapz(Pxx[ind_min: ind_max], f[ind_min: ind_max])
+    return scipy.trapz(Pxx, f)
 
 def extract_windowed_features(data, window_size, sample_freq):
     sample_mode = lambda a: mode(a)[0]
