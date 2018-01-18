@@ -56,19 +56,24 @@ def process_features(features):
 
     return features
 
-def main(args):
-    raw_data = pandas.read_csv(args.filename[0])
-
+def raw_data_to_vectors(raw_data):
     is_walking = raw_data.is_walking
     fsr_data = [raw_data.fsr1, raw_data.fsr2]
     accelerometer_data = [raw_data.top_x, raw_data.top_y, raw_data.top_z]
     rate = 24                   # Hz
     window_size_sec = 2         # sec
     window_size = rate*window_size_sec
-    features = extract_windowed_features(raw_data, window_size, rate)
-    processed_features = process_features(features)
+    return extract_windowed_features(raw_data, window_size, rate)
+
+def generate_features(raw_data):
+    return process_features(raw_data_to_vectors(raw_data))
+
+def main(args):
+    raw_data = pandas.read_csv(args.filename[0])
+    features = generate_features(raw_data) 
     features_filename = "%s_extracted_features.csv" % args.filename[0].split(".")[0]
-    processed_features.to_csv(features_filename, index=False)
+    features.to_csv(features_filename, index=False)
+    return processed_features
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Extract features")

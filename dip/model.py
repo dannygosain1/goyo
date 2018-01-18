@@ -1,6 +1,7 @@
 import numpy as np
 import pandas as pd
 import argparse
+import extract_features as ef
 from sklearn.model_selection import train_test_split
 from sklearn.naive_bayes import GaussianNB
 from sklearn.cluster import KMeans
@@ -19,8 +20,14 @@ def NaiveBayes(train, target):
 	return clf.fit(train, target)
 
 def main(args):
-	data = load_files(args.filenames)
-	data_train, data_test, target_train, target_test = train_test_split(data[:,np.r_[1:3,4:13]], data[:, 3], test_size = 0.3)
+	#load data
+	if args.raw_data_files is not None:
+		features = map(lambda raw_file: ef.generate_features(pd.read_csv(raw_file)), args.raw_data_files)
+		data = pd.concat(features).values
+	elif args.features is not None:
+		data = load_files(args.features)
+
+	data_train, data_test, target_train, target_test = train_test_split(data[:, 1:], data[:, 0], test_size = 0.3)
 	
 	nn_3 = kNN(3, data_train, target_train)
 	nn_5 = kNN(5, data_train, target_train)
@@ -32,7 +39,9 @@ def main(args):
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Run Models")
-    parser.add_argument('--filenames', nargs='+', default=["raw_demo_data_extracted_features.csv"], type=str,  dest="filenames", help='the relative filepaths')
+    group = parser.add_mutually_exclusive_group(required=True)
+    group.add_argument('--features', nargs='*', type=str,  dest="features", help='the relative filepaths')
+    group.add_argument('--raws', nargs='*', type=str,  dest="raw_data_files", help='the relative filepaths')
     args = parser.parse_args()
 
     main(args)
