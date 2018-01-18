@@ -1,11 +1,10 @@
 #! python3.6
-
 import pandas
 import argparse
 import scipy
 from scipy.signal import periodogram
 from scipy.stats import mode
-
+from sklearn import preprocessing
 
 def bandpower(x, fs, fmin, fmax):
     f, Pxx = periodogram(x, fs=fs)
@@ -35,6 +34,28 @@ def extract_windowed_features(data, window_size, sample_freq):
     feature_data = pandas.DataFrame(data=data_features).dropna()
     return feature_data
 
+def process_features(features):
+    #reorder columns
+    reordered_columns = [
+        'is_walking', 
+        'fsr1_med',
+        'fsr2_med',
+        'x_mean',
+        'y_mean',
+        'z_mean',
+        'x_var',
+        'y_var',
+        'z_var',
+        'x_energy',
+        'y_energy',
+        'z_energy'
+    ]
+    features = features[reordered_columns]
+    #normalize columns based on min-max normalization
+    features[features.columns] = preprocessing.maxabs_scale(features[features.columns])
+
+    return features
+
 def main(args):
     raw_data = pandas.read_csv(args.filename[0])
 
@@ -45,8 +66,9 @@ def main(args):
     window_size_sec = 2         # sec
     window_size = rate*window_size_sec
     features = extract_windowed_features(raw_data, window_size, rate)
+    processed_features = process_features(features)
     features_filename = "%s_extracted_features.csv" % args.filename[0].split(".")[0]
-    features.to_csv(features_filename)
+    processed_features.to_csv(features_filename, index=False)
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Extract features")
