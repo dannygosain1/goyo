@@ -3,3 +3,4 @@
 *.png
 *.asv
 iOSApplication/goyo/Pods/
+.DS_STORE
