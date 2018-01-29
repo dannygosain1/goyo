@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		1A4CF85A200DF10F002590F4 /* Charts in Resources */ = {isa = PBXBuildFile; fileRef = 1A4CF859200DF10F002590F4 /* Charts */; };
 		1AEC1024200DE3AA00F1C89A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AEC1023200DE3AA00F1C89A /* AppDelegate.swift */; };
 		1AEC1026200DE3AA00F1C89A /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AEC1025200DE3AA00F1C89A /* ViewController.swift */; };
 		1AEC1029200DE3AA00F1C89A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1AEC1027200DE3AA00F1C89A /* Main.storyboard */; };
@@ -40,7 +39,6 @@
 /* Begin PBXFileReference section */
 		0D9709D8654578973FB70599 /* Pods_goyoUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_goyoUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		13CDA6FB1B92A472C51C72A6 /* Pods_goyo.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_goyo.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		1A4CF859200DF10F002590F4 /* Charts */ = {isa = PBXFileReference; lastKnownFileType = folder; name = Charts; path = Pods/Charts; sourceTree = "<group>"; };
 		1AEC1020200DE3AA00F1C89A /* goyo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = goyo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1AEC1023200DE3AA00F1C89A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		1AEC1025200DE3AA00F1C89A /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -147,7 +145,6 @@
 		6D5257B3A59DD3F985D877D1 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				1A4CF859200DF10F002590F4 /* Charts */,
 				CC7E1BB2E462DFEE187AC1A3 /* Pods-goyo.debug.xcconfig */,
 				3B67BBA34863F3A44431CC88 /* Pods-goyo.release.xcconfig */,
 				99CDF30628C078D6709313FB /* Pods-goyoTests.debug.xcconfig */,
@@ -288,7 +285,6 @@
 				1AEC102E200DE3AA00F1C89A /* LaunchScreen.storyboard in Resources */,
 				1AEC102B200DE3AA00F1C89A /* Assets.xcassets in Resources */,
 				1AEC1029200DE3AA00F1C89A /* Main.storyboard in Resources */,
-				1A4CF85A200DF10F002590F4 /* Charts in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
