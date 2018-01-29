@@ -16,6 +16,9 @@
 		1A93D0A3201F217B00FC3884 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A93D0A2201F217B00FC3884 /* ViewController.swift */; };
 		1A93D0A5201F29BC00FC3884 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A93D0A4201F29BC00FC3884 /* SettingsViewController.swift */; };
 		1A93D0A7201F2C1A00FC3884 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A93D0A6201F2C1A00FC3884 /* ProfileViewController.swift */; };
+		1A93D0AB201FADED00FC3884 /* SideMenuTableController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A93D0AA201FADED00FC3884 /* SideMenuTableController.swift */; };
+		1A93D0AE201FAE6800FC3884 /* SideMenuTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A93D0AC201FAE6800FC3884 /* SideMenuTableViewCell.swift */; };
+		1A93D0AF201FAE6800FC3884 /* SideMenuTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1A93D0AD201FAE6800FC3884 /* SideMenuTableViewCell.xib */; };
 		5CDC8A4A3DD564995CF95018 /* Pods_goyo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C664A985593284BA9A50735B /* Pods_goyo.framework */; };
 /* End PBXBuildFile section */
 
@@ -35,6 +38,9 @@
 		1A93D0A2201F217B00FC3884 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		1A93D0A4201F29BC00FC3884 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		1A93D0A6201F2C1A00FC3884 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
+		1A93D0AA201FADED00FC3884 /* SideMenuTableController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideMenuTableController.swift; sourceTree = "<group>"; };
+		1A93D0AC201FAE6800FC3884 /* SideMenuTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideMenuTableViewCell.swift; sourceTree = "<group>"; };
+		1A93D0AD201FAE6800FC3884 /* SideMenuTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SideMenuTableViewCell.xib; sourceTree = "<group>"; };
 		C664A985593284BA9A50735B /* Pods_goyo.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_goyo.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -78,6 +84,9 @@
 				1A93D0A2201F217B00FC3884 /* ViewController.swift */,
 				1A93D0A4201F29BC00FC3884 /* SettingsViewController.swift */,
 				1A93D0A6201F2C1A00FC3884 /* ProfileViewController.swift */,
+				1A93D0AA201FADED00FC3884 /* SideMenuTableController.swift */,
+				1A93D0AC201FAE6800FC3884 /* SideMenuTableViewCell.swift */,
+				1A93D0AD201FAE6800FC3884 /* SideMenuTableViewCell.xib */,
 				1A93D08F201F14BD00FC3884 /* Assets.xcassets */,
 				1A93D091201F14BD00FC3884 /* LaunchScreen.storyboard */,
 				1A93D094201F14BD00FC3884 /* Info.plist */,
@@ -170,6 +179,7 @@
 				1A93D093201F14BD00FC3884 /* LaunchScreen.storyboard in Resources */,
 				1A93D090201F14BD00FC3884 /* Assets.xcassets in Resources */,
 				1A93D08B201F14BD00FC3884 /* Main.storyboard in Resources */,
+				1A93D0AF201FAE6800FC3884 /* SideMenuTableViewCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -239,9 +249,11 @@
 				1A93D0A7201F2C1A00FC3884 /* ProfileViewController.swift in Sources */,
 				1A93D08E201F14BD00FC3884 /* goyo.xcdatamodeld in Sources */,
 				1A93D086201F14BD00FC3884 /* AppDelegate.swift in Sources */,
+				1A93D0AE201FAE6800FC3884 /* SideMenuTableViewCell.swift in Sources */,
 				1A93D0A3201F217B00FC3884 /* ViewController.swift in Sources */,
 				1A93D0A5201F29BC00FC3884 /* SettingsViewController.swift in Sources */,
 				1A93D0A1201F1F1B00FC3884 /* SWRevealViewController.m in Sources */,
+				1A93D0AB201FADED00FC3884 /* SideMenuTableController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
