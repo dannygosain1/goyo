@@ -1,0 +1,453 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 48;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		1A93D086201F14BD00FC3884 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A93D085201F14BD00FC3884 /* AppDelegate.swift */; };
+		1A93D08B201F14BD00FC3884 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1A93D089201F14BD00FC3884 /* Main.storyboard */; };
+		1A93D08E201F14BD00FC3884 /* goyo.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 1A93D08C201F14BD00FC3884 /* goyo.xcdatamodeld */; };
+		1A93D090201F14BD00FC3884 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1A93D08F201F14BD00FC3884 /* Assets.xcassets */; };
+		1A93D093201F14BD00FC3884 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1A93D091201F14BD00FC3884 /* LaunchScreen.storyboard */; };
+		1A93D0A1201F1F1B00FC3884 /* SWRevealViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A93D0A0201F1F1B00FC3884 /* SWRevealViewController.m */; };
+		1A93D0A3201F217B00FC3884 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A93D0A2201F217B00FC3884 /* ViewController.swift */; };
+		1A93D0A5201F29BC00FC3884 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A93D0A4201F29BC00FC3884 /* SettingsViewController.swift */; };
+		1A93D0A7201F2C1A00FC3884 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A93D0A6201F2C1A00FC3884 /* ProfileViewController.swift */; };
+		5CDC8A4A3DD564995CF95018 /* Pods_goyo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C664A985593284BA9A50735B /* Pods_goyo.framework */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		0D5FFD2BF8F03445428AD4FF /* Pods-goyo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-goyo.release.xcconfig"; path = "Pods/Target Support Files/Pods-goyo/Pods-goyo.release.xcconfig"; sourceTree = "<group>"; };
+		184145349676DD3B89312B9A /* Pods-goyo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-goyo.debug.xcconfig"; path = "Pods/Target Support Files/Pods-goyo/Pods-goyo.debug.xcconfig"; sourceTree = "<group>"; };
+		1A93D082201F14BD00FC3884 /* goyo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = goyo.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		1A93D085201F14BD00FC3884 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		1A93D08A201F14BD00FC3884 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		1A93D08D201F14BD00FC3884 /* goyo.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = goyo.xcdatamodel; sourceTree = "<group>"; };
+		1A93D08F201F14BD00FC3884 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		1A93D092201F14BD00FC3884 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		1A93D094201F14BD00FC3884 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		1A93D09E201F1F1A00FC3884 /* goyo-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "goyo-Bridging-Header.h"; sourceTree = "<group>"; };
+		1A93D09F201F1F1B00FC3884 /* SWRevealViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SWRevealViewController.h; sourceTree = "<group>"; };
+		1A93D0A0201F1F1B00FC3884 /* SWRevealViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SWRevealViewController.m; sourceTree = "<group>"; };
+		1A93D0A2201F217B00FC3884 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		1A93D0A4201F29BC00FC3884 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
+		1A93D0A6201F2C1A00FC3884 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
+		C664A985593284BA9A50735B /* Pods_goyo.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_goyo.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		1A93D07F201F14BD00FC3884 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				5CDC8A4A3DD564995CF95018 /* Pods_goyo.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		1A93D079201F14BD00FC3884 = {
+			isa = PBXGroup;
+			children = (
+				1A93D084201F14BD00FC3884 /* goyo */,
+				1A93D083201F14BD00FC3884 /* Products */,
+				46F306A8B2311589ED5D9C60 /* Pods */,
+				FF07A77686812AC84B0B8B82 /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		1A93D083201F14BD00FC3884 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				1A93D082201F14BD00FC3884 /* goyo.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		1A93D084201F14BD00FC3884 /* goyo */ = {
+			isa = PBXGroup;
+			children = (
+				1A93D085201F14BD00FC3884 /* AppDelegate.swift */,
+				1A93D09F201F1F1B00FC3884 /* SWRevealViewController.h */,
+				1A93D0A0201F1F1B00FC3884 /* SWRevealViewController.m */,
+				1A93D089201F14BD00FC3884 /* Main.storyboard */,
+				1A93D0A2201F217B00FC3884 /* ViewController.swift */,
+				1A93D0A4201F29BC00FC3884 /* SettingsViewController.swift */,
+				1A93D0A6201F2C1A00FC3884 /* ProfileViewController.swift */,
+				1A93D08F201F14BD00FC3884 /* Assets.xcassets */,
+				1A93D091201F14BD00FC3884 /* LaunchScreen.storyboard */,
+				1A93D094201F14BD00FC3884 /* Info.plist */,
+				1A93D08C201F14BD00FC3884 /* goyo.xcdatamodeld */,
+				1A93D09E201F1F1A00FC3884 /* goyo-Bridging-Header.h */,
+			);
+			path = goyo;
+			sourceTree = "<group>";
+		};
+		46F306A8B2311589ED5D9C60 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				184145349676DD3B89312B9A /* Pods-goyo.debug.xcconfig */,
+				0D5FFD2BF8F03445428AD4FF /* Pods-goyo.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		FF07A77686812AC84B0B8B82 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				C664A985593284BA9A50735B /* Pods_goyo.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		1A93D081201F14BD00FC3884 /* goyo */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 1A93D097201F14BD00FC3884 /* Build configuration list for PBXNativeTarget "goyo" */;
+			buildPhases = (
+				5A75BDD1524E77FF74B0D219 /* [CP] Check Pods Manifest.lock */,
+				1A93D07E201F14BD00FC3884 /* Sources */,
+				1A93D07F201F14BD00FC3884 /* Frameworks */,
+				1A93D080201F14BD00FC3884 /* Resources */,
+				08DF3EB9E40A1886559346EF /* [CP] Embed Pods Frameworks */,
+				41248F2B491E48DDE32A34B5 /* [CP] Copy Pods Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = goyo;
+			productName = goyo;
+			productReference = 1A93D082201F14BD00FC3884 /* goyo.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		1A93D07A201F14BD00FC3884 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 0920;
+				LastUpgradeCheck = 0920;
+				ORGANIZATIONNAME = "Danny Gosain";
+				TargetAttributes = {
+					1A93D081201F14BD00FC3884 = {
+						CreatedOnToolsVersion = 9.2;
+						LastSwiftMigration = 0920;
+						ProvisioningStyle = Automatic;
+					};
+				};
+			};
+			buildConfigurationList = 1A93D07D201F14BD00FC3884 /* Build configuration list for PBXProject "goyo" */;
+			compatibilityVersion = "Xcode 8.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 1A93D079201F14BD00FC3884;
+			productRefGroup = 1A93D083201F14BD00FC3884 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				1A93D081201F14BD00FC3884 /* goyo */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		1A93D080201F14BD00FC3884 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1A93D093201F14BD00FC3884 /* LaunchScreen.storyboard in Resources */,
+				1A93D090201F14BD00FC3884 /* Assets.xcassets in Resources */,
+				1A93D08B201F14BD00FC3884 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		08DF3EB9E40A1886559346EF /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-goyo/Pods-goyo-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/PieCharts/PieCharts.framework",
+				"${BUILT_PRODUCTS_DIR}/SwiftCharts/SwiftCharts.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PieCharts.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftCharts.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-goyo/Pods-goyo-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		41248F2B491E48DDE32A34B5 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-goyo/Pods-goyo-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		5A75BDD1524E77FF74B0D219 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-goyo-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		1A93D07E201F14BD00FC3884 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1A93D0A7201F2C1A00FC3884 /* ProfileViewController.swift in Sources */,
+				1A93D08E201F14BD00FC3884 /* goyo.xcdatamodeld in Sources */,
+				1A93D086201F14BD00FC3884 /* AppDelegate.swift in Sources */,
+				1A93D0A3201F217B00FC3884 /* ViewController.swift in Sources */,
+				1A93D0A5201F29BC00FC3884 /* SettingsViewController.swift in Sources */,
+				1A93D0A1201F1F1B00FC3884 /* SWRevealViewController.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		1A93D089201F14BD00FC3884 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				1A93D08A201F14BD00FC3884 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		1A93D091201F14BD00FC3884 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				1A93D092201F14BD00FC3884 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		1A93D095201F14BD00FC3884 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		1A93D096201F14BD00FC3884 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		1A93D098201F14BD00FC3884 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 184145349676DD3B89312B9A /* Pods-goyo.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 5C4Y4QMK66;
+				INFOPLIST_FILE = goyo/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = dannygosain.goyo;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos11.2;
+				SWIFT_OBJC_BRIDGING_HEADER = "goyo/goyo-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		1A93D099201F14BD00FC3884 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 0D5FFD2BF8F03445428AD4FF /* Pods-goyo.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 5C4Y4QMK66;
+				INFOPLIST_FILE = goyo/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = dannygosain.goyo;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos11.2;
+				SWIFT_OBJC_BRIDGING_HEADER = "goyo/goyo-Bridging-Header.h";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		1A93D07D201F14BD00FC3884 /* Build configuration list for PBXProject "goyo" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				1A93D095201F14BD00FC3884 /* Debug */,
+				1A93D096201F14BD00FC3884 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		1A93D097201F14BD00FC3884 /* Build configuration list for PBXNativeTarget "goyo" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				1A93D098201F14BD00FC3884 /* Debug */,
+				1A93D099201F14BD00FC3884 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		1A93D08C201F14BD00FC3884 /* goyo.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				1A93D08D201F14BD00FC3884 /* goyo.xcdatamodel */,
+			);
+			currentVersion = 1A93D08D201F14BD00FC3884 /* goyo.xcdatamodel */;
+			path = goyo.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
+	};
+	rootObject = 1A93D07A201F14BD00FC3884 /* Project object */;
+}
