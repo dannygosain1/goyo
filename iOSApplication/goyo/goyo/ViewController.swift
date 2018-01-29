@@ -12,8 +12,20 @@ class ViewController: UIViewController {
 
     @IBOutlet weak var menuButton: UIBarButtonItem!
     
+    @IBOutlet weak var remainingText: UILabel!
+    @IBOutlet weak var completedText: UILabel!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        let tempRemainingData : Int = 10 // expecting an int from the DB
+        var tempRemainingStr = String(tempRemainingData)
+        remainingText.text = "Remaining: " + tempRemainingStr + " minutes"
+        
+        let tempCompletedData : Int = 50
+        var tempCompletedStr = String(tempCompletedData)
+        completedText.text = "Completed: " + tempCompletedStr + " minutes"
+        
         sideMenu()
         // Do any additional setup after loading the view.
     }
