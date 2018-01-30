@@ -76,14 +76,9 @@ class TodayViewController: UIViewController {
         // chart characteristics
         todayPieView.data = pieChartData
         todayPieView.chartDescription?.text = ""
-        todayPieView.centerAttributedText = NSMutableAttributedString(string: "83%", attributes: [NSAttributedStringKey.foregroundColor:completedColor, NSAttributedStringKey.font: UIFont(name: "Helvetica", size:35)!])
+        todayPieView.centerAttributedText = NSMutableAttributedString(string: "83%", attributes: [NSAttributedStringKey.foregroundColor:completedColor, NSAttributedStringKey.font: UIFont(name: "HelveticaNeue-Light", size:38)!])
         todayPieView.legend.enabled = false
         
-    }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
     
     func sideMenu() {
@@ -94,6 +89,11 @@ class TodayViewController: UIViewController {
             
             view.addGestureRecognizer(self.revealViewController().panGestureRecognizer())
         }
+    }
+
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+        // Dispose of any resources that can be recreated.
     }
 
     /*

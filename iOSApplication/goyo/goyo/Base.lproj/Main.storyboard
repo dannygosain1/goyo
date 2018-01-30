@@ -43,22 +43,22 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="AVH-XK-hSz" customClass="PieChartView" customModule="Charts">
-                                <rect key="frame" x="37" y="36" width="322" height="325"/>
+                                <rect key="frame" x="16" y="38" width="343" height="325"/>
                                 <color key="backgroundColor" cocoaTouchSystemColor="tableCellGroupedBackgroundColor"/>
                             </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="dSg-Zi-jIQ" firstAttribute="bottom" secondItem="Xr1-WK-VZB" secondAttribute="bottom" constant="71" id="0Y8-vo-juF"/>
-                            <constraint firstItem="AVH-XK-hSz" firstAttribute="top" secondItem="dSg-Zi-jIQ" secondAttribute="top" constant="36" id="4la-6b-gtQ"/>
+                            <constraint firstItem="AVH-XK-hSz" firstAttribute="trailing" secondItem="jNy-KX-rKA" secondAttribute="trailing" id="9Oa-Im-3JD"/>
                             <constraint firstItem="jNy-KX-rKA" firstAttribute="trailing" secondItem="Xr1-WK-VZB" secondAttribute="trailing" id="ARz-kl-46L"/>
                             <constraint firstItem="jNy-KX-rKA" firstAttribute="leading" secondItem="HHi-cx-zoR" secondAttribute="leadingMargin" id="F2b-JY-1iR"/>
                             <constraint firstItem="jNy-KX-rKA" firstAttribute="leading" secondItem="Xr1-WK-VZB" secondAttribute="leading" id="Lq2-fO-Iez"/>
+                            <constraint firstItem="jNy-KX-rKA" firstAttribute="top" secondItem="AVH-XK-hSz" secondAttribute="bottom" constant="30" id="QeN-t1-ugA"/>
+                            <constraint firstItem="AVH-XK-hSz" firstAttribute="leading" secondItem="jNy-KX-rKA" secondAttribute="leading" id="TIT-bh-s9l"/>
                             <constraint firstItem="Xr1-WK-VZB" firstAttribute="top" secondItem="jNy-KX-rKA" secondAttribute="bottom" constant="8" symbolic="YES" id="a17-vi-wFn"/>
+                            <constraint firstItem="AVH-XK-hSz" firstAttribute="top" secondItem="dSg-Zi-jIQ" secondAttribute="top" constant="38" id="b0m-qY-XhN"/>
                             <constraint firstItem="jNy-KX-rKA" firstAttribute="trailing" secondItem="HHi-cx-zoR" secondAttribute="trailingMargin" id="eI8-3W-sKt"/>
-                            <constraint firstItem="AVH-XK-hSz" firstAttribute="leading" secondItem="dSg-Zi-jIQ" secondAttribute="leading" constant="37" id="f3i-Dr-OA1"/>
-                            <constraint firstItem="AVH-XK-hSz" firstAttribute="trailing" secondItem="jNy-KX-rKA" secondAttribute="trailing" id="sWV-VK-f5R"/>
-                            <constraint firstItem="jNy-KX-rKA" firstAttribute="top" secondItem="AVH-XK-hSz" secondAttribute="bottom" constant="32" id="w5e-67-4SH"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="dSg-Zi-jIQ"/>
                     </view>
@@ -528,7 +528,7 @@
         <image name="icons8-menu-filled-40" width="40" height="40"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="mfG-e8-FYn"/>
+        <segue reference="2lq-32-XIn"/>
         <segue reference="IxU-7e-sri"/>
     </inferredMetricsTieBreakers>
 </document>
