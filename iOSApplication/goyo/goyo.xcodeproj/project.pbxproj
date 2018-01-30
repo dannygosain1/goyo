@@ -13,7 +13,7 @@
 		1A93D090201F14BD00FC3884 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1A93D08F201F14BD00FC3884 /* Assets.xcassets */; };
 		1A93D093201F14BD00FC3884 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1A93D091201F14BD00FC3884 /* LaunchScreen.storyboard */; };
 		1A93D0A1201F1F1B00FC3884 /* SWRevealViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A93D0A0201F1F1B00FC3884 /* SWRevealViewController.m */; };
-		1A93D0A3201F217B00FC3884 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A93D0A2201F217B00FC3884 /* ViewController.swift */; };
+		1A93D0A3201F217B00FC3884 /* TodayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A93D0A2201F217B00FC3884 /* TodayViewController.swift */; };
 		1A93D0A5201F29BC00FC3884 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A93D0A4201F29BC00FC3884 /* SettingsViewController.swift */; };
 		1A93D0A7201F2C1A00FC3884 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A93D0A6201F2C1A00FC3884 /* ProfileViewController.swift */; };
 		1A93D0B1201FBA3400FC3884 /* WeekViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A93D0B0201FBA3400FC3884 /* WeekViewController.swift */; };
@@ -34,7 +34,7 @@
 		1A93D09E201F1F1A00FC3884 /* goyo-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "goyo-Bridging-Header.h"; sourceTree = "<group>"; };
 		1A93D09F201F1F1B00FC3884 /* SWRevealViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SWRevealViewController.h; sourceTree = "<group>"; };
 		1A93D0A0201F1F1B00FC3884 /* SWRevealViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SWRevealViewController.m; sourceTree = "<group>"; };
-		1A93D0A2201F217B00FC3884 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		1A93D0A2201F217B00FC3884 /* TodayViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayViewController.swift; sourceTree = "<group>"; wrapsLines = 1; };
 		1A93D0A4201F29BC00FC3884 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		1A93D0A6201F2C1A00FC3884 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		1A93D0B0201FBA3400FC3884 /* WeekViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeekViewController.swift; sourceTree = "<group>"; };
@@ -79,7 +79,7 @@
 				1A93D09F201F1F1B00FC3884 /* SWRevealViewController.h */,
 				1A93D0A0201F1F1B00FC3884 /* SWRevealViewController.m */,
 				1A93D089201F14BD00FC3884 /* Main.storyboard */,
-				1A93D0A2201F217B00FC3884 /* ViewController.swift */,
+				1A93D0A2201F217B00FC3884 /* TodayViewController.swift */,
 				1A93D0A4201F29BC00FC3884 /* SettingsViewController.swift */,
 				1A93D0A6201F2C1A00FC3884 /* ProfileViewController.swift */,
 				1A93D0B0201FBA3400FC3884 /* WeekViewController.swift */,
@@ -189,13 +189,17 @@
 			);
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-goyo/Pods-goyo-frameworks.sh",
-				"${BUILT_PRODUCTS_DIR}/PieCharts/PieCharts.framework",
-				"${BUILT_PRODUCTS_DIR}/SwiftCharts/SwiftCharts.framework",
+				"${BUILT_PRODUCTS_DIR}/Charts/Charts.framework",
+				"${BUILT_PRODUCTS_DIR}/ChartsRealm/ChartsRealm.framework",
+				"${BUILT_PRODUCTS_DIR}/Realm/Realm.framework",
+				"${BUILT_PRODUCTS_DIR}/RealmSwift/RealmSwift.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PieCharts.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftCharts.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Charts.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ChartsRealm.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Realm.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RealmSwift.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -246,7 +250,7 @@
 				1A93D0B3201FC09600FC3884 /* MonthViewController.swift in Sources */,
 				1A93D08E201F14BD00FC3884 /* goyo.xcdatamodeld in Sources */,
 				1A93D086201F14BD00FC3884 /* AppDelegate.swift in Sources */,
-				1A93D0A3201F217B00FC3884 /* ViewController.swift in Sources */,
+				1A93D0A3201F217B00FC3884 /* TodayViewController.swift in Sources */,
 				1A93D0A5201F29BC00FC3884 /* SettingsViewController.swift in Sources */,
 				1A93D0B1201FBA3400FC3884 /* WeekViewController.swift in Sources */,
 				1A93D0A1201F1F1B00FC3884 /* SWRevealViewController.m in Sources */,
