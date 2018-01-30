@@ -6,7 +6,11 @@
 //  Copyright © 2018 Danny Gosain. All rights reserved.
 //
 
+// Theme colors: navbar: #4286F4
+
+
 import UIKit
+import SwiftCharts
 
 class ViewController: UIViewController {
 
@@ -18,12 +22,14 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        
+        // just temporary data
         let tempRemainingData : Int = 10 // expecting an int from the DB
-        var tempRemainingStr = String(tempRemainingData)
+        let tempRemainingStr = String(tempRemainingData)
         remainingText.text = "Remaining: " + tempRemainingStr + " minutes"
         
         let tempCompletedData : Int = 50
-        var tempCompletedStr = String(tempCompletedData)
+        let tempCompletedStr = String(tempCompletedData)
         completedText.text = "Completed: " + tempCompletedStr + " minutes"
         
         sideMenu()
