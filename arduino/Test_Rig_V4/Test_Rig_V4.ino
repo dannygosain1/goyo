@@ -80,10 +80,10 @@
 
   // Record Details
   const char DELIMITER = ',';
-  #define SAMPLING_RATE 30 // Hz
+  #define SAMPLING_RATE 50 // Hz
   const uint32_t SAMPLE_INTERVAL = 1000/SAMPLING_RATE; 
   #define BUFFER_SIZE 10
-  #define LOG_MODE 2 /*
+  #define LOG_MODE 1 /*
   0 = Serial Only, 1 = SD Only, 2 = SD and Serial,
   3 = Buffer Serial Only, 4 = Buffer SD Only, 5 = Buffer SD and Serial
   */
@@ -304,17 +304,17 @@ void loop() {
     
   } else if(recording){
     // Recording
-    if(millis() - SAMPLE_INTERVAL > lastSerialTime){
+    if(millis() - SAMPLE_INTERVAL >= lastSerialTime){
       
       getAccData();
       
       logData();
-      lastSerialTime = millis();
+      lastSerialTime = millis() - 7;
 
-      if(bufferIndex >= BUFFER_SIZE){
+      /*if(bufferIndex >= BUFFER_SIZE && LOG_MODE >= 3){
         writeBuffer();
         bufferIndex = 0;
-      }
+      }*/
     }
     
   } else {
@@ -387,40 +387,44 @@ void writeHeader() {
 
 // Log a single data record to the SD Card via Preestablished File Details
 void logData() {
-  if(!recording || error != 0){
-    return;
-  }
 
   long curTime = millis();
+  bool wbtn = digitalRead(WALKING_BTN);
+  int afsr = analogRead(FSR);
+  String entry = String(curTime) + DELIMITER + String(wbtn) + DELIMITER + String(afsr) + 
+            DELIMITER + String(AccX) + DELIMITER + String(AccY) + DELIMITER + String(AccZ);
 
   if(LOG_MODE == 0 || LOG_MODE == 2){
-    Serial.print(curTime);
+    /*Serial.print(curTime);
     Serial.write(DELIMITER);
-    Serial.print(digitalRead(WALKING_BTN));
+    Serial.print(wbtn);
     Serial.write(DELIMITER);
-    Serial.print(analogRead(FSR));
+    Serial.print(afsr);
     Serial.write(DELIMITER);
     Serial.print(AccX);
     Serial.write(DELIMITER);
     Serial.print(AccY);
     Serial.write(DELIMITER);
     Serial.print(AccZ);
-    Serial.println();
+    Serial.println();*/
+    Serial.println(entry);
   }
 
   if(LOG_MODE == 1 || LOG_MODE == 2){
-    file.print(curTime);
+    /*file.print(curTime);
     file.write(DELIMITER);
-    file.print(digitalRead(WALKING_BTN));
+    file.print(wbtn);
     file.write(DELIMITER);
-    file.print(analogRead(FSR));
+    file.print(afsr);
     file.write(DELIMITER);
     file.print(AccX);
     file.write(DELIMITER);
     file.print(AccY);
     file.write(DELIMITER);
     file.print(AccZ);
-    file.println();
+    file.println();*/
+    file.println(entry);
+    
 
     /*if (!file.sync() || file.getWriteError()) {
       error = ERR_SD_DATA_NOT_FORCED;
