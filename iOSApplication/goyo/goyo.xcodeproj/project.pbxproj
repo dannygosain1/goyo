@@ -7,163 +7,105 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		1A4CF85A200DF10F002590F4 /* Charts in Resources */ = {isa = PBXBuildFile; fileRef = 1A4CF859200DF10F002590F4 /* Charts */; };
-		1AEC1024200DE3AA00F1C89A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AEC1023200DE3AA00F1C89A /* AppDelegate.swift */; };
-		1AEC1026200DE3AA00F1C89A /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AEC1025200DE3AA00F1C89A /* ViewController.swift */; };
-		1AEC1029200DE3AA00F1C89A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1AEC1027200DE3AA00F1C89A /* Main.storyboard */; };
-		1AEC102B200DE3AA00F1C89A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1AEC102A200DE3AA00F1C89A /* Assets.xcassets */; };
-		1AEC102E200DE3AA00F1C89A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1AEC102C200DE3AA00F1C89A /* LaunchScreen.storyboard */; };
-		1AEC1039200DE3AA00F1C89A /* goyoTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AEC1038200DE3AA00F1C89A /* goyoTests.swift */; };
-		1AEC1044200DE3AA00F1C89A /* goyoUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AEC1043200DE3AA00F1C89A /* goyoUITests.swift */; };
-		200D650B49068FB107AEF448 /* Pods_goyoUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0D9709D8654578973FB70599 /* Pods_goyoUITests.framework */; };
-		8053A26C0BDB0948FAA5962C /* Pods_goyoTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C6E6FFCF30EC6ED44110675 /* Pods_goyoTests.framework */; };
-		B6CB9D840F91AB534DDF5D5C /* Pods_goyo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 13CDA6FB1B92A472C51C72A6 /* Pods_goyo.framework */; };
+		1A93D086201F14BD00FC3884 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A93D085201F14BD00FC3884 /* AppDelegate.swift */; };
+		1A93D08B201F14BD00FC3884 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1A93D089201F14BD00FC3884 /* Main.storyboard */; };
+		1A93D08E201F14BD00FC3884 /* goyo.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 1A93D08C201F14BD00FC3884 /* goyo.xcdatamodeld */; };
+		1A93D090201F14BD00FC3884 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1A93D08F201F14BD00FC3884 /* Assets.xcassets */; };
+		1A93D093201F14BD00FC3884 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1A93D091201F14BD00FC3884 /* LaunchScreen.storyboard */; };
+		1A93D0A1201F1F1B00FC3884 /* SWRevealViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A93D0A0201F1F1B00FC3884 /* SWRevealViewController.m */; };
+		1A93D0A3201F217B00FC3884 /* TodayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A93D0A2201F217B00FC3884 /* TodayViewController.swift */; };
+		1A93D0A5201F29BC00FC3884 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A93D0A4201F29BC00FC3884 /* SettingsViewController.swift */; };
+		1A93D0A7201F2C1A00FC3884 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A93D0A6201F2C1A00FC3884 /* ProfileViewController.swift */; };
+		1A93D0B1201FBA3400FC3884 /* WeekViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A93D0B0201FBA3400FC3884 /* WeekViewController.swift */; };
+		1A93D0B3201FC09600FC3884 /* MonthViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A93D0B2201FC09600FC3884 /* MonthViewController.swift */; };
+		5CDC8A4A3DD564995CF95018 /* Pods_goyo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C664A985593284BA9A50735B /* Pods_goyo.framework */; };
 /* End PBXBuildFile section */
 
-/* Begin PBXContainerItemProxy section */
-		1AEC1035200DE3AA00F1C89A /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 1AEC1018200DE3AA00F1C89A /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 1AEC101F200DE3AA00F1C89A;
-			remoteInfo = goyo;
-		};
-		1AEC1040200DE3AA00F1C89A /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 1AEC1018200DE3AA00F1C89A /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 1AEC101F200DE3AA00F1C89A;
-			remoteInfo = goyo;
-		};
-/* End PBXContainerItemProxy section */
-
 /* Begin PBXFileReference section */
-		0D9709D8654578973FB70599 /* Pods_goyoUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_goyoUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		13CDA6FB1B92A472C51C72A6 /* Pods_goyo.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_goyo.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		1A4CF859200DF10F002590F4 /* Charts */ = {isa = PBXFileReference; lastKnownFileType = folder; name = Charts; path = Pods/Charts; sourceTree = "<group>"; };
-		1AEC1020200DE3AA00F1C89A /* goyo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = goyo.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		1AEC1023200DE3AA00F1C89A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		1AEC1025200DE3AA00F1C89A /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		1AEC1028200DE3AA00F1C89A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		1AEC102A200DE3AA00F1C89A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		1AEC102D200DE3AA00F1C89A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
-		1AEC102F200DE3AA00F1C89A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		1AEC1034200DE3AA00F1C89A /* goyoTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = goyoTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		1AEC1038200DE3AA00F1C89A /* goyoTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = goyoTests.swift; sourceTree = "<group>"; };
-		1AEC103A200DE3AA00F1C89A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		1AEC103F200DE3AA00F1C89A /* goyoUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = goyoUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		1AEC1043200DE3AA00F1C89A /* goyoUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = goyoUITests.swift; sourceTree = "<group>"; };
-		1AEC1045200DE3AA00F1C89A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		2C6E6FFCF30EC6ED44110675 /* Pods_goyoTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_goyoTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		337CC04E4A9FFD380A85B1C6 /* Pods-goyoTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-goyoTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-goyoTests/Pods-goyoTests.release.xcconfig"; sourceTree = "<group>"; };
-		3B67BBA34863F3A44431CC88 /* Pods-goyo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-goyo.release.xcconfig"; path = "Pods/Target Support Files/Pods-goyo/Pods-goyo.release.xcconfig"; sourceTree = "<group>"; };
-		69EE757BE63BB287AAC59593 /* Pods-goyoUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-goyoUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-goyoUITests/Pods-goyoUITests.debug.xcconfig"; sourceTree = "<group>"; };
-		809BC26466571847D18DC837 /* Pods-goyoUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-goyoUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-goyoUITests/Pods-goyoUITests.release.xcconfig"; sourceTree = "<group>"; };
-		99CDF30628C078D6709313FB /* Pods-goyoTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-goyoTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-goyoTests/Pods-goyoTests.debug.xcconfig"; sourceTree = "<group>"; };
-		CC7E1BB2E462DFEE187AC1A3 /* Pods-goyo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-goyo.debug.xcconfig"; path = "Pods/Target Support Files/Pods-goyo/Pods-goyo.debug.xcconfig"; sourceTree = "<group>"; };
+		0D5FFD2BF8F03445428AD4FF /* Pods-goyo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-goyo.release.xcconfig"; path = "Pods/Target Support Files/Pods-goyo/Pods-goyo.release.xcconfig"; sourceTree = "<group>"; };
+		184145349676DD3B89312B9A /* Pods-goyo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-goyo.debug.xcconfig"; path = "Pods/Target Support Files/Pods-goyo/Pods-goyo.debug.xcconfig"; sourceTree = "<group>"; };
+		1A93D082201F14BD00FC3884 /* goyo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = goyo.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		1A93D085201F14BD00FC3884 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		1A93D08A201F14BD00FC3884 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		1A93D08D201F14BD00FC3884 /* goyo.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = goyo.xcdatamodel; sourceTree = "<group>"; };
+		1A93D08F201F14BD00FC3884 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		1A93D092201F14BD00FC3884 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		1A93D094201F14BD00FC3884 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		1A93D09E201F1F1A00FC3884 /* goyo-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "goyo-Bridging-Header.h"; sourceTree = "<group>"; };
+		1A93D09F201F1F1B00FC3884 /* SWRevealViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SWRevealViewController.h; sourceTree = "<group>"; };
+		1A93D0A0201F1F1B00FC3884 /* SWRevealViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SWRevealViewController.m; sourceTree = "<group>"; };
+		1A93D0A2201F217B00FC3884 /* TodayViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayViewController.swift; sourceTree = "<group>"; wrapsLines = 1; };
+		1A93D0A4201F29BC00FC3884 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
+		1A93D0A6201F2C1A00FC3884 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
+		1A93D0B0201FBA3400FC3884 /* WeekViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeekViewController.swift; sourceTree = "<group>"; };
+		1A93D0B2201FC09600FC3884 /* MonthViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MonthViewController.swift; sourceTree = "<group>"; };
+		C664A985593284BA9A50735B /* Pods_goyo.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_goyo.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		1AEC101D200DE3AA00F1C89A /* Frameworks */ = {
+		1A93D07F201F14BD00FC3884 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B6CB9D840F91AB534DDF5D5C /* Pods_goyo.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		1AEC1031200DE3AA00F1C89A /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				8053A26C0BDB0948FAA5962C /* Pods_goyoTests.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		1AEC103C200DE3AA00F1C89A /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				200D650B49068FB107AEF448 /* Pods_goyoUITests.framework in Frameworks */,
+				5CDC8A4A3DD564995CF95018 /* Pods_goyo.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		1AEC1017200DE3AA00F1C89A = {
+		1A93D079201F14BD00FC3884 = {
 			isa = PBXGroup;
 			children = (
-				1AEC1022200DE3AA00F1C89A /* goyo */,
-				1AEC1037200DE3AA00F1C89A /* goyoTests */,
-				1AEC1042200DE3AA00F1C89A /* goyoUITests */,
-				1AEC1021200DE3AA00F1C89A /* Products */,
-				6D5257B3A59DD3F985D877D1 /* Pods */,
-				E2B5508DE35EB2A6C8E82EAF /* Frameworks */,
+				1A93D084201F14BD00FC3884 /* goyo */,
+				1A93D083201F14BD00FC3884 /* Products */,
+				46F306A8B2311589ED5D9C60 /* Pods */,
+				FF07A77686812AC84B0B8B82 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
-		1AEC1021200DE3AA00F1C89A /* Products */ = {
+		1A93D083201F14BD00FC3884 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				1AEC1020200DE3AA00F1C89A /* goyo.app */,
-				1AEC1034200DE3AA00F1C89A /* goyoTests.xctest */,
-				1AEC103F200DE3AA00F1C89A /* goyoUITests.xctest */,
+				1A93D082201F14BD00FC3884 /* goyo.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		1AEC1022200DE3AA00F1C89A /* goyo */ = {
+		1A93D084201F14BD00FC3884 /* goyo */ = {
 			isa = PBXGroup;
 			children = (
-				1AEC1023200DE3AA00F1C89A /* AppDelegate.swift */,
-				1AEC1025200DE3AA00F1C89A /* ViewController.swift */,
-				1AEC1027200DE3AA00F1C89A /* Main.storyboard */,
-				1AEC102A200DE3AA00F1C89A /* Assets.xcassets */,
-				1AEC102C200DE3AA00F1C89A /* LaunchScreen.storyboard */,
-				1AEC102F200DE3AA00F1C89A /* Info.plist */,
+				1A93D085201F14BD00FC3884 /* AppDelegate.swift */,
+				1A93D09F201F1F1B00FC3884 /* SWRevealViewController.h */,
+				1A93D0A0201F1F1B00FC3884 /* SWRevealViewController.m */,
+				1A93D089201F14BD00FC3884 /* Main.storyboard */,
+				1A93D0A2201F217B00FC3884 /* TodayViewController.swift */,
+				1A93D0A4201F29BC00FC3884 /* SettingsViewController.swift */,
+				1A93D0A6201F2C1A00FC3884 /* ProfileViewController.swift */,
+				1A93D0B0201FBA3400FC3884 /* WeekViewController.swift */,
+				1A93D0B2201FC09600FC3884 /* MonthViewController.swift */,
+				1A93D08F201F14BD00FC3884 /* Assets.xcassets */,
+				1A93D091201F14BD00FC3884 /* LaunchScreen.storyboard */,
+				1A93D094201F14BD00FC3884 /* Info.plist */,
+				1A93D08C201F14BD00FC3884 /* goyo.xcdatamodeld */,
+				1A93D09E201F1F1A00FC3884 /* goyo-Bridging-Header.h */,
 			);
 			path = goyo;
 			sourceTree = "<group>";
 		};
-		1AEC1037200DE3AA00F1C89A /* goyoTests */ = {
+		46F306A8B2311589ED5D9C60 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				1AEC1038200DE3AA00F1C89A /* goyoTests.swift */,
-				1AEC103A200DE3AA00F1C89A /* Info.plist */,
-			);
-			path = goyoTests;
-			sourceTree = "<group>";
-		};
-		1AEC1042200DE3AA00F1C89A /* goyoUITests */ = {
-			isa = PBXGroup;
-			children = (
-				1AEC1043200DE3AA00F1C89A /* goyoUITests.swift */,
-				1AEC1045200DE3AA00F1C89A /* Info.plist */,
-			);
-			path = goyoUITests;
-			sourceTree = "<group>";
-		};
-		6D5257B3A59DD3F985D877D1 /* Pods */ = {
-			isa = PBXGroup;
-			children = (
-				1A4CF859200DF10F002590F4 /* Charts */,
-				CC7E1BB2E462DFEE187AC1A3 /* Pods-goyo.debug.xcconfig */,
-				3B67BBA34863F3A44431CC88 /* Pods-goyo.release.xcconfig */,
-				99CDF30628C078D6709313FB /* Pods-goyoTests.debug.xcconfig */,
-				337CC04E4A9FFD380A85B1C6 /* Pods-goyoTests.release.xcconfig */,
-				69EE757BE63BB287AAC59593 /* Pods-goyoUITests.debug.xcconfig */,
-				809BC26466571847D18DC837 /* Pods-goyoUITests.release.xcconfig */,
+				184145349676DD3B89312B9A /* Pods-goyo.debug.xcconfig */,
+				0D5FFD2BF8F03445428AD4FF /* Pods-goyo.release.xcconfig */,
 			);
 			name = Pods;
 			sourceTree = "<group>";
 		};
-		E2B5508DE35EB2A6C8E82EAF /* Frameworks */ = {
+		FF07A77686812AC84B0B8B82 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				13CDA6FB1B92A472C51C72A6 /* Pods_goyo.framework */,
-				2C6E6FFCF30EC6ED44110675 /* Pods_goyoTests.framework */,
-				0D9709D8654578973FB70599 /* Pods_goyoUITests.framework */,
+				C664A985593284BA9A50735B /* Pods_goyo.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -171,16 +113,16 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		1AEC101F200DE3AA00F1C89A /* goyo */ = {
+		1A93D081201F14BD00FC3884 /* goyo */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 1AEC1048200DE3AA00F1C89A /* Build configuration list for PBXNativeTarget "goyo" */;
+			buildConfigurationList = 1A93D097201F14BD00FC3884 /* Build configuration list for PBXNativeTarget "goyo" */;
 			buildPhases = (
-				F6C8745D09B8F75CBAB34B10 /* [CP] Check Pods Manifest.lock */,
-				1AEC101C200DE3AA00F1C89A /* Sources */,
-				1AEC101D200DE3AA00F1C89A /* Frameworks */,
-				1AEC101E200DE3AA00F1C89A /* Resources */,
-				B0C386A6ED01F2C8948FF0B5 /* [CP] Embed Pods Frameworks */,
-				7BC1159129040D427493EED7 /* [CP] Copy Pods Resources */,
+				5A75BDD1524E77FF74B0D219 /* [CP] Check Pods Manifest.lock */,
+				1A93D07E201F14BD00FC3884 /* Sources */,
+				1A93D07F201F14BD00FC3884 /* Frameworks */,
+				1A93D080201F14BD00FC3884 /* Resources */,
+				08DF3EB9E40A1886559346EF /* [CP] Embed Pods Frameworks */,
+				41248F2B491E48DDE32A34B5 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -188,79 +130,27 @@
 			);
 			name = goyo;
 			productName = goyo;
-			productReference = 1AEC1020200DE3AA00F1C89A /* goyo.app */;
+			productReference = 1A93D082201F14BD00FC3884 /* goyo.app */;
 			productType = "com.apple.product-type.application";
-		};
-		1AEC1033200DE3AA00F1C89A /* goyoTests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 1AEC104B200DE3AA00F1C89A /* Build configuration list for PBXNativeTarget "goyoTests" */;
-			buildPhases = (
-				E5663E3013A8669E61B37A26 /* [CP] Check Pods Manifest.lock */,
-				1AEC1030200DE3AA00F1C89A /* Sources */,
-				1AEC1031200DE3AA00F1C89A /* Frameworks */,
-				1AEC1032200DE3AA00F1C89A /* Resources */,
-				1D8CA73AF6CAEF4010494E88 /* [CP] Embed Pods Frameworks */,
-				2EA0ACDCF26702E54B4A0073 /* [CP] Copy Pods Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				1AEC1036200DE3AA00F1C89A /* PBXTargetDependency */,
-			);
-			name = goyoTests;
-			productName = goyoTests;
-			productReference = 1AEC1034200DE3AA00F1C89A /* goyoTests.xctest */;
-			productType = "com.apple.product-type.bundle.unit-test";
-		};
-		1AEC103E200DE3AA00F1C89A /* goyoUITests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 1AEC104E200DE3AA00F1C89A /* Build configuration list for PBXNativeTarget "goyoUITests" */;
-			buildPhases = (
-				E779138B37BEF0E7E5FB5EBC /* [CP] Check Pods Manifest.lock */,
-				1AEC103B200DE3AA00F1C89A /* Sources */,
-				1AEC103C200DE3AA00F1C89A /* Frameworks */,
-				1AEC103D200DE3AA00F1C89A /* Resources */,
-				68FE1A9309A096160746693C /* [CP] Embed Pods Frameworks */,
-				933F543911025719219983C2 /* [CP] Copy Pods Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				1AEC1041200DE3AA00F1C89A /* PBXTargetDependency */,
-			);
-			name = goyoUITests;
-			productName = goyoUITests;
-			productReference = 1AEC103F200DE3AA00F1C89A /* goyoUITests.xctest */;
-			productType = "com.apple.product-type.bundle.ui-testing";
 		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
-		1AEC1018200DE3AA00F1C89A /* Project object */ = {
+		1A93D07A201F14BD00FC3884 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0920;
 				LastUpgradeCheck = 0920;
 				ORGANIZATIONNAME = "Danny Gosain";
 				TargetAttributes = {
-					1AEC101F200DE3AA00F1C89A = {
+					1A93D081201F14BD00FC3884 = {
 						CreatedOnToolsVersion = 9.2;
 						LastSwiftMigration = 0920;
 						ProvisioningStyle = Automatic;
 					};
-					1AEC1033200DE3AA00F1C89A = {
-						CreatedOnToolsVersion = 9.2;
-						ProvisioningStyle = Automatic;
-						TestTargetID = 1AEC101F200DE3AA00F1C89A;
-					};
-					1AEC103E200DE3AA00F1C89A = {
-						CreatedOnToolsVersion = 9.2;
-						ProvisioningStyle = Automatic;
-						TestTargetID = 1AEC101F200DE3AA00F1C89A;
-					};
 				};
 			};
-			buildConfigurationList = 1AEC101B200DE3AA00F1C89A /* Build configuration list for PBXProject "goyo" */;
+			buildConfigurationList = 1A93D07D201F14BD00FC3884 /* Build configuration list for PBXProject "goyo" */;
 			compatibilityVersion = "Xcode 8.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -268,123 +158,31 @@
 				en,
 				Base,
 			);
-			mainGroup = 1AEC1017200DE3AA00F1C89A;
-			productRefGroup = 1AEC1021200DE3AA00F1C89A /* Products */;
+			mainGroup = 1A93D079201F14BD00FC3884;
+			productRefGroup = 1A93D083201F14BD00FC3884 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				1AEC101F200DE3AA00F1C89A /* goyo */,
-				1AEC1033200DE3AA00F1C89A /* goyoTests */,
-				1AEC103E200DE3AA00F1C89A /* goyoUITests */,
+				1A93D081201F14BD00FC3884 /* goyo */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
-		1AEC101E200DE3AA00F1C89A /* Resources */ = {
+		1A93D080201F14BD00FC3884 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1AEC102E200DE3AA00F1C89A /* LaunchScreen.storyboard in Resources */,
-				1AEC102B200DE3AA00F1C89A /* Assets.xcassets in Resources */,
-				1AEC1029200DE3AA00F1C89A /* Main.storyboard in Resources */,
-				1A4CF85A200DF10F002590F4 /* Charts in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		1AEC1032200DE3AA00F1C89A /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		1AEC103D200DE3AA00F1C89A /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
+				1A93D093201F14BD00FC3884 /* LaunchScreen.storyboard in Resources */,
+				1A93D090201F14BD00FC3884 /* Assets.xcassets in Resources */,
+				1A93D08B201F14BD00FC3884 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		1D8CA73AF6CAEF4010494E88 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-goyoTests/Pods-goyoTests-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		2EA0ACDCF26702E54B4A0073 /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-goyoTests/Pods-goyoTests-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		68FE1A9309A096160746693C /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-goyoUITests/Pods-goyoUITests-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		7BC1159129040D427493EED7 /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-goyo/Pods-goyo-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		933F543911025719219983C2 /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-goyoUITests/Pods-goyoUITests-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		B0C386A6ED01F2C8948FF0B5 /* [CP] Embed Pods Frameworks */ = {
+		08DF3EB9E40A1886559346EF /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -402,43 +200,22 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-goyo/Pods-goyo-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		E5663E3013A8669E61B37A26 /* [CP] Check Pods Manifest.lock */ = {
+		41248F2B491E48DDE32A34B5 /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
 			);
-			name = "[CP] Check Pods Manifest.lock";
+			name = "[CP] Copy Pods Resources";
 			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-goyoTests-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-goyo/Pods-goyo-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		E779138B37BEF0E7E5FB5EBC /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-goyoUITests-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		F6C8745D09B8F75CBAB34B10 /* [CP] Check Pods Manifest.lock */ = {
+		5A75BDD1524E77FF74B0D219 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -459,59 +236,36 @@
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
-		1AEC101C200DE3AA00F1C89A /* Sources */ = {
+		1A93D07E201F14BD00FC3884 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1AEC1026200DE3AA00F1C89A /* ViewController.swift in Sources */,
-				1AEC1024200DE3AA00F1C89A /* AppDelegate.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		1AEC1030200DE3AA00F1C89A /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				1AEC1039200DE3AA00F1C89A /* goyoTests.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		1AEC103B200DE3AA00F1C89A /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				1AEC1044200DE3AA00F1C89A /* goyoUITests.swift in Sources */,
+				1A93D0A7201F2C1A00FC3884 /* ProfileViewController.swift in Sources */,
+				1A93D0B3201FC09600FC3884 /* MonthViewController.swift in Sources */,
+				1A93D08E201F14BD00FC3884 /* goyo.xcdatamodeld in Sources */,
+				1A93D086201F14BD00FC3884 /* AppDelegate.swift in Sources */,
+				1A93D0A3201F217B00FC3884 /* TodayViewController.swift in Sources */,
+				1A93D0A5201F29BC00FC3884 /* SettingsViewController.swift in Sources */,
+				1A93D0B1201FBA3400FC3884 /* WeekViewController.swift in Sources */,
+				1A93D0A1201F1F1B00FC3884 /* SWRevealViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
-/* Begin PBXTargetDependency section */
-		1AEC1036200DE3AA00F1C89A /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 1AEC101F200DE3AA00F1C89A /* goyo */;
-			targetProxy = 1AEC1035200DE3AA00F1C89A /* PBXContainerItemProxy */;
-		};
-		1AEC1041200DE3AA00F1C89A /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 1AEC101F200DE3AA00F1C89A /* goyo */;
-			targetProxy = 1AEC1040200DE3AA00F1C89A /* PBXContainerItemProxy */;
-		};
-/* End PBXTargetDependency section */
-
 /* Begin PBXVariantGroup section */
-		1AEC1027200DE3AA00F1C89A /* Main.storyboard */ = {
+		1A93D089201F14BD00FC3884 /* Main.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
-				1AEC1028200DE3AA00F1C89A /* Base */,
+				1A93D08A201F14BD00FC3884 /* Base */,
 			);
 			name = Main.storyboard;
 			sourceTree = "<group>";
 		};
-		1AEC102C200DE3AA00F1C89A /* LaunchScreen.storyboard */ = {
+		1A93D091201F14BD00FC3884 /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
-				1AEC102D200DE3AA00F1C89A /* Base */,
+				1A93D092201F14BD00FC3884 /* Base */,
 			);
 			name = LaunchScreen.storyboard;
 			sourceTree = "<group>";
@@ -519,7 +273,7 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
-		1AEC1046200DE3AA00F1C89A /* Debug */ = {
+		1A93D095201F14BD00FC3884 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -576,7 +330,7 @@
 			};
 			name = Debug;
 		};
-		1AEC1047200DE3AA00F1C89A /* Release */ = {
+		1A93D096201F14BD00FC3884 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -626,150 +380,80 @@
 			};
 			name = Release;
 		};
-		1AEC1049200DE3AA00F1C89A /* Debug */ = {
+		1A93D098201F14BD00FC3884 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = CC7E1BB2E462DFEE187AC1A3 /* Pods-goyo.debug.xcconfig */;
+			baseConfigurationReference = 184145349676DD3B89312B9A /* Pods-goyo.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 5C4Y4QMK66;
 				INFOPLIST_FILE = goyo/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = dannygosain.goyo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos11.2;
+				SWIFT_OBJC_BRIDGING_HEADER = "goyo/goyo-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
 		};
-		1AEC104A200DE3AA00F1C89A /* Release */ = {
+		1A93D099201F14BD00FC3884 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 3B67BBA34863F3A44431CC88 /* Pods-goyo.release.xcconfig */;
+			baseConfigurationReference = 0D5FFD2BF8F03445428AD4FF /* Pods-goyo.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 5C4Y4QMK66;
 				INFOPLIST_FILE = goyo/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = dannygosain.goyo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos11.2;
+				SWIFT_OBJC_BRIDGING_HEADER = "goyo/goyo-Bridging-Header.h";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
-			};
-			name = Release;
-		};
-		1AEC104C200DE3AA00F1C89A /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 99CDF30628C078D6709313FB /* Pods-goyoTests.debug.xcconfig */;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 5C4Y4QMK66;
-				INFOPLIST_FILE = goyoTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = dannygosain.goyoTests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/goyo.app/goyo";
-			};
-			name = Debug;
-		};
-		1AEC104D200DE3AA00F1C89A /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 337CC04E4A9FFD380A85B1C6 /* Pods-goyoTests.release.xcconfig */;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 5C4Y4QMK66;
-				INFOPLIST_FILE = goyoTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = dannygosain.goyoTests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/goyo.app/goyo";
-			};
-			name = Release;
-		};
-		1AEC104F200DE3AA00F1C89A /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 69EE757BE63BB287AAC59593 /* Pods-goyoUITests.debug.xcconfig */;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 5C4Y4QMK66;
-				INFOPLIST_FILE = goyoUITests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = dannygosain.goyoUITests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_TARGET_NAME = goyo;
-			};
-			name = Debug;
-		};
-		1AEC1050200DE3AA00F1C89A /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 809BC26466571847D18DC837 /* Pods-goyoUITests.release.xcconfig */;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 5C4Y4QMK66;
-				INFOPLIST_FILE = goyoUITests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = dannygosain.goyoUITests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_TARGET_NAME = goyo;
 			};
 			name = Release;
 		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		1AEC101B200DE3AA00F1C89A /* Build configuration list for PBXProject "goyo" */ = {
+		1A93D07D201F14BD00FC3884 /* Build configuration list for PBXProject "goyo" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				1AEC1046200DE3AA00F1C89A /* Debug */,
-				1AEC1047200DE3AA00F1C89A /* Release */,
+				1A93D095201F14BD00FC3884 /* Debug */,
+				1A93D096201F14BD00FC3884 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		1AEC1048200DE3AA00F1C89A /* Build configuration list for PBXNativeTarget "goyo" */ = {
+		1A93D097201F14BD00FC3884 /* Build configuration list for PBXNativeTarget "goyo" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				1AEC1049200DE3AA00F1C89A /* Debug */,
-				1AEC104A200DE3AA00F1C89A /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		1AEC104B200DE3AA00F1C89A /* Build configuration list for PBXNativeTarget "goyoTests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				1AEC104C200DE3AA00F1C89A /* Debug */,
-				1AEC104D200DE3AA00F1C89A /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		1AEC104E200DE3AA00F1C89A /* Build configuration list for PBXNativeTarget "goyoUITests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				1AEC104F200DE3AA00F1C89A /* Debug */,
-				1AEC1050200DE3AA00F1C89A /* Release */,
+				1A93D098201F14BD00FC3884 /* Debug */,
+				1A93D099201F14BD00FC3884 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		1A93D08C201F14BD00FC3884 /* goyo.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				1A93D08D201F14BD00FC3884 /* goyo.xcdatamodel */,
+			);
+			currentVersion = 1A93D08D201F14BD00FC3884 /* goyo.xcdatamodel */;
+			path = goyo.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
-	rootObject = 1AEC1018200DE3AA00F1C89A /* Project object */;
+	rootObject = 1A93D07A201F14BD00FC3884 /* Project object */;
 }
