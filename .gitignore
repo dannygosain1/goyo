@@ -4,3 +4,6 @@
 *.asv
 iOSApplication/goyo/Pods/
 .DS_Store
+tabViewApp/goyo/Pods/
+tabViewApp/goyo/Podfile.lock
+tabViewApp/goyo/goyo.xcodeproj/xcuserdata/dannygosain.xcuserdatad/xcschemes/*.plist
