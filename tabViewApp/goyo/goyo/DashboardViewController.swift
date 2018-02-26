@@ -16,6 +16,14 @@ class DashboardViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.title = "Dashboard"  // setting title of the page
+        self.view.backgroundColor = UIColor(red: 247/255, green: 247/255, blue: 247/255, alpha: 1.0)
+        
+        todayPieView.backgroundColor = UIColor(red: 255/255, green: 255/255, blue: 255/255, alpha: 1.0)
+        todayPieView.layer.shadowColor = UIColor.black.cgColor
+        todayPieView.layer.shadowOpacity = 1
+        todayPieView.layer.shadowOffset = CGSize.zero
+        todayPieView.layer.shadowRadius = 1
+        
         
     }
 

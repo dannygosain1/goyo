@@ -15,6 +15,7 @@
 		1A3ECD2F203EA2B2006DB99B /* DashboardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A3ECD2E203EA2B2006DB99B /* DashboardViewController.swift */; };
 		1A3ECD31203EA2BA006DB99B /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A3ECD30203EA2BA006DB99B /* SettingsViewController.swift */; };
 		1A3ECD33203EA7B6006DB99B /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A3ECD32203EA7B6006DB99B /* HomeViewController.swift */; };
+		1A7B6BC42043D6D600165E08 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A7B6BC32043D6D600165E08 /* ProfileViewController.swift */; };
 		6C4B72C38F247F065D9070DC /* Pods_goyo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D8C5CE13B648D10C3F987105 /* Pods_goyo.framework */; };
 /* End PBXBuildFile section */
 
@@ -29,6 +30,7 @@
 		1A3ECD2E203EA2B2006DB99B /* DashboardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardViewController.swift; sourceTree = "<group>"; };
 		1A3ECD30203EA2BA006DB99B /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		1A3ECD32203EA7B6006DB99B /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
+		1A7B6BC32043D6D600165E08 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		C39EB5D89DB9083CDD53A80F /* Pods-goyo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-goyo.debug.xcconfig"; path = "Pods/Target Support Files/Pods-goyo/Pods-goyo.debug.xcconfig"; sourceTree = "<group>"; };
 		D4B1C3062702BA68215A5022 /* Pods-goyo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-goyo.release.xcconfig"; path = "Pods/Target Support Files/Pods-goyo/Pods-goyo.release.xcconfig"; sourceTree = "<group>"; };
 		D8C5CE13B648D10C3F987105 /* Pods_goyo.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_goyo.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -79,6 +81,7 @@
 				1A3ECD2E203EA2B2006DB99B /* DashboardViewController.swift */,
 				1A3ECD32203EA7B6006DB99B /* HomeViewController.swift */,
 				1A3ECD30203EA2BA006DB99B /* SettingsViewController.swift */,
+				1A7B6BC32043D6D600165E08 /* ProfileViewController.swift */,
 				1A3ECD19203E9B1B006DB99B /* Main.storyboard */,
 				1A3ECD1F203E9B1B006DB99B /* Assets.xcassets */,
 				1A3ECD21203E9B1B006DB99B /* LaunchScreen.storyboard */,
@@ -228,6 +231,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1A7B6BC42043D6D600165E08 /* ProfileViewController.swift in Sources */,
 				1A3ECD33203EA7B6006DB99B /* HomeViewController.swift in Sources */,
 				1A3ECD1E203E9B1B006DB99B /* goyo.xcdatamodeld in Sources */,
 				1A3ECD2F203EA2B2006DB99B /* DashboardViewController.swift in Sources */,

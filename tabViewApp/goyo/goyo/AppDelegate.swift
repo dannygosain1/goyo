@@ -5,6 +5,8 @@
 //  Created by Danny Gosain on 2018-02-22.
 //  Copyright © 2018 Danny Gosain. All rights reserved.
 //
+// tab bar color: UIColor(red: 66/255, green: 134/255, blue: 244/255, alpha: 1)
+// background colour: #f7f7f7 or UIColor(red: 247/255, green: 247/255, blue: 247/255, alpha: 1.0)
 
 import UIKit
 import CoreData

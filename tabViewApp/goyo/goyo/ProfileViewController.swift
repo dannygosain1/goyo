@@ -1,19 +1,18 @@
 //
-//  SettingsViewController.swift
+//  ProfileViewController.swift
 //  goyo
 //
-//  Created by Danny Gosain on 2018-02-22.
+//  Created by Danny Gosain on 2018-02-26.
 //  Copyright © 2018 Danny Gosain. All rights reserved.
 //
 
 import UIKit
 
-class SettingsViewController: UIViewController {
+class ProfileViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.title = "Settings"  // setting title of the page
-        self.view.backgroundColor = UIColor(red: 247/255, green: 247/255, blue: 247/255, alpha: 1.0)
+        self.view.backgroundColor = UIColor(red: 247/255, green: 247/255, blue: 247/255, alpha: 1.0)  // setting the background colour
 
         // Do any additional setup after loading the view.
     }
