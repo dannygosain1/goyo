@@ -13,6 +13,7 @@ from sklearn.metrics import precision_score
 from sklearn.metrics import recall_score
 from sklearn.metrics import f1_score
 
+
 def load_files(feature_dir):
 	files = os.listdir(feature_dir)
 	files = list(map(lambda file: "{0}/{1}".format(feature_dir, file), files))
@@ -43,7 +44,7 @@ def main(args):
 		data = load_files(args.feature_dir)
 
 	data_train, data_test, target_train, target_test = train_test_split(data[:, 1:], data[:, 0], test_size = 0.4)
-	
+
 	nn_3 = kNN(3, data_train, target_train)
 	nn_5 = kNN(5, data_train, target_train)
 	nn_7 = kNN(7, data_train, target_train)

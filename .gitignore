@@ -4,3 +4,4 @@
 *.asv
 iOSApplication/goyo/Pods/
 .DS_Store
+*.pyc
