@@ -51,7 +51,7 @@ def process_features(features):
     ]
     features = features[reordered_columns]
     #normalize columns based on min-max normalization
-    features[features.columns] = preprocessing.maxabs_scale(features[features.columns])
+    features[features.columns] = preprocessing.minmax_scale(features[features.columns])
 
     return features
 

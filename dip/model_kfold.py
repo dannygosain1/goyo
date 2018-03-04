@@ -10,6 +10,8 @@ from sklearn.naive_bayes import GaussianNB
 from sklearn.cluster import KMeans
 from sklearn.neighbors import KNeighborsClassifier
 from sklearn import svm
+from sklearn.tree import DecisionTreeClassifier
+from sklearn.ensemble import RandomForestClassifier
 from sklearn.metrics import accuracy_score
 from sklearn.metrics import precision_score
 from sklearn.metrics import recall_score
@@ -43,7 +45,7 @@ def kNN(k):
     return KNeighborsClassifier(n_neighbors=k)
 
 def SVM(c):
-    return svm.SVC(C=c)
+    return svm.SVC(C=c, kernel='poly', gamma=1)
 
 def main(args):
     #load data
@@ -56,14 +58,16 @@ def main(args):
     elif args.feature_dir is not None:
         data = load_files(args.feature_dir)
 
-    data_train, data_test, target_train, target_test = train_test_split(data[:, 1:], data[:, 0], test_size = 0.4)
+    data_train, data_test, target_train, target_test = train_test_split(data[:, 1:], data[:, 0], test_size = 0.3)
 
     nn_3 = kNN(3)
     nn_5 = kNN(5)
     nn_7 = kNN(7)
     svm = SVM(50)
-    names = ["3nn", "5nn", "7nn", "SVM"]
-    classifiers = [nn_3, nn_5, nn_7, svm]
+    dtree = DecisionTreeClassifier(max_depth=5)
+    forest = RandomForestClassifier(max_depth=5)
+    names = ["3nn", "5nn", "7nn", "SVM", "D Tree", "Random Forest"]
+    classifiers = [nn_3, nn_5, nn_7, svm, dtree, forest]
 
     for name, clf in zip(names, classifiers):
         k_predictions = train_folds(5, clf, data_train, target_train, data_test)
@@ -74,6 +78,14 @@ def main(args):
         print("Recall Score: {0}".format(recall_score(prediction, target_test)))
         print("F1 Score: {0}".format(f1_score(prediction, target_test)))
         print()
+
+    base = np.ones(target_test.shape)
+    print("Profile for base")
+    print("Accuracy Score: {0}".format(accuracy_score(base, target_test)))
+    print("Precision Score: {0}".format(precision_score(base, target_test)))
+    print("Recall Score: {0}".format(recall_score(base, target_test)))
+    print("F1 Score: {0}".format(f1_score(base, target_test)))
+    print()
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Run Models")
