@@ -6,10 +6,11 @@ provider "aws" {
 
 resource "aws_instance" "web" {
   # US-east-1 Ubuntu 16.04 LTS hvm:ebs-ss ami-927185ef
-  ami           = "ami-66506c1c"
-  instance_type = "t2.micro"
+  ami           = "ami-7b807206"
+  instance_type = "c5.xlarge"
   key_name = "dev"
   subnet_id = "subnet-c11c1fa5"
+  security_groups = ["sg-ea6bbe9c"]
   associate_public_ip_address = true
 }
 
