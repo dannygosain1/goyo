@@ -1,0 +1,11 @@
+- name: 'setup dev env'
+  hosts:
+    - all
+  tasks:
+    - name: copy ssh file
+      copy:
+        src: dev
+        dest: /home/ubuntu/.ssh/dev
+        mode: 0400
+    - name: clone repo
+      shell: ssh-agent bash -c 'ssh-add /home/ubuntu/.ssh/dev; cd /home/ubuntu/; git clone git@github.com:dannygosain1/goyo.git'
