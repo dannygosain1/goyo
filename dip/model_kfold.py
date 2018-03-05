@@ -39,6 +39,7 @@ def load_files(feature_dir):
     files = os.listdir(feature_dir)
     files = list(map(lambda file: "{0}/{1}".format(feature_dir, file), files))
     data = pd.concat((pd.read_csv(f) for f in files))
+    print(data.groupby('is_walking').count())
     return data.values
 
 def kNN(k):
@@ -73,18 +74,18 @@ def main(args):
         k_predictions = train_folds(5, clf, data_train, target_train, data_test)
         prediction = vote_on_predictions(k_predictions)
         print("Profile for {0}".format(name))
-        print("Accuracy Score: {0}".format(accuracy_score(prediction, target_test)))
-        print("Precision Score: {0}".format(precision_score(prediction, target_test)))
-        print("Recall Score: {0}".format(recall_score(prediction, target_test)))
-        print("F1 Score: {0}".format(f1_score(prediction, target_test)))
+        print("Accuracy Score: {0}".format(accuracy_score(target_test, prediction)))
+        print("Precision Score: {0}".format(precision_score(target_test, prediction)))
+        print("Recall Score: {0}".format(recall_score(target_test, prediction)))
+        print("F1 Score: {0}".format(f1_score(target_test, prediction)))
         print()
 
     base = np.ones(target_test.shape)
     print("Profile for base")
-    print("Accuracy Score: {0}".format(accuracy_score(base, target_test)))
-    print("Precision Score: {0}".format(precision_score(base, target_test)))
-    print("Recall Score: {0}".format(recall_score(base, target_test)))
-    print("F1 Score: {0}".format(f1_score(base, target_test)))
+    print("Accuracy Score: {0}".format(accuracy_score(target_test, base)))
+    print("Precision Score: {0}".format(precision_score(target_test, base)))
+    print("Recall Score: {0}".format(recall_score(target_test, base)))
+    print("F1 Score: {0}".format(f1_score(target_test, base)))
     print()
 
 if __name__ == "__main__":

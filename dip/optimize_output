@@ -1,0 +1,48 @@
+Best parameters set found on development set:
+
+{'C': 10000, 'gamma': 1, 'kernel': 'rbf'}
+
+Grid scores on development set:
+
+0.725 (+/-0.001) for {'C': 1, 'gamma': 'auto', 'kernel': 'rbf'}
+0.725 (+/-0.001) for {'C': 1, 'gamma': 'auto', 'kernel': 'poly'}
+0.725 (+/-0.001) for {'C': 1, 'gamma': 0.1, 'kernel': 'rbf'}
+0.725 (+/-0.001) for {'C': 1, 'gamma': 0.1, 'kernel': 'poly'}
+0.727 (+/-0.002) for {'C': 1, 'gamma': 1, 'kernel': 'rbf'}
+0.724 (+/-0.003) for {'C': 1, 'gamma': 1, 'kernel': 'poly'}
+0.726 (+/-0.001) for {'C': 10, 'gamma': 'auto', 'kernel': 'rbf'}
+0.725 (+/-0.001) for {'C': 10, 'gamma': 'auto', 'kernel': 'poly'}
+0.726 (+/-0.001) for {'C': 10, 'gamma': 0.1, 'kernel': 'rbf'}
+0.725 (+/-0.001) for {'C': 10, 'gamma': 0.1, 'kernel': 'poly'}
+0.735 (+/-0.008) for {'C': 10, 'gamma': 1, 'kernel': 'rbf'}
+0.724 (+/-0.005) for {'C': 10, 'gamma': 1, 'kernel': 'poly'}
+0.727 (+/-0.002) for {'C': 100, 'gamma': 'auto', 'kernel': 'rbf'}
+0.725 (+/-0.001) for {'C': 100, 'gamma': 'auto', 'kernel': 'poly'}
+0.727 (+/-0.002) for {'C': 100, 'gamma': 0.1, 'kernel': 'rbf'}
+0.725 (+/-0.001) for {'C': 100, 'gamma': 0.1, 'kernel': 'poly'}
+0.768 (+/-0.016) for {'C': 100, 'gamma': 1, 'kernel': 'rbf'}
+0.724 (+/-0.007) for {'C': 100, 'gamma': 1, 'kernel': 'poly'}
+0.728 (+/-0.002) for {'C': 1000, 'gamma': 'auto', 'kernel': 'rbf'}
+0.724 (+/-0.003) for {'C': 1000, 'gamma': 'auto', 'kernel': 'poly'}
+0.728 (+/-0.002) for {'C': 1000, 'gamma': 0.1, 'kernel': 'rbf'}
+0.724 (+/-0.003) for {'C': 1000, 'gamma': 0.1, 'kernel': 'poly'}
+0.766 (+/-0.022) for {'C': 1000, 'gamma': 1, 'kernel': 'rbf'}
+0.724 (+/-0.006) for {'C': 1000, 'gamma': 1, 'kernel': 'poly'}
+0.729 (+/-0.006) for {'C': 2000, 'gamma': 'auto', 'kernel': 'rbf'}
+0.725 (+/-0.003) for {'C': 2000, 'gamma': 'auto', 'kernel': 'poly'}
+0.729 (+/-0.006) for {'C': 2000, 'gamma': 0.1, 'kernel': 'rbf'}
+0.725 (+/-0.003) for {'C': 2000, 'gamma': 0.1, 'kernel': 'poly'}
+0.763 (+/-0.021) for {'C': 2000, 'gamma': 1, 'kernel': 'rbf'}
+0.724 (+/-0.006) for {'C': 2000, 'gamma': 1, 'kernel': 'poly'}
+0.734 (+/-0.007) for {'C': 10000, 'gamma': 'auto', 'kernel': 'rbf'}
+0.724 (+/-0.005) for {'C': 10000, 'gamma': 'auto', 'kernel': 'poly'}
+0.734 (+/-0.007) for {'C': 10000, 'gamma': 0.1, 'kernel': 'rbf'}
+0.724 (+/-0.005) for {'C': 10000, 'gamma': 0.1, 'kernel': 'poly'}
+0.774 (+/-0.024) for {'C': 10000, 'gamma': 1, 'kernel': 'rbf'}
+0.724 (+/-0.006) for {'C': 10000, 'gamma': 1, 'kernel': 'poly'}
+0.725 (+/-0.001) for {'C': 1, 'kernel': 'linear'}
+0.725 (+/-0.001) for {'C': 10, 'kernel': 'linear'}
+0.725 (+/-0.001) for {'C': 100, 'kernel': 'linear'}
+0.725 (+/-0.001) for {'C': 1000, 'kernel': 'linear'}
+0.725 (+/-0.001) for {'C': 2000, 'kernel': 'linear'}
+0.725 (+/-0.001) for {'C': 10000, 'kernel': 'linear'}
