@@ -26,7 +26,7 @@ def gen_svm_parameters() :
 	C_params =[1, 10, 100, 500, 1000, 2000, 5000, 7500, 10000] 
 	# for x in range(200):
 	# 	C_params.append(x*50+1)
-	tuned_parameters = [{ 'kernel': ['rbf', 'poly'], 'gamma':['auto', 1e-3, 1e-2, 0.1, 1, 10] 'C': C_params},
+	tuned_parameters = [{ 'kernel': ['rbf', 'poly'], 'gamma':['auto', 1e-3, 1e-2, 0.1, 1, 10], 'C': C_params},
 						{ 'kernel': ['linear'], 'C': C_params}
 					   ]
 	return tuned_parameters
