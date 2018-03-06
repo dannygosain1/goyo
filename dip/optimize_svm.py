@@ -36,7 +36,7 @@ def main(args):
 	data_train, data_test, target_train, target_test = train_test_split(data[:, 1:], data[:, 0], test_size = 0.3)
 
 	tuned_parameters = gen_svm_parameters()
-	clf = GridSearchCV(svm.SVC(), tuned_parameters, cv=5)
+	clf = GridSearchCV(svm.SVC(), tuned_parameters, cv=5, n_jobs=4)
 	clf.fit(data_train, target_train)
 	print("Best parameters set found on development set:")
 	print()
