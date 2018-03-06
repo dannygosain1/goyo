@@ -6,7 +6,6 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
-        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
@@ -48,19 +47,19 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Daily Goal:" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Clb-UF-Rh5">
-                                <rect key="frame" x="16" y="72" width="343" height="35"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="35" id="kEX-xD-TrN"/>
-                                </constraints>
+                                <rect key="frame" x="132" y="74" width="111" height="29"/>
                                 <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="24"/>
                                 <color key="textColor" red="0.048890548610000001" green="0.8594939721" blue="0.36710025439999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="mzN-dE-mVi">
-                                <rect key="frame" x="16" y="115" width="343" height="294"/>
+                                <rect key="frame" x="16" y="125" width="343" height="235"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="343" id="hJR-uz-Mks"/>
+                                </constraints>
                             </imageView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pIi-LQ-o8k" customClass="CosmosView" customModule="FSCalendarSwiftExample" customModuleProvider="target">
-                                <rect key="frame" x="52" y="427" width="270" height="50"/>
+                                <rect key="frame" x="52" y="368" width="270" height="50"/>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="color" keyPath="filledColor">
                                         <color key="value" red="0.048890548610000001" green="0.8594939721" blue="0.36710025439999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -83,9 +82,9 @@
                                 </userDefinedRuntimeAttributes>
                             </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Let's get started" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="20z-3D-bPb">
-                                <rect key="frame" x="16" y="522" width="343" height="88"/>
+                                <rect key="frame" x="16" y="485" width="343" height="66"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="88" id="PYp-kA-WhY"/>
+                                    <constraint firstAttribute="height" constant="66" id="BaJ-Zn-pBv"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="22"/>
                                 <color key="textColor" red="0.048890548610000001" green="0.8594939721" blue="0.36710025439999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -94,18 +93,18 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="mzN-dE-mVi" firstAttribute="trailing" secondItem="20z-3D-bPb" secondAttribute="trailing" id="0Jc-f7-cbj"/>
-                            <constraint firstItem="Clb-UF-Rh5" firstAttribute="leading" secondItem="mzN-dE-mVi" secondAttribute="leading" id="2Nl-LS-4Pa"/>
-                            <constraint firstItem="20z-3D-bPb" firstAttribute="top" secondItem="pIi-LQ-o8k" secondAttribute="bottom" constant="45" id="FOh-5z-hNB"/>
-                            <constraint firstItem="mzN-dE-mVi" firstAttribute="top" secondItem="Clb-UF-Rh5" secondAttribute="bottom" constant="8" symbolic="YES" id="GpX-LG-JSu"/>
-                            <constraint firstItem="Clb-UF-Rh5" firstAttribute="trailing" secondItem="m6P-EQ-bMH" secondAttribute="trailingMargin" id="I26-yL-EB3"/>
-                            <constraint firstItem="Clb-UF-Rh5" firstAttribute="top" secondItem="wKA-X2-iyp" secondAttribute="bottom" constant="8" symbolic="YES" id="IWk-S1-9Q5"/>
-                            <constraint firstItem="pIi-LQ-o8k" firstAttribute="top" secondItem="mzN-dE-mVi" secondAttribute="bottom" constant="18" id="MrU-2L-fnG"/>
-                            <constraint firstItem="Clb-UF-Rh5" firstAttribute="trailing" secondItem="mzN-dE-mVi" secondAttribute="trailing" id="URN-LT-agT"/>
-                            <constraint firstItem="Clb-UF-Rh5" firstAttribute="leading" secondItem="m6P-EQ-bMH" secondAttribute="leadingMargin" id="bKI-Lb-dLo"/>
-                            <constraint firstItem="pIi-LQ-o8k" firstAttribute="centerX" secondItem="20z-3D-bPb" secondAttribute="centerX" id="ej2-Ko-Rhj"/>
-                            <constraint firstItem="laQ-aI-oMi" firstAttribute="top" secondItem="20z-3D-bPb" secondAttribute="bottom" constant="8" symbolic="YES" id="hIc-5g-3sg"/>
-                            <constraint firstItem="mzN-dE-mVi" firstAttribute="leading" secondItem="20z-3D-bPb" secondAttribute="leading" id="yTv-TH-SOO"/>
+                            <constraint firstItem="mzN-dE-mVi" firstAttribute="top" secondItem="Clb-UF-Rh5" secondAttribute="bottom" constant="22" id="Flr-0E-029"/>
+                            <constraint firstItem="mzN-dE-mVi" firstAttribute="leading" secondItem="20z-3D-bPb" secondAttribute="leading" id="Hq1-RJ-bT8"/>
+                            <constraint firstItem="20z-3D-bPb" firstAttribute="top" secondItem="pIi-LQ-o8k" secondAttribute="bottom" constant="67" id="MSJ-5U-iiZ"/>
+                            <constraint firstItem="mzN-dE-mVi" firstAttribute="trailing" secondItem="20z-3D-bPb" secondAttribute="trailing" id="RwX-lw-kBN"/>
+                            <constraint firstItem="Clb-UF-Rh5" firstAttribute="top" secondItem="wKA-X2-iyp" secondAttribute="bottom" constant="10" id="SXR-Es-0Gk"/>
+                            <constraint firstItem="pIi-LQ-o8k" firstAttribute="top" secondItem="mzN-dE-mVi" secondAttribute="bottom" constant="8" id="SoB-YP-Uri"/>
+                            <constraint firstItem="pIi-LQ-o8k" firstAttribute="top" secondItem="mzN-dE-mVi" secondAttribute="bottom" constant="8" id="a3a-yN-ZKE"/>
+                            <constraint firstItem="Clb-UF-Rh5" firstAttribute="centerX" secondItem="m6P-EQ-bMH" secondAttribute="centerX" id="fNV-3y-Diz"/>
+                            <constraint firstItem="mzN-dE-mVi" firstAttribute="centerX" secondItem="m6P-EQ-bMH" secondAttribute="centerX" id="kTb-vW-EtR"/>
+                            <constraint firstItem="pIi-LQ-o8k" firstAttribute="top" secondItem="mzN-dE-mVi" secondAttribute="bottom" constant="8" id="nKv-9i-u3F"/>
+                            <constraint firstItem="pIi-LQ-o8k" firstAttribute="centerX" secondItem="m6P-EQ-bMH" secondAttribute="centerX" id="wTU-Xo-Phs"/>
+                            <constraint firstItem="laQ-aI-oMi" firstAttribute="top" secondItem="20z-3D-bPb" secondAttribute="bottom" constant="67" id="z3s-Gq-tTZ"/>
                         </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="Item 1" id="JH6-0Z-0cl"/>
@@ -277,6 +276,11 @@
                                     <outlet property="delegate" destination="lty-fT-aMK" id="cmv-xD-9oe"/>
                                 </connections>
                             </view>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Elb-1n-eKK">
+                                <rect key="frame" x="0.0" y="372" width="375" height="246"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" red="0.94117647058823528" green="0.94117647058823528" blue="0.94117647058823528" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </view>
@@ -287,7 +291,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="o4Q-iq-LTl" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-2519" y="1245"/>
+            <point key="canvasLocation" x="-2519.1999999999998" y="1244.527736131934"/>
         </scene>
         <!--Profile-->
         <scene sceneID="JNQ-R6-sey">
