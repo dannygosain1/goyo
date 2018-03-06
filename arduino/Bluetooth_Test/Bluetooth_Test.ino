@@ -18,7 +18,7 @@
 #include <SoftwareSerial.h>
 SoftwareSerial BTserial(8, 9); // RX | TX
  
-const long baudRate = 38400; 
+const long baudRate = 57600; 
 char c=' ';
 boolean NL = true;
  
