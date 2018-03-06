@@ -9,8 +9,7 @@ target 'FSCalendarSwiftExample' do
 
   target 'FSCalendarSwiftExampleUITests' do
     inherit! :search_paths
-    # Pods for testing	
-    pod 'Cosmos'
+    # Pods for testing
   end
 
 end
