@@ -35,11 +35,12 @@ void loop()
         if (String(c).equals("d")) {
           for (int i=0; i<=dataLength; i++){
             int ind = i%2;
+            Serial.println("\nstart top time: " + String(millis()));
             int bufferLength = data[ind].length()+1;
             char charBuf[bufferLength];
             data[ind].toCharArray(charBuf, bufferLength);
             dumpData(charBuf, bufferLength);
-            delay(10);
+            delay(5);
           }
           char charBuf[4];
           END_SENT.toCharArray(charBuf, 5);
@@ -55,7 +56,9 @@ void dumpData(char *data, int dataLength) {
   strncpy(m.val, data, dataLength);
   m.val[dataLength+1] = '\x00';
   if (pb_encode(&pb_out, Msg_fields, &m)) {
+    Serial.println("start sending time: " + String(millis()));
     BTserial.write(buffer, dataLength+4);
+    Serial.println("end time: " + String(millis()));
   } else {
     Serial.println(PB_GET_ERROR(&pb_out));
   }

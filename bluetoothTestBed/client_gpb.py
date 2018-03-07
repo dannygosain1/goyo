@@ -19,6 +19,7 @@ class Requester(GATTRequester):
 
     def on_notification(self, handle, data):
         message = message_pb2.Msg()
+        print(data)
         data_striped = data.replace('\x1b%\x00', '')
         message.ParseFromString(data_striped)
         # print("{}: {}".format(time.time(), message.val))
