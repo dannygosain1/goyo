@@ -19,7 +19,10 @@ const String END_SENT = "DONE";
 char c=' ';
 boolean NL = true;
 int dataLength = 203;
-String data[] = {"17108,6,5,0,4,3", "17108,0,2,0,0,0", "17108,9,4,0,3,0"};
+char data[][10] = {
+  {'1','4','1','0','8','6','9','1','4','3'},
+  {'3','7','6','1','0','7','5','0','2','4'},
+  {'2','7','1','0','8','6','2','7','4','6'}};
 
 void setup() 
 {
@@ -34,12 +37,7 @@ void loop()
         c = BTserial.read(); 
         if (String(c).equals("d")) {
           for (int i=0; i<=dataLength; i++){
-            int ind = i%2;
-            Serial.println("\nstart top time: " + String(millis()));
-            int bufferLength = data[ind].length()+1;
-            char charBuf[bufferLength];
-            data[ind].toCharArray(charBuf, bufferLength);
-            dumpData(charBuf, bufferLength);
+            dumpData(data[i%2], sizeof(data[i%2])+1);
             delay(5);
           }
           char charBuf[4];
@@ -50,9 +48,9 @@ void loop()
 }
 
 void dumpData(char *data, int dataLength) {
+  Serial.println("\nstart encode time: " + String(millis()));
   Msg m = Msg_init_default;  
   pb_out = pb_ostream_from_buffer(buffer, MAX_LENGTH);
-
   strncpy(m.val, data, dataLength);
   m.val[dataLength+1] = '\x00';
   if (pb_encode(&pb_out, Msg_fields, &m)) {
