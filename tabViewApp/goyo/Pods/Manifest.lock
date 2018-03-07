@@ -1,0 +1,20 @@
+PODS:
+  - Charts (3.0.4):
+    - Charts/Core (= 3.0.4)
+  - Charts/Core (3.0.4)
+  - Cosmos (13.0.0)
+  - KDCalendar (1.2.0)
+
+DEPENDENCIES:
+  - Charts
+  - Cosmos
+  - KDCalendar
+
+SPEC CHECKSUMS:
+  Charts: 0705898046257443f0afbbc3179f4b67507b6e48
+  Cosmos: af3973becc045af335b64498c9812034876b7661
+  KDCalendar: dc48f497cdad063ca4b0e2b12dde1d10b51b39c8
+
+PODFILE CHECKSUM: 9f3360846a7f48f2e6c9b8443f4aaac869f38476
+
+COCOAPODS: 1.3.1

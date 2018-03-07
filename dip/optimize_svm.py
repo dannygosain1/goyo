@@ -26,7 +26,7 @@ def gen_svm_parameters() :
 	C_params =[1, 10, 100, 500, 1000, 2000, 5000, 7500, 10000] 
 	# for x in range(200):
 	# 	C_params.append(x*50+1)
-	tuned_parameters = [{ 'kernel': ['rbf', 'poly'], 'gamma':['auto', 1e-3, 1e-2, 0.1, 1, 10] 'C': C_params},
+	tuned_parameters = [{ 'kernel': ['rbf', 'poly'], 'gamma':['auto', 1e-3, 1e-2, 0.1, 1, 10], 'C': C_params},
 						{ 'kernel': ['linear'], 'C': C_params}
 					   ]
 	return tuned_parameters
@@ -36,7 +36,7 @@ def main(args):
 	data_train, data_test, target_train, target_test = train_test_split(data[:, 1:], data[:, 0], test_size = 0.3)
 
 	tuned_parameters = gen_svm_parameters()
-	clf = GridSearchCV(svm.SVC(), tuned_parameters, cv=5)
+	clf = GridSearchCV(svm.SVC(), tuned_parameters, cv=5, n_jobs=4)
 	clf.fit(data_train, target_train)
 	print("Best parameters set found on development set:")
 	print()
