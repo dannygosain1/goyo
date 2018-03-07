@@ -28,7 +28,8 @@ class Requester(GATTRequester):
             self.set_done(True)
 
 
-MAC_ADDRESS = '58:7A:62:4F:99:03'
+# MAC_ADDRESS = '58:7A:62:4F:99:03'
+MAC_ADDRESS = '58:7A:62:4F:9D:75'
 WRITE_HANDLE = 0x0025
 
 
