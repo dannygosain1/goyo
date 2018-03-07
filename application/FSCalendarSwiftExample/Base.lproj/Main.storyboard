@@ -1,0 +1,326 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="Imd-WG-sFa">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="HelveticaNeueLights.ttc">
+            <string>HelveticaNeue-Light</string>
+        </array>
+    </customFonts>
+    <scenes>
+        <!--Settings-->
+        <scene sceneID="MNH-uL-D6k">
+            <objects>
+                <viewController id="r4n-ON-FS0" customClass="SettingsViewController" customModule="FSCalendarSwiftExample" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="osO-nc-yUw"/>
+                        <viewControllerLayoutGuide type="bottom" id="GYJ-VI-n3B"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="hgC-hl-vTL">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="Item 2" id="2vz-PU-SpY"/>
+                    <navigationItem key="navigationItem" title="Settings" id="bhS-4v-Id0"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="D6O-Sd-fAv" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1615" y="1245"/>
+        </scene>
+        <!--Home-->
+        <scene sceneID="7A8-kB-gAV">
+            <objects>
+                <viewController id="Li3-hp-Ko6" customClass="HomeViewController" customModule="FSCalendarSwiftExample" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="wKA-X2-iyp"/>
+                        <viewControllerLayoutGuide type="bottom" id="laQ-aI-oMi"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="m6P-EQ-bMH">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Daily Goal:" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Clb-UF-Rh5">
+                                <rect key="frame" x="132" y="74" width="111" height="29"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="24"/>
+                                <color key="textColor" red="0.048890548610000001" green="0.8594939721" blue="0.36710025439999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="mzN-dE-mVi">
+                                <rect key="frame" x="16" y="125" width="343" height="235"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="343" id="hJR-uz-Mks"/>
+                                </constraints>
+                            </imageView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pIi-LQ-o8k" customClass="CosmosView" customModule="FSCalendarSwiftExample" customModuleProvider="target">
+                                <rect key="frame" x="52" y="368" width="270" height="50"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="filledColor">
+                                        <color key="value" red="0.048890548610000001" green="0.8594939721" blue="0.36710025439999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="emptyColor">
+                                        <color key="value" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="emptyBorderColor">
+                                        <color key="value" red="0.048890548610000001" green="0.8594939721" blue="0.36710025439999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="filledBorderColor">
+                                        <color key="value" red="0.048890548610000001" green="0.8594939721" blue="0.36710025439999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="starSize">
+                                        <real key="value" value="50"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="fillMode">
+                                        <integer key="value" value="2"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </view>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Let's get started" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="20z-3D-bPb">
+                                <rect key="frame" x="16" y="485" width="343" height="66"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="66" id="BaJ-Zn-pBv"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="22"/>
+                                <color key="textColor" red="0.048890548610000001" green="0.8594939721" blue="0.36710025439999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="mzN-dE-mVi" firstAttribute="top" secondItem="Clb-UF-Rh5" secondAttribute="bottom" constant="22" id="Flr-0E-029"/>
+                            <constraint firstItem="mzN-dE-mVi" firstAttribute="leading" secondItem="20z-3D-bPb" secondAttribute="leading" id="Hq1-RJ-bT8"/>
+                            <constraint firstItem="20z-3D-bPb" firstAttribute="top" secondItem="pIi-LQ-o8k" secondAttribute="bottom" constant="67" id="MSJ-5U-iiZ"/>
+                            <constraint firstItem="mzN-dE-mVi" firstAttribute="trailing" secondItem="20z-3D-bPb" secondAttribute="trailing" id="RwX-lw-kBN"/>
+                            <constraint firstItem="Clb-UF-Rh5" firstAttribute="top" secondItem="wKA-X2-iyp" secondAttribute="bottom" constant="10" id="SXR-Es-0Gk"/>
+                            <constraint firstItem="pIi-LQ-o8k" firstAttribute="top" secondItem="mzN-dE-mVi" secondAttribute="bottom" constant="8" id="SoB-YP-Uri"/>
+                            <constraint firstItem="pIi-LQ-o8k" firstAttribute="top" secondItem="mzN-dE-mVi" secondAttribute="bottom" constant="8" id="a3a-yN-ZKE"/>
+                            <constraint firstItem="Clb-UF-Rh5" firstAttribute="centerX" secondItem="m6P-EQ-bMH" secondAttribute="centerX" id="fNV-3y-Diz"/>
+                            <constraint firstItem="mzN-dE-mVi" firstAttribute="centerX" secondItem="m6P-EQ-bMH" secondAttribute="centerX" id="kTb-vW-EtR"/>
+                            <constraint firstItem="pIi-LQ-o8k" firstAttribute="top" secondItem="mzN-dE-mVi" secondAttribute="bottom" constant="8" id="nKv-9i-u3F"/>
+                            <constraint firstItem="pIi-LQ-o8k" firstAttribute="centerX" secondItem="m6P-EQ-bMH" secondAttribute="centerX" id="wTU-Xo-Phs"/>
+                            <constraint firstItem="laQ-aI-oMi" firstAttribute="top" secondItem="20z-3D-bPb" secondAttribute="bottom" constant="67" id="z3s-Gq-tTZ"/>
+                        </constraints>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="Item 1" id="JH6-0Z-0cl"/>
+                    <navigationItem key="navigationItem" title="Home" id="hZp-24-1OR"/>
+                    <connections>
+                        <outlet property="dailyGoal" destination="Clb-UF-Rh5" id="b3t-f8-wDV"/>
+                        <outlet property="image" destination="mzN-dE-mVi" id="MMm-VV-Y3B"/>
+                        <outlet property="message" destination="20z-3D-bPb" id="uGN-81-t7Q"/>
+                        <outlet property="starCosmos" destination="pIi-LQ-o8k" id="hmA-IE-HNz"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="EQu-qT-i0s" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-3426.4000000000001" y="1244.527736131934"/>
+        </scene>
+        <!--Profile-->
+        <scene sceneID="DqX-yS-Uex">
+            <objects>
+                <navigationController id="2Lf-BS-Uiz" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Profile" image="profile" landscapeImage="profile" selectedImage="profile-selected" id="Ef4-xV-LFd">
+                        <color key="badgeColor" red="0.048890548610000001" green="0.8594939721" blue="0.36710025439999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    </tabBarItem>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="xiQ-ju-FoU">
+                        <rect key="frame" x="0.0" y="20" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="barTintColor" red="0.048890548610000001" green="0.8594939721" blue="0.36710025439999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <textAttributes key="titleTextAttributes">
+                            <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        </textAttributes>
+                        <textAttributes key="largeTitleTextAttributes">
+                            <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        </textAttributes>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="W1O-Oj-qaC" kind="relationship" relationship="rootViewController" id="DUG-b9-eaD"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="eCr-Kh-v8Z" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-722" y="466"/>
+        </scene>
+        <!--Dashboard-->
+        <scene sceneID="lu7-wZ-hQI">
+            <objects>
+                <navigationController id="dpL-h5-HJO" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Dashboard" image="dashboard" landscapeImage="dashboard" selectedImage="dashboard-selected" id="nAm-lP-bll">
+                        <color key="badgeColor" red="0.048890548610000001" green="0.8594939721" blue="0.36710025439999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    </tabBarItem>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="mL8-c2-TkQ">
+                        <rect key="frame" x="0.0" y="20" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="barTintColor" red="0.048890548610000001" green="0.8594939721" blue="0.36710025439999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <textAttributes key="titleTextAttributes">
+                            <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        </textAttributes>
+                        <textAttributes key="largeTitleTextAttributes">
+                            <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        </textAttributes>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="lty-fT-aMK" kind="relationship" relationship="rootViewController" id="DJo-UP-VNo"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="j6E-vA-2bX" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-2519" y="466"/>
+        </scene>
+        <!--Tab Bar Controller-->
+        <scene sceneID="AfY-DY-Y7E">
+            <objects>
+                <tabBarController id="Imd-WG-sFa" sceneMemberID="viewController">
+                    <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="IaP-NN-zqk">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="49"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                        <color key="barTintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="selectedImageTintColor" red="0.048890548610000001" green="0.8594939721" blue="0.36710025439999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    </tabBar>
+                    <connections>
+                        <segue destination="S4X-Ha-Gvj" kind="relationship" relationship="viewControllers" id="FBW-J3-PRc"/>
+                        <segue destination="dpL-h5-HJO" kind="relationship" relationship="viewControllers" id="dkc-hL-bgD"/>
+                        <segue destination="fgw-2R-pZC" kind="relationship" relationship="viewControllers" id="QPh-QG-Zlm"/>
+                        <segue destination="2Lf-BS-Uiz" kind="relationship" relationship="viewControllers" id="TDO-8h-RzF"/>
+                    </connections>
+                </tabBarController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Ucg-Hr-OOx" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-2047" y="-305"/>
+        </scene>
+        <!--Settings-->
+        <scene sceneID="W3b-rx-SGv">
+            <objects>
+                <navigationController id="fgw-2R-pZC" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Settings" image="settings" landscapeImage="settings" selectedImage="settings-selected" id="dUM-zO-Rd3">
+                        <color key="badgeColor" red="0.048890548610000001" green="0.8594939721" blue="0.36710025439999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    </tabBarItem>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="Ec0-xd-ipO">
+                        <rect key="frame" x="0.0" y="20" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="barTintColor" red="0.048890548610000001" green="0.8594939721" blue="0.36710025439999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <textAttributes key="titleTextAttributes">
+                            <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        </textAttributes>
+                        <textAttributes key="largeTitleTextAttributes">
+                            <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        </textAttributes>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="r4n-ON-FS0" kind="relationship" relationship="rootViewController" id="ZcK-6Y-cMq"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="bIw-nO-6hn" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1615" y="466"/>
+        </scene>
+        <!--Home-->
+        <scene sceneID="NJX-RE-s4Z">
+            <objects>
+                <navigationController id="S4X-Ha-Gvj" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Home" image="home" landscapeImage="home" selectedImage="home-selected" id="w9V-cQ-s2q">
+                        <color key="badgeColor" red="0.048890548610000001" green="0.8594939721" blue="0.36710025439999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    </tabBarItem>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="tIa-z7-WA1">
+                        <rect key="frame" x="0.0" y="20" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="barTintColor" red="0.048890548609225259" green="0.85949397208121825" blue="0.36710025443586636" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <textAttributes key="titleTextAttributes">
+                            <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        </textAttributes>
+                        <textAttributes key="largeTitleTextAttributes">
+                            <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        </textAttributes>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="Li3-hp-Ko6" kind="relationship" relationship="rootViewController" id="iIR-Mn-k7P"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="4Nn-bM-6Q4" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-3425" y="466"/>
+        </scene>
+        <!--Data Source-->
+        <scene sceneID="fuI-jA-1gc">
+            <objects>
+                <viewController id="lty-fT-aMK" customClass="DashbaordViewController" customModule="FSCalendarSwiftExample" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Euq-Om-XUc"/>
+                        <viewControllerLayoutGuide type="bottom" id="SlA-5t-TA6"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="kBR-oK-N7Y">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="wPJ-CL-JyG" customClass="FSCalendar">
+                                <rect key="frame" x="0.0" y="64" width="375" height="300"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="adjustsFontSizeToFitContentSize" value="YES"/>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="titleWeekendColor">
+                                        <color key="value" red="0.0" green="0.036919128680000003" blue="0.72138721449999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="firstWeekday">
+                                        <integer key="value" value="2"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <outlet property="dataSource" destination="lty-fT-aMK" id="uaL-Rc-pxm"/>
+                                    <outlet property="delegate" destination="lty-fT-aMK" id="cmv-xD-9oe"/>
+                                </connections>
+                            </view>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Elb-1n-eKK">
+                                <rect key="frame" x="0.0" y="372" width="375" height="246"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" red="0.94117647058823528" green="0.94117647058823528" blue="0.94117647058823528" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Dashboard" id="UvR-7d-hqN"/>
+                    <connections>
+                        <outlet property="calendar" destination="wPJ-CL-JyG" id="LTL-tj-4um"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="o4Q-iq-LTl" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-2519.1999999999998" y="1244.527736131934"/>
+        </scene>
+        <!--Profile-->
+        <scene sceneID="JNQ-R6-sey">
+            <objects>
+                <viewController id="W1O-Oj-qaC" customClass="ProfileViewController" customModule="FSCalendarSwiftExample" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="sfI-Jx-WzG"/>
+                        <viewControllerLayoutGuide type="bottom" id="8Vd-Ic-FkM"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="bQS-WE-e4v">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Profile" id="iUb-UR-VjY"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="w1H-sS-5ba" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-722" y="1245"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="dashboard" width="25" height="25"/>
+        <image name="dashboard-selected" width="25" height="25"/>
+        <image name="home" width="25" height="25"/>
+        <image name="home-selected" width="25" height="25"/>
+        <image name="profile" width="25" height="25"/>
+        <image name="profile-selected" width="25" height="25"/>
+        <image name="settings" width="25" height="25"/>
+        <image name="settings-selected" width="25" height="25"/>
+    </resources>
+</document>
