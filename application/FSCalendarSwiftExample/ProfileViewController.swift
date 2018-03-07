@@ -9,11 +9,17 @@
 import UIKit
 
 class ProfileViewController: UIViewController {
-
+    
+    @IBOutlet weak var button: UIButton!
+    @IBOutlet weak var image: UIImageView!
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        image.layer.cornerRadius = image.frame.size.width / 2
+        image.clipsToBounds = true
+        button.layer.borderWidth = 2
+        button.layer.cornerRadius = 5
+        button.layer.borderColor = UIColor.green.cgColor
+        
     }
 
     override func didReceiveMemoryWarning() {

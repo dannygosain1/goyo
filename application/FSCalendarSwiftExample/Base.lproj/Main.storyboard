@@ -6,10 +6,15 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
+        <array key="HelveticaNeue.ttc">
+            <string>HelveticaNeue</string>
+            <string>HelveticaNeue-Bold</string>
+        </array>
         <array key="HelveticaNeueLights.ttc">
             <string>HelveticaNeue-Light</string>
         </array>
@@ -435,13 +440,117 @@
                     <view key="view" contentMode="scaleToFill" id="bQS-WE-e4v">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="W5Y-TT-37n">
+                                <rect key="frame" x="33" y="512" width="309" height="98"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="47" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="own-u9-oKw">
+                                        <rect key="frame" x="95" y="9" width="118" height="51"/>
+                                        <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="60"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Stars Accumulated" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UlY-Xu-jb4">
+                                        <rect key="frame" x="75" y="67" width="158" height="21"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="21" id="g2K-Mq-R5o"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" red="0.048890548610000001" green="0.8594939721" blue="0.36710025439999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="bottom" secondItem="UlY-Xu-jb4" secondAttribute="bottom" constant="10" id="1XN-E1-T82"/>
+                                    <constraint firstAttribute="width" secondItem="W5Y-TT-37n" secondAttribute="height" multiplier="309:98" id="25k-qm-L5P"/>
+                                    <constraint firstItem="UlY-Xu-jb4" firstAttribute="leading" secondItem="W5Y-TT-37n" secondAttribute="leading" constant="75" id="9Wy-bA-WEN"/>
+                                    <constraint firstItem="own-u9-oKw" firstAttribute="leading" secondItem="W5Y-TT-37n" secondAttribute="leading" constant="95" id="ACT-jj-tJ6"/>
+                                    <constraint firstItem="own-u9-oKw" firstAttribute="centerX" secondItem="W5Y-TT-37n" secondAttribute="centerX" id="F69-Ta-NE6"/>
+                                    <constraint firstItem="own-u9-oKw" firstAttribute="centerX" secondItem="UlY-Xu-jb4" secondAttribute="centerX" id="Pqu-2N-zJ0"/>
+                                    <constraint firstAttribute="width" constant="309" id="QHd-uJ-BuQ"/>
+                                    <constraint firstItem="UlY-Xu-jb4" firstAttribute="top" secondItem="own-u9-oKw" secondAttribute="bottom" constant="7" id="VC4-NE-FqM"/>
+                                    <constraint firstAttribute="height" constant="98" id="YyV-0k-MP0"/>
+                                    <constraint firstItem="own-u9-oKw" firstAttribute="top" secondItem="W5Y-TT-37n" secondAttribute="top" constant="9" id="tHQ-rh-ArV"/>
+                                </constraints>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="VwG-KQ-ARs">
+                                <rect key="frame" x="33" y="406" width="309" height="98"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="274" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oQM-x6-tVz">
+                                        <rect key="frame" x="95" y="9" width="118" height="57"/>
+                                        <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="60"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Total Active Minutes" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fRr-aR-Z23">
+                                        <rect key="frame" x="75" y="68" width="158" height="21"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="21" id="NYV-JS-cjU"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" red="0.048890548610000001" green="0.8594939721" blue="0.36710025439999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstItem="fRr-aR-Z23" firstAttribute="top" secondItem="oQM-x6-tVz" secondAttribute="bottom" constant="2" id="CBY-bZ-EuF"/>
+                                    <constraint firstAttribute="bottom" secondItem="fRr-aR-Z23" secondAttribute="bottom" constant="9" id="Huk-uR-Bf1"/>
+                                    <constraint firstItem="oQM-x6-tVz" firstAttribute="centerX" secondItem="fRr-aR-Z23" secondAttribute="centerX" id="JYe-Yn-z41"/>
+                                    <constraint firstItem="oQM-x6-tVz" firstAttribute="top" secondItem="VwG-KQ-ARs" secondAttribute="top" constant="9" id="NhB-2I-6sl"/>
+                                    <constraint firstAttribute="width" secondItem="VwG-KQ-ARs" secondAttribute="height" multiplier="309:98" id="REa-OC-eNr"/>
+                                    <constraint firstAttribute="height" constant="98" id="WfL-YQ-aa2"/>
+                                    <constraint firstItem="oQM-x6-tVz" firstAttribute="leading" secondItem="VwG-KQ-ARs" secondAttribute="leading" constant="95" id="Y8L-Oc-0L7"/>
+                                    <constraint firstItem="oQM-x6-tVz" firstAttribute="centerX" secondItem="VwG-KQ-ARs" secondAttribute="centerX" id="aTB-S2-pXe"/>
+                                    <constraint firstItem="fRr-aR-Z23" firstAttribute="leading" secondItem="VwG-KQ-ARs" secondAttribute="leading" constant="75" id="jMy-us-KIc"/>
+                                    <constraint firstAttribute="width" constant="309" id="xcx-Mg-QMY"/>
+                                </constraints>
+                            </view>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="raunaq" translatesAutoresizingMaskIntoConstraints="NO" id="sVX-Ak-86g">
+                                <rect key="frame" x="112" y="114" width="150" height="150"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="150" id="1o0-Ms-jSa"/>
+                                    <constraint firstAttribute="width" secondItem="sVX-Ak-86g" secondAttribute="height" multiplier="1:1" id="WzT-nt-bos"/>
+                                    <constraint firstAttribute="height" constant="150" id="gIh-c2-pJl"/>
+                                </constraints>
+                            </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RSv-CO-zqL">
+                                <rect key="frame" x="70" y="279" width="235" height="46"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="46" id="3EJ-nw-XVm"/>
+                                    <constraint firstAttribute="width" secondItem="RSv-CO-zqL" secondAttribute="height" multiplier="235:46" id="FCa-Sr-Gp5"/>
+                                    <constraint firstAttribute="width" constant="235" id="LDM-4h-eQP"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="23"/>
+                                <state key="normal" title="Change Picture">
+                                    <color key="titleColor" red="0.048890548610000001" green="0.8594939721" blue="0.36710025439999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
+                            </button>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="RSv-CO-zqL" firstAttribute="centerX" secondItem="bQS-WE-e4v" secondAttribute="centerX" id="04L-A4-RZN"/>
+                            <constraint firstItem="W5Y-TT-37n" firstAttribute="top" secondItem="VwG-KQ-ARs" secondAttribute="bottom" constant="8" symbolic="YES" id="C9M-pd-6fw"/>
+                            <constraint firstItem="sVX-Ak-86g" firstAttribute="centerX" secondItem="bQS-WE-e4v" secondAttribute="centerX" id="K0B-fL-NsR"/>
+                            <constraint firstItem="VwG-KQ-ARs" firstAttribute="leading" secondItem="W5Y-TT-37n" secondAttribute="leading" id="RrG-MM-7sF"/>
+                            <constraint firstItem="sVX-Ak-86g" firstAttribute="top" secondItem="sfI-Jx-WzG" secondAttribute="bottom" constant="50" id="qPj-1j-N5p"/>
+                            <constraint firstItem="VwG-KQ-ARs" firstAttribute="centerX" secondItem="bQS-WE-e4v" secondAttribute="centerX" id="s5N-zE-mk4"/>
+                            <constraint firstItem="RSv-CO-zqL" firstAttribute="top" secondItem="sVX-Ak-86g" secondAttribute="bottom" constant="15" id="u2G-NA-3n8"/>
+                            <constraint firstItem="8Vd-Ic-FkM" firstAttribute="top" secondItem="W5Y-TT-37n" secondAttribute="bottom" constant="8" symbolic="YES" id="wuV-ev-Nad"/>
+                            <constraint firstItem="W5Y-TT-37n" firstAttribute="centerX" secondItem="VwG-KQ-ARs" secondAttribute="centerX" id="zsj-HI-IpB"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Profile" id="iUb-UR-VjY"/>
+                    <connections>
+                        <outlet property="button" destination="RSv-CO-zqL" id="dOh-GU-0qz"/>
+                        <outlet property="image" destination="sVX-Ak-86g" id="rYZ-B7-x53"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="w1H-sS-5ba" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-722" y="1245"/>
+            <point key="canvasLocation" x="-722.39999999999998" y="1244.527736131934"/>
         </scene>
     </scenes>
     <resources>
@@ -454,6 +563,7 @@
         <image name="home-selected" width="25" height="25"/>
         <image name="profile" width="25" height="25"/>
         <image name="profile-selected" width="25" height="25"/>
+        <image name="raunaq" width="720" height="720"/>
         <image name="red" width="413" height="413"/>
         <image name="settings" width="25" height="25"/>
         <image name="settings-selected" width="25" height="25"/>
