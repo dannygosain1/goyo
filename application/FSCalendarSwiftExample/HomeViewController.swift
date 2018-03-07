@@ -15,14 +15,15 @@ class HomeViewController: UIViewController {
     @IBOutlet weak var starCosmos: CosmosView!
     @IBOutlet weak var message: UILabel!
     
-    var goal = 60// to be provided
+    var goal = 60.0 // to be provided
+    var activityCompleted = 38.0 // to be provided
     
     override func viewDidLoad() {
         super.viewDidLoad()
         dailyGoal.text = "Daily Goal: " + String(goal) + " minutes"
         
-        var rating = 4.0 // var type double
-        let activityLeft = (5-rating)/5 * 60
+        let rating = activityCompleted/goal * 5.0 // type double
+        let activityLeft = goal - activityCompleted
         
         dailyGoal.text = "Daily Goal: " + String(Int(goal)) + " active minutes"
         

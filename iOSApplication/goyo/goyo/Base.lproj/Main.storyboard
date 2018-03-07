@@ -524,8 +524,8 @@
         </scene>
     </scenes>
     <resources>
-        <image name="icons8-male-user-filled-40" width="40" height="40"/>
-        <image name="icons8-menu-filled-40" width="40" height="40"/>
+        <image name="icons8-male-user-filled-40" width="50" height="50"/>
+        <image name="icons8-menu-filled-40" width="50" height="50"/>
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="2lq-32-XIn"/>

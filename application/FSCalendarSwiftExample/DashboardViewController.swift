@@ -1,100 +1,134 @@
 //
-//  DelegateAppearanceViewController.swift
+//  DashboardViewController.swift
 //  FSCalendarSwiftExample
 //
-//  Created by dingwenchao on 30/12/2016.
-//  Copyright © 2016 wenchao. All rights reserved.
+//  Created by Danny Gosain on 2018-03-07.
+//  Copyright © 2018 wenchao. All rights reserved.
 //
 
 import UIKit
+import Charts
 
-class DashbaordViewController: UIViewController, FSCalendarDataSource, FSCalendarDelegate, FSCalendarDelegateAppearance {
+class DashboardViewController: UIViewController, ChartViewDelegate {
     
-    fileprivate weak var calendar: FSCalendar!
-    
-    fileprivate let gregorian: Calendar = Calendar(identifier: .gregorian)
-    fileprivate lazy var dateFormatter1: DateFormatter = {
-        let formatter = DateFormatter()
-        formatter.dateFormat = "yyyy/MM/dd"
-        return formatter
-    }()
-    fileprivate lazy var dateFormatter2: DateFormatter = {
-        let formatter = DateFormatter()
-        formatter.dateFormat = "yyyy-MM-dd"
-        return formatter
-    }()
 
-
-    let borderDefaultColors = ["2018/02/27": UIColor.red, "2018/02/28": UIColor.green, "2018/03/01": UIColor.green, "2018/03/02": UIColor.green, "2018/03/03": UIColor.red, "2018/03/04": UIColor.green, "2018/03/05": UIColor.green]
+    @IBOutlet weak var barChartView: BarChartView!
     
-    override func loadView() {
-        let view = UIView(frame: UIScreen.main.bounds)
-        view.backgroundColor = UIColor.groupTableViewBackground
-        self.view = view
+//    var months: [String]!
+    var days: [String]!
+    
+    @IBOutlet weak var todayPieView: PieChartView!
+    
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
         
-        let height: CGFloat = UIDevice.current.model.hasPrefix("iPad") ? 450 : 300
-        let calendar = FSCalendar(frame: CGRect(x:0, y:64, width:self.view.bounds.size.width, height:height))
-        calendar.dataSource = self
-        calendar.delegate = self
-        calendar.allowsMultipleSelection = false
-        calendar.swipeToChooseGesture.isEnabled = true
-        calendar.backgroundColor = UIColor.white
-        calendar.firstWeekday = 2
-//        calendar.appearance.caseOptions = [.headerUsesUpperCase,.weekdayUsesSingleUpperCase]
-        self.view.addSubview(calendar)
-        self.calendar = calendar
-        let today = dateFormatter1.string(from: Date())
-        calendar.select(self.dateFormatter1.date(from: today))
-//        let todayItem = UIBarButtonItem(title: "Today", style: .plain, target: self, action: #selector(self.todayItemClicked(sender:)))
-//        self.navigationItem.rightBarButtonItem = todayItem
+        // setting up mock data for pie chart
+        let dataHeader = ["Completed", "Remaining"] // Headers for Legend if needed
+        let activeMinutes = [50.0, 10.0] // enter values to appear on the graph,
+        setChart(dataPoints: dataHeader, values: activeMinutes)
         
-        // For UITest
-        self.calendar.accessibilityIdentifier = "calendar"
-    }
-    
-    deinit {
-        print("\(#function)")
-    }
-    
-    @objc
-    func todayItemClicked(sender: AnyObject) {
-        self.calendar.setCurrentPage(Date(), animated: false)
-    }
-    
-    func calendar(_ calendar: FSCalendar, numberOfEventsFor date: Date) -> Int {
-        return 0
-    }
-    
-//    func calendar(_ calendar: FSCalendar, appearance: FSCalendarAppearance, eventColorFor date: Date) -> UIColor? {
-//        let dateString = self.dateFormatter2.string(from: date)
-//        if self.activityCompleted.contains(dateString) {
-//            return UIColor.green
-//        }
-//        return nil
-//    }
-//
-//    private func calendar(_ calendar: FSCalendar, appearance: FSCalendarAppearance, eventDefaultColorsFor date: Date) -> UIColor? {
-//        let key = self.dateFormatter2.string(from: date)
-//        if self.activityNotCompleted.contains(key) {
-//            return UIColor.red
-//        }
-//        return nil
-//    }
-    
-    func calendar(_ calendar: FSCalendar, appearance: FSCalendarAppearance, borderDefaultColorFor date: Date) -> UIColor? {
-        let key = self.dateFormatter1.string(from: date)
-        if let color = self.borderDefaultColors[key] {
-            return color
+        // getting the last 10 days
+        let cal = Calendar.current
+        var date = cal.startOfDay(for: Date())
+        var tempDays = [String]()
+        for i in 1 ... 10 {
+            let day = cal.component(.day, from: date)
+            let month = cal.component(.month, from: date)
+            tempDays.append(String(month) + "/" + String(day))
+            date = cal.date(byAdding: .day, value: -1, to: date)!
         }
-        return appearance.borderDefaultColor
+        
+        // setting up mock data for bar chart
+
+        days = tempDays.reversed()
+        let active = [20.0, 44.0, 66.0, 33.0, 52.0, 36.0, 41.0, 48.0, 60.0, 55.0] // to be provided
+        
+        setBarChart(dataPoints: days, values: active)
+        
     }
     
-    
-    func calendar(_ calendar: FSCalendar, appearance: FSCalendarAppearance, borderRadiusFor date: Date) -> CGFloat {
-        if [8, 17, 21, 25].contains((self.gregorian.component(.day, from: date))) {
-            return 0.0
+    func setBarChart(dataPoints: [String], values: [Double]) {
+        barChartView.noDataText = "No activity data available"
+
+        var dataEntries: [BarChartDataEntry] = []
+        
+        for i in 0..<dataPoints.count {
+            let dataEntry = BarChartDataEntry(x: Double(i), y: values[i], data: dataPoints[i] as AnyObject)
+            dataEntries.append(dataEntry)
         }
-        return 1.0
+        
+        let chartDataSet = BarChartDataSet(values: dataEntries, label: "Active Minutes")
+        let chartData = BarChartData(dataSet: chartDataSet)
+        barChartView.data = chartData
+        barChartView.xAxis.valueFormatter = IndexAxisValueFormatter(values: days)
+        barChartView.xAxis.labelPosition = .bottom
+        barChartView.xAxis.granularity = 1
+        barChartView.xAxis.setLabelCount(10, force: false)
+        barChartView.xAxis.drawGridLinesEnabled = false
+        barChartView.leftAxis.labelPosition = .outsideChart
+        barChartView.rightAxis.enabled = false
+        barChartView.chartDescription?.text = ""
+        chartDataSet.colors = [UIColor(red:12/255, green:219/255, blue:94/255, alpha:1)]
+        
+        let limitLine = ChartLimitLine(limit: 0, label: "")
+        limitLine.lineColor = UIColor.black.withAlphaComponent(0.3)
+        limitLine.lineWidth = 1
+        barChartView.rightAxis.addLimitLine(limitLine)
+        
+        // setting target line
+        let ll = ChartLimitLine(limit: 60.0, label: "Goal") // to be provided
+        barChartView.leftAxis.addLimitLine(ll)
+       
+    }
+
+    
+    func setChart(dataPoints: [String], values: [Double]) {
+        
+        var dataEntries: [ChartDataEntry] = []
+        
+        for i in 0..<dataPoints.count {
+            let dataEntry1 = ChartDataEntry(x: Double(i), y: values[i], data: dataPoints[i] as AnyObject)
+            dataEntries.append(dataEntry1)
+        }
+        
+        print(dataEntries[0].data)
+        let pieChartDataSet = PieChartDataSet(values: dataEntries, label: "Active Minutes")
+        let pieChartData = PieChartData(dataSet: pieChartDataSet)
+        
+        // colors for the graph
+        var colors: [UIColor] = []
+        
+        let completedColor = UIColor(red: 12/255, green: 219/255, blue: 94/255, alpha: 1)
+        let remainingColor = UIColor(red: 225/255, green: 227/255, blue: 232/255, alpha: 1)
+        
+        colors.append(completedColor)
+        colors.append(remainingColor)
+        
+        pieChartDataSet.colors = colors
+        
+        // chart characteristics
+        todayPieView.data = pieChartData
+        todayPieView.chartDescription?.text = ""
+        todayPieView.centerAttributedText = NSMutableAttributedString(string: "83%", attributes: [NSAttributedStringKey.foregroundColor:completedColor, NSAttributedStringKey.font: UIFont(name: "HelveticaNeue-Light", size:28)!])
+        todayPieView.legend.enabled = false
+        
+    }
+
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+        // Dispose of any resources that can be recreated.
     }
     
+
+    /*
+    // MARK: - Navigation
+
+    // In a storyboard-based application, you will often want to do a little preparation before navigation
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        // Get the new view controller using segue.destinationViewController.
+        // Pass the selected object to the new view controller.
+    }
+    */
+
 }

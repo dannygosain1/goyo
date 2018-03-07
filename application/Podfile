@@ -6,8 +6,9 @@ target 'FSCalendarSwiftExample' do
   use_frameworks!
 
   # Pods for FSCalendarSwiftExample
+  pod 'Charts'  
 
-  target 'FSCalendarSwiftExampleUITests' do
+ target 'FSCalendarSwiftExampleUITests' do
     inherit! :search_paths
     # Pods for testing
   end
