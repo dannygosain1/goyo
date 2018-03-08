@@ -61,7 +61,8 @@ def main(args):
 
     names = ["3nn", "5nn", "7nn", "SVM", "D Tree", "Random Forest"]
     results = [pd.DataFrame(columns=['accuracy', 'precision', 'recall', 'f1'], dtype=np.float_) for _ in range(len(names))]
-    for _ in range(args.iters):
+    for it in range(args.iters):
+        print("Iteration number {0} out of {1}".format(it, args.iters)
         data_train, data_test, target_train, target_test = train_test_split(data[:, 1:], data[:, 0], test_size = 0.3)
 
         nn_3 = kNN(3)
