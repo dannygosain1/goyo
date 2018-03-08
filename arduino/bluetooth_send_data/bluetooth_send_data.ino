@@ -5,29 +5,27 @@
 //  Arduino D8 BT TX (no need voltage divider)
 
 #include <SoftwareSerial.h>
-#include <message.pb.h>
+#include <data.pb.h>
 #include <pb_encode.h>
 
-
-SoftwareSerial BTserial(8, 9); // RX | TX
-const int MAX_LENGTH = 80;
-uint8_t buffer[MAX_LENGTH];
+const int MAX_BUFFER_LENGTH = 128;
+uint8_t buffer[MAX_BUFFER_LENGTH];
 pb_ostream_t pb_out;
 
+SoftwareSerial BTserial(8, 9); // RX | TX
 const long baudRate = 57600; 
-const String END_SENT = "DONE";
-char c=' ';
-boolean NL = true;
-int dataLength = 203;
-char data[][10] = {
-  {'1','4','1','0','8','6','9','1','4','3'},
-  {'3','7','6','1','0','7','5','0','2','4'},
-  {'2','7','1','0','8','6','2','7','4','6'}};
+char c = ' ';
+int32_t term_char[] = {999,999,999,999};
+
+int testLength = 200;
+const int DATA_LENGTH = 4;
+int32_t test_data[][DATA_LENGTH] = {{234,134,124,764},{363,518,111,034},{166,646,662,698}};
 
 void setup() 
 {
     Serial.begin(9600);
     BTserial.begin(baudRate);
+    pb_out = as_pb_ostream(BTserial);
 }
 
  
@@ -36,30 +34,35 @@ void loop()
     if (BTserial.available()){
         c = BTserial.read(); 
         if (String(c).equals("d")) {
-          for (int i=0; i<=dataLength; i++){
-            dumpData(data[i%2], sizeof(data[i%2])+1);
-            delay(5);
+          for (int i=1; i<=testLength; i++){
+            dumpData(test_data[i%3]);
+            delay(10);
           }
-          char charBuf[4];
-          END_SENT.toCharArray(charBuf, 5);
-          dumpData(charBuf, 4);
+          
+          dumpData(term_char);
         }
     }
 }
 
-void dumpData(char *data, int dataLength) {
-  Serial.println("\nstart encode time: " + String(millis()));
-  Msg m = Msg_init_default;  
-  pb_out = pb_ostream_from_buffer(buffer, MAX_LENGTH);
-  strncpy(m.val, data, dataLength);
-  m.val[dataLength+1] = '\x00';
-  if (pb_encode(&pb_out, Msg_fields, &m)) {
-    Serial.println("start sending time: " + String(millis()));
-    BTserial.write(buffer, dataLength+4);
-    Serial.println("end time: " + String(millis()));
-  } else {
+void dumpData(int32_t* data) {
+  Data point = Data_init_default;  
+  point.fsr = data[0];
+  point.x_accel = data[1];
+  point.y_accel = data[2];
+  point.z_accel = data[3];
+  if (!pb_encode(&pb_out, Data_fields, &point)) {
     Serial.println(PB_GET_ERROR(&pb_out));
   }
 }
+
+static bool pb_print_write(pb_ostream_t *stream, const pb_byte_t *buf, size_t count) {
+    Print* p = reinterpret_cast<Print*>(stream->state);
+    size_t written = p->write(buf, count);
+    return written == count;
+};
+
+pb_ostream_s as_pb_ostream(Print& p) {
+    return {pb_print_write, &p, SIZE_MAX, 0};
+};
 
 

@@ -19,25 +19,25 @@ class Requester(GATTRequester):
 
     def on_notification(self, handle, data):
         message = data_pb2.Data()
-        print(data)
         data_striped = data.replace('\x1b%\x00', '')
         message.ParseFromString(data_striped)
-        # print("{}: {}".format(time.time(), message.val))
         self.num_lines = self.num_lines + 1
-        if "DONE" in message.val:
+        if message.fsr == 999:
             self.set_done(True)
 
 
-# MAC_ADDRESS = '58:7A:62:4F:99:03'
-MAC_ADDRESS = '58:7A:62:4F:9D:75'
+MAC_ADDRESS = '58:7A:62:4F:99:03'
+# MAC_ADDRESS = '58:7A:62:4F:9D:75'
 WRITE_HANDLE = 0x0025
 
 
 def main():
+    print("trying to connect")
     req = Requester(MAC_ADDRESS)
     req.set_done(False)
     req.set_num_lines(0)
 
+    print("getting ready to collect data")
     req.write_by_handle(WRITE_HANDLE, 'd')
     start_time = time.time()
     while req.is_done() != True:
