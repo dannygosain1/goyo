@@ -1,0 +1,12 @@
+syntax = "proto2";
+
+message Data {
+    required int32 x_accel = 1;
+    required int32 y_accel = 2;
+    required int32 z_accel = 3;
+    required int32 fsr = 4;
+}
+
+message DataPig {
+  repeated Data data = 1;
+}

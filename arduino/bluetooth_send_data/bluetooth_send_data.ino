@@ -4,35 +4,34 @@
 //  Arduino D9 to BT RX through a voltage divider
 //  Arduino D8 BT TX (no need voltage divider)
 
-#include <SoftwareSerial.h>
+//#include <SoftwareSerial.h>
 #include <data.pb.h>
 #include <pb_encode.h>
 
-const int MAX_BUFFER_LENGTH = 128;
-uint8_t buffer[MAX_BUFFER_LENGTH];
-pb_ostream_t pb_out;
 
-SoftwareSerial BTserial(8, 9); // RX | TX
+//SoftwareSerial BTserial(8, 9); // RX | TX
+pb_ostream_t pb_out;
 const long baudRate = 57600; 
 char c = ' ';
 int32_t term_char[] = {999,999,999,999};
-
-int testLength = 200;
 const int DATA_LENGTH = 4;
-int32_t test_data[][DATA_LENGTH] = {{234,134,124,764},{363,518,111,034},{166,646,662,698}};
+
+// Testing setup
+int testLength = 200;
+int32_t test_data[][DATA_LENGTH] = {{234,134,124,764},{363,518,111,134},{166,646,662,698}};
 
 void setup() 
 {
-    Serial.begin(9600);
-    BTserial.begin(baudRate);
-    pb_out = as_pb_ostream(BTserial);
+    Serial.begin(baudRate);
+//    BTserial.begin(baudRate);
+    pb_out = as_pb_ostream(Serial);
 }
 
  
 void loop()
 {    
-    if (BTserial.available()){
-        c = BTserial.read(); 
+    if (Serial.available()){
+        c = Serial.read(); 
         if (String(c).equals("d")) {
           for (int i=1; i<=testLength; i++){
             dumpData(test_data[i%3]);
