@@ -1,6 +1,6 @@
 from gattlib import GATTRequester, GATTResponse
 import time
-import data_pb2
+import datapig_pb2
 import re
 
 
@@ -18,11 +18,13 @@ class Requester(GATTRequester):
         self.num_lines = num;
 
     def on_notification(self, handle, data):
-        message = data_pb2.Data()
+        message = datapig_pb2.DataPig()
         data_striped = data.replace('\x1b%\x00', '')
+        import pdb; pdb.set_trace()
         message.ParseFromString(data_striped)
-        self.num_lines = self.num_lines + 1
-        if message.fsr == 999:
+        print(message.data)
+        self.num_lines = self.num_lines + len(message.data)
+        if message.data[-1].fsr == 999:
             self.set_done(True)
 
 
