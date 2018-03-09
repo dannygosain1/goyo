@@ -46,7 +46,7 @@ def kNN(k):
     return KNeighborsClassifier(n_neighbors=k)
 
 def SVM(c):
-    return svm.SVC(C=c, kernel='poly', gamma=1)
+    return svm.SVC(C=c, kernel='rbf', gamma=100)
 
 def main(args):
     #load data
@@ -59,40 +59,51 @@ def main(args):
     elif args.feature_dir is not None:
         data = load_files(args.feature_dir)
 
-    data_train, data_test, target_train, target_test = train_test_split(data[:, 1:], data[:, 0], test_size = 0.3)
-
-    nn_3 = kNN(3)
-    nn_5 = kNN(5)
-    nn_7 = kNN(7)
-    svm = SVM(50)
-    dtree = DecisionTreeClassifier(max_depth=5)
-    forest = RandomForestClassifier(max_depth=5)
     names = ["3nn", "5nn", "7nn", "SVM", "D Tree", "Random Forest"]
-    classifiers = [nn_3, nn_5, nn_7, svm, dtree, forest]
+    results = [pd.DataFrame(columns=['accuracy', 'precision', 'recall', 'f1'], dtype=np.float_) for _ in range(len(names))]
+    for it in range(args.iters):
+        print("Iteration number {0} out of {1}".format(it, args.iters))
+        data_train, data_test, target_train, target_test = train_test_split(data[:, 1:], data[:, 0], test_size = 0.3)
 
-    for name, clf in zip(names, classifiers):
-        k_predictions = train_folds(5, clf, data_train, target_train, data_test)
-        prediction = vote_on_predictions(k_predictions)
-        print("Profile for {0}".format(name))
-        print("Accuracy Score: {0}".format(accuracy_score(target_test, prediction)))
-        print("Precision Score: {0}".format(precision_score(target_test, prediction)))
-        print("Recall Score: {0}".format(recall_score(target_test, prediction)))
-        print("F1 Score: {0}".format(f1_score(target_test, prediction)))
-        print()
+        nn_3 = kNN(3)
+        nn_5 = kNN(5)
+        nn_7 = kNN(7)
+        svm = SVM(500)
+        dtree = DecisionTreeClassifier(max_depth=3)
+        forest = RandomForestClassifier(max_depth=3)
+        classifiers = [nn_3, nn_5, nn_7, svm, dtree, forest]
+    
+        for i, (name, clf, result) in enumerate(zip(names, classifiers, results)):
+            k_predictions = train_folds(5, clf, data_train, target_train, data_test)
+            prediction = vote_on_predictions(k_predictions)
+            results[i] = result.append({
+                    'accuracy': accuracy_score(target_test, prediction), 
+                    'precision': precision_score(target_test, prediction), 
+                    'recall': recall_score(target_test, prediction), 
+                    'f1': f1_score(target_test, prediction)
+                }, ignore_index=True)
 
-    base = np.ones(target_test.shape)
-    print("Profile for base")
-    print("Accuracy Score: {0}".format(accuracy_score(target_test, base)))
-    print("Precision Score: {0}".format(precision_score(target_test, base)))
-    print("Recall Score: {0}".format(recall_score(target_test, base)))
-    print("F1 Score: {0}".format(f1_score(target_test, base)))
-    print()
+
+
+
+    # base = np.ones(target_test.shape)
+    # print("Profile for base")
+    # print("Accuracy Score: {0}".format(accuracy_score(target_test, base)))
+    # print("Precision Score: {0}".format(precision_score(target_test, base)))
+    # print("Recall Score: {0}".format(recall_score(target_test, base)))
+    # print("F1 Score: {0}".format(f1_score(target_test, base)))
+    # print()
+    for name, res in zip(names, results):
+        print("Results for %s" % name) 
+        print(res)
+        print(res.mean(axis=0))
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Run Models")
     group = parser.add_mutually_exclusive_group(required=True)
     group.add_argument('--features', type=str,  dest="feature_dir", help='the relative filepath of feature dir')
     group.add_argument('--raws', type=str,  dest="raw_data_dir", help='the relative filepaths of the raw data dir')
+    parser.add_argument('--iterations', type=int, dest="iters", help='number of times to re-run with random test split', default=1)
     args = parser.parse_args()
 
     main(args)
