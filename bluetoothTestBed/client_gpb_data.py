@@ -1,7 +1,9 @@
 from gattlib import GATTRequester, GATTResponse
+from google.protobuf.internal.decoder import _DecodeVarint32
 import time
-import data_pb2
+import datapig_pb2
 import re
+import struct
 
 
 class Requester(GATTRequester):
@@ -17,12 +19,24 @@ class Requester(GATTRequester):
     def set_num_lines(self, num):
         self.num_lines = num;
 
+    def read_input(self, buf):
+        n = 0
+        while n < len(buf):
+            msg_len, new_pos = _DecodeVarint32(buf, n)
+            n = new_pos
+            msg_buf = buf[n:n+msg_len]
+            n += msg_len
+            data = datapig_pb2.DataPig()
+            data.ParseFromString(msg_buf)
+        return data
+
     def on_notification(self, handle, data):
-        message = data_pb2.Data()
+        message = datapig_pb2.DataPig()
         data_striped = data.replace('\x1b%\x00', '')
-        message.ParseFromString(data_striped)
-        self.num_lines = self.num_lines + 1
-        if message.fsr == 999:
+        message = self.read_input(data_striped)
+        print(message)
+        self.num_lines = self.num_lines + len(message.data)
+        if message.data[-1].fsr == 999:
             self.set_done(True)
 
 
