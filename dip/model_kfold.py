@@ -39,7 +39,6 @@ def load_files(feature_dir):
     files = os.listdir(feature_dir)
     files = list(map(lambda file: "{0}/{1}".format(feature_dir, file), files))
     data = pd.concat((pd.read_csv(f) for f in files))
-    print(data.groupby('is_walking').count())
     return data.values
 
 def kNN(k):
@@ -61,8 +60,7 @@ def main(args):
 
     names = ["3nn", "5nn", "7nn", "SVM", "D Tree", "Random Forest"]
     results = [pd.DataFrame(columns=['accuracy', 'precision', 'recall', 'f1'], dtype=np.float_) for _ in range(len(names))]
-    for it in range(args.iters):
-        print("Iteration number {0} out of {1}".format(it, args.iters))
+    for _ in range(args.iters):
         data_train, data_test, target_train, target_test = train_test_split(data[:, 1:], data[:, 0], test_size = 0.3)
 
         nn_3 = kNN(3)
