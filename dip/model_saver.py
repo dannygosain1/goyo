@@ -35,7 +35,7 @@ def main(args):
 	svm_coreml =  coremltools.converters.sklearn.convert(
 		svm, input_features, "is_walking"
 	)
-	forest_coreml = coremltools.converters.sklearn.convert(forest)
+	forest_coreml = coremltools.converters.sklearn.convert(forest, input_features, "is_walking")
 
 	svm_coreml.save('svm.mlmodel')
 	forest_coreml.save('random_forest.mlmodel')
