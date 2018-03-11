@@ -7,6 +7,7 @@ target 'FSCalendarSwiftExample' do
 
   # Pods for FSCalendarSwiftExample
   pod 'Charts'  
+  pod 'SwiftProtobuf', '~> 1.0'
 
  target 'FSCalendarSwiftExampleUITests' do
     inherit! :search_paths

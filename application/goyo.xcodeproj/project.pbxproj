@@ -30,6 +30,12 @@
 		1A0CD163204EAC3B00A41C50 /* CosmosDistrib.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A0CD162204EAC3B00A41C50 /* CosmosDistrib.swift */; };
 		1A7CCD52204FD4D700A0F862 /* DashboardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A7CCD51204FD4D700A0F862 /* DashboardViewController.swift */; };
 		1A7CCD59204FE9F100A0F862 /* tempViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A7CCD58204FE9F100A0F862 /* tempViewController.swift */; };
+		1A7CCDA9205080C600A0F862 /* SettingsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A7CCDA8205080C600A0F862 /* SettingsTableViewCell.swift */; };
+		1A7CCDAD2050ABA100A0F862 /* data.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A7CCDAC2050ABA100A0F862 /* data.pb.swift */; };
+		1A7CCDB32053350700A0F862 /* Data00_extracted_features.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1A7CCDB22053350700A0F862 /* Data00_extracted_features.plist */; };
+		1A7CCDB720534CFD00A0F862 /* data00.json in Resources */ = {isa = PBXBuildFile; fileRef = 1A7CCDB620534CFD00A0F862 /* data00.json */; };
+		1A7CCDB92053512300A0F862 /* svm.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = 1A7CCDB82053512300A0F862 /* svm.mlmodel */; };
+		1A7CCDBB2053566D00A0F862 /* random_forest.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = 1A7CCDBA2053566D00A0F862 /* random_forest.mlmodel */; };
 		3024AF171E164F8C008B6001 /* CalendarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3024AF161E164F8C008B6001 /* CalendarViewController.swift */; };
 		C609D303B5E656DF74C1B61B /* Pods_FSCalendarSwiftExample.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C892D5C6F386B87E998B0C3E /* Pods_FSCalendarSwiftExample.framework */; };
 		CF3D87700427C4321B9374C1 /* Pods_FSCalendarSwiftExampleUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7993D4D98D939E51FEB107AB /* Pods_FSCalendarSwiftExampleUITests.framework */; };
@@ -91,6 +97,12 @@
 		1A0CD162204EAC3B00A41C50 /* CosmosDistrib.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CosmosDistrib.swift; sourceTree = "<group>"; };
 		1A7CCD51204FD4D700A0F862 /* DashboardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardViewController.swift; sourceTree = "<group>"; };
 		1A7CCD58204FE9F100A0F862 /* tempViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = tempViewController.swift; sourceTree = "<group>"; };
+		1A7CCDA8205080C600A0F862 /* SettingsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsTableViewCell.swift; sourceTree = "<group>"; };
+		1A7CCDAC2050ABA100A0F862 /* data.pb.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = data.pb.swift; path = ../../gpb/Data/data.pb.swift; sourceTree = "<group>"; };
+		1A7CCDB22053350700A0F862 /* Data00_extracted_features.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Data00_extracted_features.plist; path = ../../dip/features/Data00_extracted_features.plist; sourceTree = "<group>"; };
+		1A7CCDB620534CFD00A0F862 /* data00.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = data00.json; sourceTree = "<group>"; };
+		1A7CCDB82053512300A0F862 /* svm.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; name = svm.mlmodel; path = ../dip/svm.mlmodel; sourceTree = "<group>"; };
+		1A7CCDBA2053566D00A0F862 /* random_forest.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; name = random_forest.mlmodel; path = ../dip/random_forest.mlmodel; sourceTree = "<group>"; };
 		3024AF161E164F8C008B6001 /* CalendarViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalendarViewController.swift; sourceTree = "<group>"; };
 		7993D4D98D939E51FEB107AB /* Pods_FSCalendarSwiftExampleUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_FSCalendarSwiftExampleUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		90AE38C7F927387F3387BAEE /* Pods-FSCalendarSwiftExampleUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FSCalendarSwiftExampleUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-FSCalendarSwiftExampleUITests/Pods-FSCalendarSwiftExampleUITests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -193,6 +205,8 @@
 		EE09549E1B97DDE0007F6964 = {
 			isa = PBXGroup;
 			children = (
+				1A7CCDB82053512300A0F862 /* svm.mlmodel */,
+				1A7CCDBA2053566D00A0F862 /* random_forest.mlmodel */,
 				EE0954A91B97DDE0007F6964 /* FSCalendarSwiftExample */,
 				1A0CD0D9204EA20700A41C50 /* FSCalendar */,
 				F9CB483E1E406A9200C92065 /* FSCalendarSwiftExampleUITests */,
@@ -214,6 +228,9 @@
 		EE0954A91B97DDE0007F6964 /* FSCalendarSwiftExample */ = {
 			isa = PBXGroup;
 			children = (
+				1A7CCDB22053350700A0F862 /* Data00_extracted_features.plist */,
+				1A7CCDB620534CFD00A0F862 /* data00.json */,
+				1A7CCDAC2050ABA100A0F862 /* data.pb.swift */,
 				1A0CD162204EAC3B00A41C50 /* CosmosDistrib.swift */,
 				EE0954AC1B97DDE0007F6964 /* AppDelegate.swift */,
 				1A0CD10E204EA2FA00A41C50 /* SettingsViewController.swift */,
@@ -223,6 +240,7 @@
 				1A7CCD51204FD4D700A0F862 /* DashboardViewController.swift */,
 				1A7CCD58204FE9F100A0F862 /* tempViewController.swift */,
 				EE0954B01B97DDE0007F6964 /* Main.storyboard */,
+				1A7CCDA8205080C600A0F862 /* SettingsTableViewCell.swift */,
 				EE0954B31B97DDE0007F6964 /* Images.xcassets */,
 				EE0954B51B97DDE0007F6964 /* LaunchScreen.xib */,
 				EE0954AA1B97DDE0007F6964 /* Supporting Files */,
@@ -342,7 +360,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				1A0CD10B204EA20700A41C50 /* Info.plist in Resources */,
+				1A7CCDB720534CFD00A0F862 /* data00.json in Resources */,
 				EE0954B21B97DDE0007F6964 /* Main.storyboard in Resources */,
+				1A7CCDB32053350700A0F862 /* Data00_extracted_features.plist in Resources */,
 				EE0954B71B97DDE0007F6964 /* LaunchScreen.xib in Resources */,
 				EE0954B41B97DDE0007F6964 /* Images.xcassets in Resources */,
 			);
@@ -450,10 +470,12 @@
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-FSCalendarSwiftExample/Pods-FSCalendarSwiftExample-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Charts/Charts.framework",
+				"${BUILT_PRODUCTS_DIR}/SwiftProtobuf/SwiftProtobuf.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Charts.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftProtobuf.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -469,6 +491,7 @@
 			files = (
 				1A0CD106204EA20700A41C50 /* FSCalendarHeaderView.m in Sources */,
 				1A7CCD52204FD4D700A0F862 /* DashboardViewController.swift in Sources */,
+				1A7CCDAD2050ABA100A0F862 /* data.pb.swift in Sources */,
 				3024AF171E164F8C008B6001 /* CalendarViewController.swift in Sources */,
 				1A0CD10F204EA2FA00A41C50 /* SettingsViewController.swift in Sources */,
 				1A0CD107204EA20700A41C50 /* FSCalendarScopeHandle.m in Sources */,
@@ -480,11 +503,14 @@
 				1A0CD0FB204EA20700A41C50 /* FSCalendar+Deprecated.m in Sources */,
 				1A0CD101204EA20700A41C50 /* FSCalendarCollectionViewLayout.m in Sources */,
 				1A0CD10A204EA20700A41C50 /* FSCalendarWeekdayView.m in Sources */,
+				1A7CCDA9205080C600A0F862 /* SettingsTableViewCell.swift in Sources */,
 				1A0CD0FE204EA20700A41C50 /* FSCalendarCalculator.m in Sources */,
+				1A7CCDBB2053566D00A0F862 /* random_forest.mlmodel in Sources */,
 				1A0CD0FC204EA20700A41C50 /* FSCalendar.m in Sources */,
 				1A0CD102204EA20700A41C50 /* FSCalendarConstants.m in Sources */,
 				EE0954AD1B97DDE0007F6964 /* AppDelegate.swift in Sources */,
 				1A0CD161204EA9FF00A41C50 /* HomeViewController.swift in Sources */,
+				1A7CCDB92053512300A0F862 /* svm.mlmodel in Sources */,
 				1A0CD0FD204EA20700A41C50 /* FSCalendarAppearance.m in Sources */,
 				1A0CD111204EA30200A41C50 /* ProfileViewController.swift in Sources */,
 				1A0CD100204EA20700A41C50 /* FSCalendarCollectionView.m in Sources */,
@@ -638,7 +664,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = 5C4Y4QMK66;
 				INFOPLIST_FILE = "$(SRCROOT)/FSCalendarSwiftExample/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = dannygosain.goyo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -656,7 +682,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = 5C4Y4QMK66;
 				INFOPLIST_FILE = "$(SRCROOT)/FSCalendarSwiftExample/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = dannygosain.goyo;
 				PRODUCT_NAME = "$(TARGET_NAME)";

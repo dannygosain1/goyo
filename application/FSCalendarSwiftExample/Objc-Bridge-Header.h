@@ -10,5 +10,7 @@
 #define FSCalendarSwiftExample_Objc_Bridge_Header_h
 
 #import "FSCalendar.h"
+#import "random_forest.h"
+#import "svm.h"
 
 #endif

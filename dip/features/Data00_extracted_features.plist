@@ -4,27 +4,27 @@
 <array>
 	<dict>
 		<key>fsr_med</key>
-		<string>0.010968921389396709</string>
+		<real>0.01096892138939671</real>
 		<key>is_walking</key>
-		<string>0.0</string>
+		<real>0</real>
 		<key>x_energy</key>
-		<string>0.3465015219909012</string>
+		<real>0.3465015219909012</real>
 		<key>x_mean</key>
-		<string>0.003251151449471805</string>
+		<real>0.003251151449471805</real>
 		<key>x_var</key>
-		<string>0.346455460450265</string>
+		<real>0.346455460450265</real>
 		<key>y_energy</key>
-		<string>0.03314078194292833</string>
+		<real>0.03314078194292833</real>
 		<key>y_mean</key>
-		<string>-0.15496254681647964</string>
+		<real>-0.1549625468164796</real>
 		<key>y_var</key>
-		<string>0.03314024286637835</string>
+		<real>0.03314024286637835</real>
 		<key>z_energy</key>
-		<string>0.16184421884299838</string>
+		<real>0.1618442188429984</real>
 		<key>z_mean</key>
-		<string>0.8669483568075118</string>
+		<real>0.8669483568075118</real>
 		<key>z_var</key>
-		<string>0.16184266642799194</string>
+		<real>0.1618426664279919</real>
 	</dict>
 	<dict>
 		<key>fsr_med</key>
