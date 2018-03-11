@@ -44,7 +44,7 @@
 MPU6050 mpu;
 //MPU6050 mpu(0x69); // <-- use for AD0 high
 
-#define INTERRUPT_PIN 3  // use pin 2 on Arduino Uno & most boards
+#define INTERRUPT_PIN 2  // use pin 2 on Arduino Uno & most boards
 
 #define pi 3.14159265
 bool blinkState = false;
