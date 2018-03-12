@@ -66,9 +66,12 @@ class DashboardViewController: UIViewController, ChartViewDelegate {
         barChartView.xAxis.granularity = 1
         barChartView.xAxis.setLabelCount(10, force: false)
         barChartView.xAxis.drawGridLinesEnabled = false
+        barChartView.xAxis.labelFont = UIFont.systemFont(ofSize: 15.0, weight: UIFont.Weight.regular)
         barChartView.leftAxis.labelPosition = .outsideChart
+        barChartView.leftAxis.labelFont = UIFont.systemFont(ofSize: 15.0, weight: UIFont.Weight.regular)
         barChartView.rightAxis.enabled = false
         barChartView.chartDescription?.text = ""
+        
         chartDataSet.colors = [UIColor(red:12/255, green:219/255, blue:94/255, alpha:1)]
         
         let limitLine = ChartLimitLine(limit: 0, label: "")
