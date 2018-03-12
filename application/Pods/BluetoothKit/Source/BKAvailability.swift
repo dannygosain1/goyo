@@ -49,14 +49,14 @@ public enum BKAvailability: Equatable {
     
     internal init(centralManagerState: CBCentralManagerState) {
         switch centralManagerState {
-            case .PoweredOn: self = .Available
+        case .poweredOn: self = .Available
             default: self = .Unavailable(cause: BKUnavailabilityCause(centralManagerState: centralManagerState))
         }
     }
 
     internal init(peripheralManagerState: CBPeripheralManagerState) {
         switch peripheralManagerState {
-            case .PoweredOn: self = .Available
+        case .poweredOn: self = .Available
             default: self = .Unavailable(cause: BKUnavailabilityCause(peripheralManagerState: peripheralManagerState))
         }
     }
@@ -73,7 +73,7 @@ public enum BKAvailability: Equatable {
 */
 public enum BKUnavailabilityCause: NilLiteralConvertible {
     
-    case Any
+    case `Any`
     case Resetting
     case Unsupported
     case Unauthorized
@@ -85,20 +85,20 @@ public enum BKUnavailabilityCause: NilLiteralConvertible {
     
     internal init(centralManagerState: CBCentralManagerState) {
         switch centralManagerState {
-            case .PoweredOff: self = PoweredOff
-            case .Resetting: self = Resetting
-            case .Unauthorized: self = Unauthorized
-            case .Unsupported: self = Unsupported
+        case .poweredOff: self = .PoweredOff
+        case .resetting: self = .Resetting
+        case .unauthorized: self = .Unauthorized
+        case .unsupported: self = .Unsupported
             default: self = nil
         }
     }
     
     internal init(peripheralManagerState: CBPeripheralManagerState) {
         switch peripheralManagerState {
-            case .PoweredOff: self = PoweredOff
-            case .Resetting: self = Resetting
-            case .Unauthorized: self = Unauthorized
-            case .Unsupported: self = Unsupported
+        case .poweredOff: self = .PoweredOff
+        case .resetting: self = .Resetting
+        case .unauthorized: self = .Unauthorized
+        case .unsupported: self = .Unsupported
             default: self = nil
         }
     }
@@ -131,7 +131,7 @@ public extension BKAvailabilityObservable {
         - parameter availabilityObserver: The availability observer to add.
     */
     func addAvailabilityObserver(availabilityObserver: BKAvailabilityObserver) {
-        if !availabilityObservers.contains({ $0.availabilityObserver === availabilityObserver }) {
+        if !availabilityObservers.contains(where: { $0.availabilityObserver === availabilityObserver }) {
             availabilityObservers.append(BKWeakAvailabilityObserver(availabilityObserver: availabilityObserver))
         }
     }
@@ -141,8 +141,8 @@ public extension BKAvailabilityObservable {
         - parameter availabilityObserver: The availability observer to remove.
     */
     func removeAvailabilityObserver(availabilityObserver: BKAvailabilityObserver) {
-        if availabilityObservers.contains({ $0.availabilityObserver === availabilityObserver }) {
-            availabilityObservers.removeAtIndex(availabilityObservers.indexOf({ $0 === availabilityObserver })!)
+        if availabilityObservers.contains(where: { $0.availabilityObserver === availabilityObserver }) {
+            availabilityObservers.remove(at: availabilityObservers.index(where: { $0 === availabilityObserver })!)
         }
     }
     

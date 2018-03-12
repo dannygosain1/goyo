@@ -8,7 +8,6 @@ target 'FSCalendarSwiftExample' do
   # Pods for FSCalendarSwiftExample
   pod 'Charts'  
   pod 'SwiftProtobuf', '~> 1.0'
-  pod 'BluetoothKit', '~> 0.2.0'
   pod 'Bluejay', :git => 'https://github.com/steamclock/bluejay.git', :branch => 'master'
 
 
