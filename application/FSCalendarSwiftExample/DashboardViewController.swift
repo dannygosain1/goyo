@@ -19,14 +19,19 @@ class DashboardViewController: UIViewController, ChartViewDelegate {
     
     @IBOutlet weak var todayPieView: PieChartView!
     
+    var goal = 60.0
+    var completedMinutes = 44.0
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        var remainingMinutes = goal - completedMinutes
         
         // setting up mock data for pie chart
         let dataHeader = ["Completed", "Remaining"] // Headers for Legend if needed
-        let activeMinutes = [50.0, 10.0] // enter values to appear on the graph,
-        setChart(dataPoints: dataHeader, values: activeMinutes)
+        let activeMinutes = [completedMinutes, remainingMinutes]
+//        let activeMinutes = [String(completedMinutes) + " minutes completed", String(remainingMinutes) + "minutes remaining"] // enter values to appear on the graph,
+        setPieChart(dataPoints: dataHeader, values: activeMinutes)
         
         // getting the last 10 days
         let cal = Calendar.current
@@ -45,6 +50,43 @@ class DashboardViewController: UIViewController, ChartViewDelegate {
         let active = [20.0, 44.0, 66.0, 33.0, 52.0, 36.0, 41.0, 48.0, 60.0, 55.0] // to be provided
         
         setBarChart(dataPoints: days, values: active)
+        
+    }
+    
+    func setPieChart(dataPoints: [String], values: [Double]) {
+        
+        var remainingMinutes = goal - completedMinutes
+        var dataEntries: [ChartDataEntry] = []
+        
+        for i in 0..<dataPoints.count {
+            let dataEntry1 = ChartDataEntry(x: Double(i), y: values[i], data: dataPoints[i] as AnyObject)
+            dataEntries.append(dataEntry1)
+        }
+        
+        print(dataEntries[0].data)
+        let pieChartDataSet = PieChartDataSet(values: dataEntries, label: "Active Minutes")
+        let pieChartData = PieChartData(dataSet: pieChartDataSet)
+        
+        // colors for the graph
+        var colors: [UIColor] = []
+        
+        let completedColor = UIColor(red: 3/255, green: 37/255, blue: 78/255, alpha: 1)
+        let remainingColor = UIColor(red: 189/255, green: 190/255, blue: 192/255, alpha: 1)
+        
+        colors.append(completedColor)
+        colors.append(remainingColor)
+        
+        pieChartDataSet.colors = colors
+        
+        let percentCompletedBeforeTruncate = String(round(remainingMinutes/completedMinutes * 100))
+        let endIndex = percentCompletedBeforeTruncate.index(percentCompletedBeforeTruncate.endIndex, offsetBy: -2)
+        let percentCompleted = percentCompletedBeforeTruncate.substring(to: endIndex) + "% Completed"
+        
+        // chart characteristics
+        todayPieView.data = pieChartData
+        todayPieView.chartDescription?.text = ""
+        todayPieView.centerAttributedText = NSMutableAttributedString(string: percentCompleted, attributes: [NSAttributedStringKey.foregroundColor:completedColor, NSAttributedStringKey.font: UIFont(name: "HelveticaNeue-Light", size:22)!])
+        todayPieView.legend.enabled = false
         
     }
     
@@ -83,39 +125,6 @@ class DashboardViewController: UIViewController, ChartViewDelegate {
         let ll = ChartLimitLine(limit: 60.0, label: "Goal") // to be provided
         barChartView.leftAxis.addLimitLine(ll)
        
-    }
-
-    
-    func setChart(dataPoints: [String], values: [Double]) {
-        
-        var dataEntries: [ChartDataEntry] = []
-        
-        for i in 0..<dataPoints.count {
-            let dataEntry1 = ChartDataEntry(x: Double(i), y: values[i], data: dataPoints[i] as AnyObject)
-            dataEntries.append(dataEntry1)
-        }
-        
-        print(dataEntries[0].data)
-        let pieChartDataSet = PieChartDataSet(values: dataEntries, label: "Active Minutes")
-        let pieChartData = PieChartData(dataSet: pieChartDataSet)
-        
-        // colors for the graph
-        var colors: [UIColor] = []
-        
-        let completedColor = UIColor(red: 12/255, green: 219/255, blue: 94/255, alpha: 1)
-        let remainingColor = UIColor(red: 225/255, green: 227/255, blue: 232/255, alpha: 1)
-        
-        colors.append(completedColor)
-        colors.append(remainingColor)
-        
-        pieChartDataSet.colors = colors
-        
-        // chart characteristics
-        todayPieView.data = pieChartData
-        todayPieView.chartDescription?.text = ""
-        todayPieView.centerAttributedText = NSMutableAttributedString(string: "83%", attributes: [NSAttributedStringKey.foregroundColor:completedColor, NSAttributedStringKey.font: UIFont(name: "HelveticaNeue-Light", size:28)!])
-        todayPieView.legend.enabled = false
-        
     }
 
     override func didReceiveMemoryWarning() {
