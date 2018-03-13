@@ -61,7 +61,7 @@ def main(args):
     names = ["3nn", "5nn", "7nn", "SVM", "D Tree", "Random Forest"]
     results = [pd.DataFrame(columns=['accuracy', 'precision', 'recall', 'f1'], dtype=np.float_) for _ in range(len(names))]
     for _ in range(args.iters):
-        data_train, data_test, target_train, target_test = train_test_split(data[:, 1:], data[:, 0], test_size = 0.3)
+        data_train, data_test, target_train, target_test = train_test_split(data[:, 1:8], data[:, 0], test_size = 0.3)
 
         nn_3 = kNN(3)
         nn_5 = kNN(5)
@@ -70,14 +70,14 @@ def main(args):
         dtree = DecisionTreeClassifier(max_depth=3)
         forest = RandomForestClassifier(max_depth=3)
         classifiers = [nn_3, nn_5, nn_7, svm, dtree, forest]
-    
+
         for i, (name, clf, result) in enumerate(zip(names, classifiers, results)):
             k_predictions = train_folds(5, clf, data_train, target_train, data_test)
             prediction = vote_on_predictions(k_predictions)
             results[i] = result.append({
-                    'accuracy': accuracy_score(target_test, prediction), 
-                    'precision': precision_score(target_test, prediction), 
-                    'recall': recall_score(target_test, prediction), 
+                    'accuracy': accuracy_score(target_test, prediction),
+                    'precision': precision_score(target_test, prediction),
+                    'recall': recall_score(target_test, prediction),
                     'f1': f1_score(target_test, prediction)
                 }, ignore_index=True)
 
@@ -92,7 +92,7 @@ def main(args):
     # print("F1 Score: {0}".format(f1_score(target_test, base)))
     # print()
     for name, res in zip(names, results):
-        print("Results for %s" % name) 
+        print("Results for %s" % name)
         print(res)
         print(res.mean(axis=0))
 
