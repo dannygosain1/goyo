@@ -24,7 +24,7 @@ class Requester(GATTRequester):
     def set_num_lines(self, num):
         self.num_lines = num;
 
-    def bulk_data(self):
+    def get_bulk_data(self):
         return self.bulk_data;
 
     def set_bulk_data(self, data):
@@ -33,11 +33,15 @@ class Requester(GATTRequester):
     def on_notification(self, handle, data):
         message = data_pb2.GoYoData()
         data_striped = data.replace('\x1b%\x00', '')
-        message.ParseFromString(data_striped)
-        self.num_lines = self.num_lines + 1
-        self.bulk_data.append(message)
-        if message.fsr == 999:
+        if '\r\n' in data_striped:
+            self.bulk_data = data_striped.replace('\r\n', '')
             self.set_done(True)
+        else:
+            message.ParseFromString(data_striped)
+            self.num_lines = self.num_lines + 1
+            self.bulk_data.append(message)
+            if message.fsr == 999:
+                self.set_done(True)
 
 
 # MAC_ADDRESS = '58:7A:62:4F:99:03'
@@ -45,36 +49,80 @@ MAC_ADDRESS = '58:7A:62:4F:9D:75'
 WRITE_HANDLE = 0x0025
 
 
-def test_dump_data():
-    print("trying to connect")
+def setup_request():
     req = Requester(MAC_ADDRESS)
     req.set_done(False)
     req.set_num_lines(0)
     req.set_bulk_data([])
+    return req
 
-    print("getting ready to collect data")
+
+def dump_data(req):
     req.write_by_handle(WRITE_HANDLE, 'd')
     start_time = time.time()
     while req.is_done() != True:
+        if time.time() > start_time+5:
+            end_time = 9999999999999999999999999999999
+            return start_time, end_time
         continue
     end_time = time.time()
-    print("start: {}, end: {}".format(start_time, end_time))
-    print("duration = {}".format(end_time-start_time))
-    print("num lines {}".format(req.num_lines))
-    req.disconnect()
+    return start_time,end_time
+
+
+def determine_correct(test_length, num_recieved_lines, data):
     num_correct = 0
-    num_incorrect = 0
-    for i in range(0,req.num_lines-1):
-        if test_data1[(i+1)%3] == req.bulk_data[i]:
+    num_incorrect = test_length-num_recieved_lines+1
+    for i in range(0,num_recieved_lines-1):
+        if test_data1[(i+1)%3] == data[i]:
             num_correct += 1
         else:
             num_incorrect += 1
-    req.set_bulk_data([])
-    print("num_correct: %s, num_incorrect: %s" % (num_correct, num_incorrect))
+    return num_correct, num_incorrect
+
+
+def test_many_dumps(num_dumps):
+    print("\nTesting {} dumps".format(num_dumps))
+    dump_stats = []
+    for i in range(0,num_dumps):
+        req = setup_request()
+        start_time, end_time = dump_data(req)
+        req.disconnect()
+        print("dump {} duration = {}".format(i, end_time-start_time))
+        num_correct, num_incorrect = determine_correct(test_length,req.num_lines,req.get_bulk_data())
+        dump_stats.append(
+            {'duration':end_time-start_time,
+             'num_correct': num_correct,
+             'num_incorrect': num_incorrect
+            }
+        )
+    print("Average duration = {}".format(sum(v['duration'] for v in dump_stats)/(num_dumps*1.00000)))
+    print("total num_correct = {}".format(sum(int(v['num_correct']) for v in dump_stats)))
+    print("total num_incorrect = {}".format(sum(int(v['num_incorrect']) for v in dump_stats)))
+
+
+def test_get_millis():
+    delay_time = 10;
+    print("\nTesting millis")
+    req = setup_request()
+    req.write_by_handle(WRITE_HANDLE, 'm')
+    while req.is_done() != True:
+        continue
+    time1 = req.get_bulk_data()
+    req.disconnect()
+    req = setup_request()
+    req.write_by_handle(WRITE_HANDLE, 'm')
+    while req.is_done() != True:
+        continue
+    time2 = req.get_bulk_data()
+
+    print("millis1 = {}, millis2  = {}".format(time1, time2))
+    print("millis difference = {}".format(int(time2)-int(time1)))
+    req.disconnect()
 
 
 def main():
-    test_dump_data()
+    test_get_millis()
+    test_many_dumps(3)
 
 
 if __name__ == "__main__":
