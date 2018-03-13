@@ -1,6 +1,6 @@
 syntax = "proto2";
 
-message Data {
+message GoYoData {
     required int32 x_accel = 1;
     required int32 y_accel = 2;
     required int32 z_accel = 3;

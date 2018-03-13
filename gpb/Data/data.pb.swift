@@ -19,7 +19,7 @@ fileprivate struct _GeneratedWithProtocGenSwiftVersion: SwiftProtobuf.ProtobufAP
   typealias Version = _2
 }
 
-struct DataMessage {
+struct GoYoData {
   // SwiftProtobuf.Message conformance is added in an extension below. See the
   // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
   // methods supported on all messages.
@@ -72,8 +72,8 @@ struct DataMessage {
 
 // MARK: - Code below here is support for the SwiftProtobuf runtime.
 
-extension DataMessage: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
-  static let protoMessageName: String = "Data"
+extension GoYoData: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  static let protoMessageName: String = "GoYoData"
   static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .standard(proto: "x_accel"),
     2: .standard(proto: "y_accel"),
@@ -117,7 +117,7 @@ extension DataMessage: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementati
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  func _protobuf_generated_isEqualTo(other: DataMessage) -> Bool {
+  func _protobuf_generated_isEqualTo(other: GoYoData) -> Bool {
     if self._xAccel != other._xAccel {return false}
     if self._yAccel != other._yAccel {return false}
     if self._zAccel != other._zAccel {return false}
