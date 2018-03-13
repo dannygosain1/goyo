@@ -1,10 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="Imd-WG-sFa">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="FVz-Z5-33q">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
@@ -100,6 +99,34 @@
             </objects>
             <point key="canvasLocation" x="-1615" y="2088"/>
         </scene>
+        <!--Bluetooth List-->
+        <scene sceneID="C4K-Ex-H7s">
+            <objects>
+                <tableViewController id="m6Y-EL-fWN" customClass="BluetoothList" customModule="FSCalendarSwiftExample" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="r2C-xz-wbG">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="2BF-Ml-x1h">
+                                <rect key="frame" x="0.0" y="28" width="375" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="2BF-Ml-x1h" id="Tlf-Zm-2B6">
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="m6Y-EL-fWN" id="Pzk-Eg-SIq"/>
+                            <outlet property="delegate" destination="m6Y-EL-fWN" id="gtZ-OY-URa"/>
+                        </connections>
+                    </tableView>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Rbq-Af-zqQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-115" y="2121"/>
+        </scene>
         <!--Dashboard-->
         <scene sceneID="zgl-Pa-3rw">
             <objects>
@@ -145,10 +172,11 @@
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="mzN-dE-mVi">
                                 <rect key="frame" x="16" y="125" width="343" height="235"/>
                                 <constraints>
+                                    <constraint firstAttribute="width" secondItem="mzN-dE-mVi" secondAttribute="height" multiplier="343:235" id="YpE-ov-NbU"/>
                                     <constraint firstAttribute="width" constant="343" id="hJR-uz-Mks"/>
                                 </constraints>
                             </imageView>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pIi-LQ-o8k" customClass="CosmosView" customModule="FSCalendarSwiftExample" customModuleProvider="target">
+                            <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="pIi-LQ-o8k" customClass="CosmosView" customModule="FSCalendarSwiftExample" customModuleProvider="target">
                                 <rect key="frame" x="52" y="368" width="270" height="50"/>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="color" keyPath="filledColor">
@@ -183,6 +211,11 @@
                                 <color key="textColor" red="0.048890548610000001" green="0.8594939721" blue="0.36710025439999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cAy-gV-Xi6">
+                                <rect key="frame" x="152" y="559" width="70" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Sync Data"/>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -207,6 +240,7 @@
                         <outlet property="image" destination="mzN-dE-mVi" id="MMm-VV-Y3B"/>
                         <outlet property="message" destination="20z-3D-bPb" id="uGN-81-t7Q"/>
                         <outlet property="starCosmos" destination="pIi-LQ-o8k" id="hmA-IE-HNz"/>
+                        <outlet property="syncData" destination="cAy-gV-Xi6" id="HkI-ZW-u1l"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="EQu-qT-i0s" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -265,10 +299,10 @@
             </objects>
             <point key="canvasLocation" x="-2519" y="466"/>
         </scene>
-        <!--Tab Bar Controller-->
+        <!--UITAB-->
         <scene sceneID="AfY-DY-Y7E">
             <objects>
-                <tabBarController id="Imd-WG-sFa" sceneMemberID="viewController">
+                <tabBarController id="Imd-WG-sFa" customClass="UITAB" sceneMemberID="viewController">
                     <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="IaP-NN-zqk">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="49"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -399,10 +433,10 @@
             </objects>
             <point key="canvasLocation" x="-3394.4000000000001" y="1244.527736131934"/>
         </scene>
-        <!--Temp View Controller-->
+        <!--Bluetooth View Controller-->
         <scene sceneID="dQ7-oR-Q0u">
             <objects>
-                <viewController id="FVz-Z5-33q" customClass="tempViewController" customModule="FSCalendarSwiftExample" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="FVz-Z5-33q" customClass="BluetoothViewController" customModule="FSCalendarSwiftExample" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="c30-DC-eO9"/>
                         <viewControllerLayoutGuide type="bottom" id="m0s-Bl-peY"/>
@@ -410,19 +444,15 @@
                     <view key="view" contentMode="scaleToFill" id="l65-wA-Bx5">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Ocl-sb-IGr">
-                                <rect key="frame" x="67" y="66" width="240" height="128"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                            </view>
-                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
+                    <connections>
+                        <segue destination="Imd-WG-sFa" kind="show" identifier="showApplication" id="7bx-8t-NWT"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="t4G-TO-NXJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-3394.4000000000001" y="2016.3418290854574"/>
+            <point key="canvasLocation" x="-3743" y="-311"/>
         </scene>
         <!--Data Source-->
         <scene sceneID="fuI-jA-1gc">

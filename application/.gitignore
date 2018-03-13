@@ -1,4 +1,6 @@
 goyo/FSCalendar/
 goyo/FSCalendar/*
 goyo/goyo.xcodeproj/project.pbxproj
+application/Pods/*
+application/Pods/
 goyo/goyo.xcodeproj/project.xcworkspace/contents.xcworkspacedata

@@ -8,6 +8,8 @@ target 'FSCalendarSwiftExample' do
   # Pods for FSCalendarSwiftExample
   pod 'Charts'  
   pod 'SwiftProtobuf', '~> 1.0'
+  pod 'Bluejay', :git => 'https://github.com/steamclock/bluejay.git', :branch => 'master'
+
 
  target 'FSCalendarSwiftExampleUITests' do
     inherit! :search_paths
