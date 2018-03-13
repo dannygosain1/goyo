@@ -37,8 +37,9 @@ void loop()
             dumpData(test_data[i%3]);
             delay(10);
           }
-          
           dumpData(term_char);
+        } else if (String(c).equals("m")) {
+          Serial.println(millis()); 
         }
     }
 }
