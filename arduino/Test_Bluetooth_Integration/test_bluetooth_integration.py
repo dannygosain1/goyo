@@ -9,6 +9,7 @@ test_data1 = [
     data_pb2.GoYoData(fsr=166,x_accel=646,y_accel=662,z_accel=698)
 ]
 test_length = 50
+BROKEN_END = 9999999999999999999999999999999
 
 
 class Requester(GATTRequester):
@@ -62,7 +63,7 @@ def dump_data(req):
     start_time = time.time()
     while req.is_done() != True:
         if time.time() > start_time+5:
-            end_time = 9999999999999999999999999999999
+            end_time = BROKEN_END
             return start_time, end_time
         continue
     end_time = time.time()
@@ -89,15 +90,24 @@ def test_many_dumps(num_dumps):
         req.disconnect()
         print("dump {} duration = {}".format(i, end_time-start_time))
         num_correct, num_incorrect = determine_correct(test_length,req.num_lines,req.get_bulk_data())
+        broken = 1 if end_time == BROKEN_END else 0
         dump_stats.append(
             {'duration':end_time-start_time,
              'num_correct': num_correct,
-             'num_incorrect': num_incorrect
+             'num_incorrect': num_incorrect,
+             'broken': broken
             }
         )
-    print("Average duration = {}".format(sum(v['duration'] for v in dump_stats)/(num_dumps*1.00000)))
+    num_broken = sum(int(v['broken']) for v in dump_stats)
+    sum_dur = 0
+    for stat in dump_stats:
+        if not stat['broken']:
+            sum_dur += stat['duration']
+    average_duration = sum_dur/((num_dumps-num_broken)*1.00000)
+    print("Average duration = {}".format(average_duration))
     print("total num_correct = {}".format(sum(int(v['num_correct']) for v in dump_stats)))
     print("total num_incorrect = {}".format(sum(int(v['num_incorrect']) for v in dump_stats)))
+    print("total broken = {}".format(num_broken))
 
 
 def test_get_millis():
@@ -121,8 +131,8 @@ def test_get_millis():
 
 
 def main():
-    test_get_millis()
-    test_many_dumps(3)
+    # test_get_millis()
+    test_many_dumps(4)
 
 
 if __name__ == "__main__":
