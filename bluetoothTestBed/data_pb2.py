@@ -19,42 +19,42 @@ DESCRIPTOR = _descriptor.FileDescriptor(
   name='data.proto',
   package='',
   syntax='proto2',
-  serialized_pb=_b('\n\ndata.proto\"F\n\x04\x44\x61ta\x12\x0f\n\x07x_accel\x18\x01 \x02(\x05\x12\x0f\n\x07y_accel\x18\x02 \x02(\x05\x12\x0f\n\x07z_accel\x18\x03 \x02(\x05\x12\x0b\n\x03\x66sr\x18\x04 \x02(\x05')
+  serialized_pb=_b('\n\ndata.proto\"J\n\x08GoYoData\x12\x0f\n\x07x_accel\x18\x01 \x02(\x05\x12\x0f\n\x07y_accel\x18\x02 \x02(\x05\x12\x0f\n\x07z_accel\x18\x03 \x02(\x05\x12\x0b\n\x03\x66sr\x18\x04 \x02(\x05')
 )
 
 
 
 
-_DATA = _descriptor.Descriptor(
-  name='Data',
-  full_name='Data',
+_GOYODATA = _descriptor.Descriptor(
+  name='GoYoData',
+  full_name='GoYoData',
   filename=None,
   file=DESCRIPTOR,
   containing_type=None,
   fields=[
     _descriptor.FieldDescriptor(
-      name='x_accel', full_name='Data.x_accel', index=0,
+      name='x_accel', full_name='GoYoData.x_accel', index=0,
       number=1, type=5, cpp_type=1, label=2,
       has_default_value=False, default_value=0,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       options=None, file=DESCRIPTOR),
     _descriptor.FieldDescriptor(
-      name='y_accel', full_name='Data.y_accel', index=1,
+      name='y_accel', full_name='GoYoData.y_accel', index=1,
       number=2, type=5, cpp_type=1, label=2,
       has_default_value=False, default_value=0,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       options=None, file=DESCRIPTOR),
     _descriptor.FieldDescriptor(
-      name='z_accel', full_name='Data.z_accel', index=2,
+      name='z_accel', full_name='GoYoData.z_accel', index=2,
       number=3, type=5, cpp_type=1, label=2,
       has_default_value=False, default_value=0,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       options=None, file=DESCRIPTOR),
     _descriptor.FieldDescriptor(
-      name='fsr', full_name='Data.fsr', index=3,
+      name='fsr', full_name='GoYoData.fsr', index=3,
       number=4, type=5, cpp_type=1, label=2,
       has_default_value=False, default_value=0,
       message_type=None, enum_type=None, containing_type=None,
@@ -73,18 +73,18 @@ _DATA = _descriptor.Descriptor(
   oneofs=[
   ],
   serialized_start=14,
-  serialized_end=84,
+  serialized_end=88,
 )
 
-DESCRIPTOR.message_types_by_name['Data'] = _DATA
+DESCRIPTOR.message_types_by_name['GoYoData'] = _GOYODATA
 _sym_db.RegisterFileDescriptor(DESCRIPTOR)
 
-Data = _reflection.GeneratedProtocolMessageType('Data', (_message.Message,), dict(
-  DESCRIPTOR = _DATA,
+GoYoData = _reflection.GeneratedProtocolMessageType('GoYoData', (_message.Message,), dict(
+  DESCRIPTOR = _GOYODATA,
   __module__ = 'data_pb2'
-  # @@protoc_insertion_point(class_scope:Data)
+  # @@protoc_insertion_point(class_scope:GoYoData)
   ))
-_sym_db.RegisterMessage(Data)
+_sym_db.RegisterMessage(GoYoData)
 
 
 # @@protoc_insertion_point(module_scope)

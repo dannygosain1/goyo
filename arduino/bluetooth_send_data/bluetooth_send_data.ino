@@ -45,12 +45,12 @@ void loop()
 }
 
 void dumpData(int32_t* data) {
-  Data point = Data_init_default;  
+  GoYoData point = GoYoData_init_default;  
   point.fsr = data[0];
   point.x_accel = data[1];
   point.y_accel = data[2];
   point.z_accel = data[3];
-  if (!pb_encode(&pb_out, Data_fields, &point)) {
+  if (!pb_encode(&pb_out, GoYoData_fields, &point)) {
     Serial.println(PB_GET_ERROR(&pb_out));
   }
 }
