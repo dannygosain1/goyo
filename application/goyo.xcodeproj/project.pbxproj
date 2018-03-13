@@ -30,9 +30,10 @@
 		1A0CD163204EAC3B00A41C50 /* CosmosDistrib.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A0CD162204EAC3B00A41C50 /* CosmosDistrib.swift */; };
 		1A4D77792055CB29008DD3B7 /* CoreBluetooth.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1A4D77782055CB29008DD3B7 /* CoreBluetooth.framework */; };
 		1A4D77B920573535008DD3B7 /* BluetoothViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A4D77B820573535008DD3B7 /* BluetoothViewController.swift */; };
+		1A4D77BB20576B66008DD3B7 /* RawMeasurement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A4D77BA20576B66008DD3B7 /* RawMeasurement.swift */; };
+		1A4D77BD20576D7B008DD3B7 /* data.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A4D77BC20576D7B008DD3B7 /* data.pb.swift */; };
 		1A7CCD52204FD4D700A0F862 /* DashboardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A7CCD51204FD4D700A0F862 /* DashboardViewController.swift */; };
 		1A7CCDA9205080C600A0F862 /* SettingsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A7CCDA8205080C600A0F862 /* SettingsTableViewCell.swift */; };
-		1A7CCDAD2050ABA100A0F862 /* data.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A7CCDAC2050ABA100A0F862 /* data.pb.swift */; };
 		1A7CCDB32053350700A0F862 /* Data00_extracted_features.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1A7CCDB22053350700A0F862 /* Data00_extracted_features.plist */; };
 		1A7CCDB720534CFD00A0F862 /* data00.json in Resources */ = {isa = PBXBuildFile; fileRef = 1A7CCDB620534CFD00A0F862 /* data00.json */; };
 		1A7CCDB92053512300A0F862 /* svm.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = 1A7CCDB82053512300A0F862 /* svm.mlmodel */; };
@@ -111,9 +112,10 @@
 		1A0CD162204EAC3B00A41C50 /* CosmosDistrib.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CosmosDistrib.swift; sourceTree = "<group>"; };
 		1A4D77782055CB29008DD3B7 /* CoreBluetooth.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreBluetooth.framework; path = System/Library/Frameworks/CoreBluetooth.framework; sourceTree = SDKROOT; };
 		1A4D77B820573535008DD3B7 /* BluetoothViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BluetoothViewController.swift; sourceTree = "<group>"; };
+		1A4D77BA20576B66008DD3B7 /* RawMeasurement.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RawMeasurement.swift; sourceTree = "<group>"; };
+		1A4D77BC20576D7B008DD3B7 /* data.pb.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = data.pb.swift; path = ../../gpb/Data/data.pb.swift; sourceTree = "<group>"; };
 		1A7CCD51204FD4D700A0F862 /* DashboardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardViewController.swift; sourceTree = "<group>"; };
 		1A7CCDA8205080C600A0F862 /* SettingsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsTableViewCell.swift; sourceTree = "<group>"; };
-		1A7CCDAC2050ABA100A0F862 /* data.pb.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = data.pb.swift; path = ../../gpb/Data/data.pb.swift; sourceTree = "<group>"; };
 		1A7CCDB22053350700A0F862 /* Data00_extracted_features.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Data00_extracted_features.plist; path = ../../dip/features/Data00_extracted_features.plist; sourceTree = "<group>"; };
 		1A7CCDB620534CFD00A0F862 /* data00.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = data00.json; sourceTree = "<group>"; };
 		1A7CCDB82053512300A0F862 /* svm.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; name = svm.mlmodel; path = ../dip/svm.mlmodel; sourceTree = "<group>"; };
@@ -247,10 +249,11 @@
 			children = (
 				1A7CCDB22053350700A0F862 /* Data00_extracted_features.plist */,
 				1A7CCDB620534CFD00A0F862 /* data00.json */,
-				1A7CCDAC2050ABA100A0F862 /* data.pb.swift */,
 				1A0CD162204EAC3B00A41C50 /* CosmosDistrib.swift */,
 				EE0954AC1B97DDE0007F6964 /* AppDelegate.swift */,
+				1A4D77BC20576D7B008DD3B7 /* data.pb.swift */,
 				1A0CD10E204EA2FA00A41C50 /* SettingsViewController.swift */,
+				1A4D77BA20576B66008DD3B7 /* RawMeasurement.swift */,
 				1A4D77B820573535008DD3B7 /* BluetoothViewController.swift */,
 				1A0CD110204EA30200A41C50 /* ProfileViewController.swift */,
 				3024AF161E164F8C008B6001 /* CalendarViewController.swift */,
@@ -517,7 +520,6 @@
 				1A0CD106204EA20700A41C50 /* FSCalendarHeaderView.m in Sources */,
 				1A4D77B920573535008DD3B7 /* BluetoothViewController.swift in Sources */,
 				1A7CCD52204FD4D700A0F862 /* DashboardViewController.swift in Sources */,
-				1A7CCDAD2050ABA100A0F862 /* data.pb.swift in Sources */,
 				3024AF171E164F8C008B6001 /* CalendarViewController.swift in Sources */,
 				1A0CD10F204EA2FA00A41C50 /* SettingsViewController.swift in Sources */,
 				1A0CD107204EA20700A41C50 /* FSCalendarScopeHandle.m in Sources */,
@@ -526,6 +528,7 @@
 				1A0CD104204EA20700A41C50 /* FSCalendarDelegationProxy.m in Sources */,
 				1A0CD108204EA20700A41C50 /* FSCalendarStickyHeader.m in Sources */,
 				1A0CD109204EA20700A41C50 /* FSCalendarTransitionCoordinator.m in Sources */,
+				1A4D77BD20576D7B008DD3B7 /* data.pb.swift in Sources */,
 				1A0CD0FB204EA20700A41C50 /* FSCalendar+Deprecated.m in Sources */,
 				1A0CD101204EA20700A41C50 /* FSCalendarCollectionViewLayout.m in Sources */,
 				1A0CD10A204EA20700A41C50 /* FSCalendarWeekdayView.m in Sources */,
@@ -534,6 +537,7 @@
 				1A7CCDBB2053566D00A0F862 /* random_forest.mlmodel in Sources */,
 				1A0CD0FC204EA20700A41C50 /* FSCalendar.m in Sources */,
 				1A0CD102204EA20700A41C50 /* FSCalendarConstants.m in Sources */,
+				1A4D77BB20576B66008DD3B7 /* RawMeasurement.swift in Sources */,
 				EE0954AD1B97DDE0007F6964 /* AppDelegate.swift in Sources */,
 				1A0CD161204EA9FF00A41C50 /* HomeViewController.swift in Sources */,
 				1A7CCDB92053512300A0F862 /* svm.mlmodel in Sources */,

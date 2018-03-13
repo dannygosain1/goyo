@@ -200,13 +200,35 @@ class HomeViewController: UIViewController {
         })
     }
     
-//    func centralManager(_ central: CBCentralManager, didConnect peripheral: CBPeripheral) {
-//        //peripheral.discoverServices(nil)
-//        //peripheral.discoverServices([CBUUID(string: "6e400001-b5a3-f393-e0a9-e50e24dcca9e")])
-//
-//        // Disover peripheral with service UUID that was given to us during initialization (self.serviceUUID)
-//        peripheral.discoverServices([CBUUID(string: self.serviceUUID)])
-//    }
+    func listenFromSerial() {
+        
+        guard let bluejay = bluejay else {
+            print("unable to listen.")
+            return
+        }
+        
+        let bean_scratch_uuid = "FFE1"
+        let characteristicUUID = CharacteristicIdentifier(uuid: bean_scratch_uuid, service: serviceUUID)
+        
+        bluejay.listen(to: characteristicUUID) { [weak self] (result: ReadResult<RawMeasurement>) in
+            guard let weakSelf = self else {
+                return
+            }
+
+            switch result {
+            case .success(let dataResult):
+                let deserializedData = try Data(serializedData: dataResult)
+                debugPrint(dataResult)
+                .continue
+            case .cancelled:
+                debugPrint("Cancelled listen to heart rate measurement.")
+                weakSelf.isMonitoringHeartRate = false
+            case .failure(let error):
+                debugPrint("Failed to listen to heart rate measurement with error: \(error.localizedDescription)")
+                weakSelf.isMonitoringHeartRate = false
+            }
+        }
+    }
     
 //    func scanSensors() {
 //        bluejay.scan(
