@@ -178,7 +178,9 @@ class HomeViewController: UIViewController {
 
         print("char ID: " + String(describing: characteristicUUID))
         
-        bluejay.write(to: characteristicUUID, value: UInt8(4), completion: { [weak self]  (result) in
+        let hex = "ABC".unicodeScalars.filter { $0.isASCII }.map { String(format: "%X", $0.value) }.joined()
+        
+        bluejay.write(to: characteristicUUID, value: hex, type: CBCharacteristicWriteType.withoutResponse, completion: { [weak self]  (result) in
             guard let weakSelf = self else {
                 return
             }
