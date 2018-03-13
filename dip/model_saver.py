@@ -13,17 +13,14 @@ def main(args):
         'z_mean',
         'x_var',
         'y_var',
-        'z_var',
-        'x_energy',
-        'y_energy',
-        'z_energy'
+        'z_var'
     ]
 
 	output_features = [0,1]
 
 	data = mkf.load_files(args.feature_dir)
 	target = data[:, 0]
-	fvs = data[:, 1:]
+	fvs = data[:, 1:8]
 	svm = mkf.SVM(500)
 	forest = RandomForestClassifier(max_depth=3)
 
