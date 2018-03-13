@@ -18,6 +18,7 @@ class HomeViewController: UIViewController {
     @IBOutlet weak var image: UIImageView!
     @IBOutlet weak var starCosmos: CosmosView!
     @IBOutlet weak var message: UILabel!
+    @IBOutlet weak var syncData: UIButton!
     
     // bluetooth stuff
     let serviceUUID = ServiceIdentifier(uuid: "FFE0")
@@ -135,6 +136,10 @@ class HomeViewController: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
 //        readFromSerial()
+        syncData.addTarget(self, action: #selector(HomeViewController.syncButtonTapped), for: .touchUpInside)
+    }
+    
+    @objc func syncButtonTapped() {
         writeToSerial()
     }
     
@@ -237,13 +242,13 @@ class HomeViewController: UIViewController {
 extension HomeViewController: ConnectionObserver {
     
     func connected(to peripheral: Peripheral) {
-        print("Connected Bluetooth")
+        print("Connected to Bluetooth")
 //        readFromSerial()
-        writeToSerial()
+//        writeToSerial()
     }
     
     func disconnected(from peripheral: Peripheral) {
-        print("Disconnected Bluetooth")
+        print("Disconnected from Bluetooth")
     }
     
 }
