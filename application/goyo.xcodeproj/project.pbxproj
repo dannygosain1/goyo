@@ -29,9 +29,8 @@
 		1A0CD161204EA9FF00A41C50 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A0CD160204EA9FF00A41C50 /* HomeViewController.swift */; };
 		1A0CD163204EAC3B00A41C50 /* CosmosDistrib.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A0CD162204EAC3B00A41C50 /* CosmosDistrib.swift */; };
 		1A4D77792055CB29008DD3B7 /* CoreBluetooth.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1A4D77782055CB29008DD3B7 /* CoreBluetooth.framework */; };
-		1A4D77B72055DB22008DD3B7 /* BluetoothList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A4D77B62055DB22008DD3B7 /* BluetoothList.swift */; };
+		1A4D77B920573535008DD3B7 /* BluetoothViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A4D77B820573535008DD3B7 /* BluetoothViewController.swift */; };
 		1A7CCD52204FD4D700A0F862 /* DashboardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A7CCD51204FD4D700A0F862 /* DashboardViewController.swift */; };
-		1A7CCD59204FE9F100A0F862 /* tempViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A7CCD58204FE9F100A0F862 /* tempViewController.swift */; };
 		1A7CCDA9205080C600A0F862 /* SettingsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A7CCDA8205080C600A0F862 /* SettingsTableViewCell.swift */; };
 		1A7CCDAD2050ABA100A0F862 /* data.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A7CCDAC2050ABA100A0F862 /* data.pb.swift */; };
 		1A7CCDB32053350700A0F862 /* Data00_extracted_features.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1A7CCDB22053350700A0F862 /* Data00_extracted_features.plist */; };
@@ -111,9 +110,8 @@
 		1A0CD160204EA9FF00A41C50 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		1A0CD162204EAC3B00A41C50 /* CosmosDistrib.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CosmosDistrib.swift; sourceTree = "<group>"; };
 		1A4D77782055CB29008DD3B7 /* CoreBluetooth.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreBluetooth.framework; path = System/Library/Frameworks/CoreBluetooth.framework; sourceTree = SDKROOT; };
-		1A4D77B62055DB22008DD3B7 /* BluetoothList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BluetoothList.swift; sourceTree = "<group>"; };
+		1A4D77B820573535008DD3B7 /* BluetoothViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BluetoothViewController.swift; sourceTree = "<group>"; };
 		1A7CCD51204FD4D700A0F862 /* DashboardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardViewController.swift; sourceTree = "<group>"; };
-		1A7CCD58204FE9F100A0F862 /* tempViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = tempViewController.swift; sourceTree = "<group>"; };
 		1A7CCDA8205080C600A0F862 /* SettingsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsTableViewCell.swift; sourceTree = "<group>"; };
 		1A7CCDAC2050ABA100A0F862 /* data.pb.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = data.pb.swift; path = ../../gpb/Data/data.pb.swift; sourceTree = "<group>"; };
 		1A7CCDB22053350700A0F862 /* Data00_extracted_features.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Data00_extracted_features.plist; path = ../../dip/features/Data00_extracted_features.plist; sourceTree = "<group>"; };
@@ -253,12 +251,11 @@
 				1A0CD162204EAC3B00A41C50 /* CosmosDistrib.swift */,
 				EE0954AC1B97DDE0007F6964 /* AppDelegate.swift */,
 				1A0CD10E204EA2FA00A41C50 /* SettingsViewController.swift */,
+				1A4D77B820573535008DD3B7 /* BluetoothViewController.swift */,
 				1A0CD110204EA30200A41C50 /* ProfileViewController.swift */,
 				3024AF161E164F8C008B6001 /* CalendarViewController.swift */,
 				1A0CD160204EA9FF00A41C50 /* HomeViewController.swift */,
 				1A7CCD51204FD4D700A0F862 /* DashboardViewController.swift */,
-				1A7CCD58204FE9F100A0F862 /* tempViewController.swift */,
-				1A4D77B62055DB22008DD3B7 /* BluetoothList.swift */,
 				EE0954B01B97DDE0007F6964 /* Main.storyboard */,
 				1A7CCDA8205080C600A0F862 /* SettingsTableViewCell.swift */,
 				EE0954B31B97DDE0007F6964 /* Images.xcassets */,
@@ -496,14 +493,12 @@
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-FSCalendarSwiftExample/Pods-FSCalendarSwiftExample-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Bluejay/Bluejay.framework",
-				"${BUILT_PRODUCTS_DIR}/BluetoothKit/BluetoothKit.framework",
 				"${BUILT_PRODUCTS_DIR}/Charts/Charts.framework",
 				"${BUILT_PRODUCTS_DIR}/SwiftProtobuf/SwiftProtobuf.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Bluejay.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/BluetoothKit.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Charts.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftProtobuf.framework",
 			);
@@ -520,6 +515,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				1A0CD106204EA20700A41C50 /* FSCalendarHeaderView.m in Sources */,
+				1A4D77B920573535008DD3B7 /* BluetoothViewController.swift in Sources */,
 				1A7CCD52204FD4D700A0F862 /* DashboardViewController.swift in Sources */,
 				1A7CCDAD2050ABA100A0F862 /* data.pb.swift in Sources */,
 				3024AF171E164F8C008B6001 /* CalendarViewController.swift in Sources */,
@@ -544,9 +540,7 @@
 				1A0CD0FD204EA20700A41C50 /* FSCalendarAppearance.m in Sources */,
 				1A0CD111204EA30200A41C50 /* ProfileViewController.swift in Sources */,
 				1A0CD100204EA20700A41C50 /* FSCalendarCollectionView.m in Sources */,
-				1A4D77B72055DB22008DD3B7 /* BluetoothList.swift in Sources */,
 				1A0CD105204EA20700A41C50 /* FSCalendarExtensions.m in Sources */,
-				1A7CCD59204FE9F100A0F862 /* tempViewController.swift in Sources */,
 				1A0CD163204EAC3B00A41C50 /* CosmosDistrib.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -9,10 +9,10 @@
 
 
 import UIKit
+import Bluejay
 import CoreBluetooth
 
-class HomeViewController: UIViewController, CBCentralManagerDelegate, CBPeripheralDelegate {
-    
+class HomeViewController: UIViewController {
     
     @IBOutlet weak var dailyGoal: UILabel!
     @IBOutlet weak var image: UIImageView!
@@ -20,15 +20,7 @@ class HomeViewController: UIViewController, CBCentralManagerDelegate, CBPeripher
     @IBOutlet weak var message: UILabel!
     
     // bluetooth stuff
-    var manager:CBCentralManager!
-    var peripheral:CBPeripheral!
-    
-    // hc-08 info
-    let BEAN_NAME = "GoYo"
-    let BEAN_SCRATCH_UUID =
-        CBUUID(string: "0x0025")
-    let BEAN_SERVICE_UUID =
-        CBUUID(string: "0x0025")
+    let serviceUUID = ServiceIdentifier(uuid: "FFE0")
     
     var tempData: [[Double]] = [[0.010968921389396709,0.003251151449471805,-0.15496254681647964,0.8669483568075118,0.346455460450265,0.03314024286637835,0.16184266642799194,0.3465015219909012,0.03314078194292833,0.16184421884299838],[1.0,-0.13492278515307535,-0.13436329588015009,0.8718309859154929,0.2105182764337448,0.03272925927168528,0.1609407133091557,0.21040523459857455,0.03272909306608637,0.16094071330915558],[0.6910420475319927,-0.4687076672988364,0.46863295880149775,0.9470422535211269,0.06756236740110351,0.17821837097749677,0.014721144603459817,0.06752407668418528,0.17821751024747023,0.0147211446034597],[0.14076782449725778,-0.4779192630723401,0.4676966292134828,0.9470422535211269,0.06727014547285769,0.17824405407281044,0.014721144603459817,0.06722840381026443,0.17824323741711895,0.014721144603459706]]
     
@@ -41,11 +33,59 @@ class HomeViewController: UIViewController, CBCentralManagerDelegate, CBPeripher
     let model_random_forest = random_forest()
     let model_svm = svm()
     
+//    var peripherals = [ScanDiscovery]() {
+//        didSet {
+//
+//        }
+//    }
+    
+    
+    // bluejay stuff
+    weak var bluejay: Bluejay?
+    var peripheralIdentifier: PeripheralIdentifier?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         // bluetooth stuff
-        manager = CBCentralManager(delegate: self, queue: nil)
+        guard let bluejay = bluejay else {
+            print("Did not connect.")
+            return
+        }
+        
+        bluejay.register(observer: self)
+        let peripheralIdentifier = self.peripheralIdentifier!
+        
+//        bluejay.scan(
+//            serviceIdentifiers: [serviceUUID],
+//            discovery: { [weak self] (discovery, discoveries) -> ScanAction in
+//                guard let weakSelf = self else {
+//                    return .stop
+//                }
+//
+//                weakSelf.peripherals = discoveries
+//                print(discoveries)
+//
+//                return .continue
+//            },
+//            stopped: { (discoveries, error) in
+//                if let error = error {
+//                    debugPrint("Scan stopped with error: \(error.localizedDescription)")
+//                }
+//                else {
+//                    debugPrint("Scan stopped without error.")
+//                }
+//        })
+//        bluejay.connect(peripheralIdentifier, timeout: .none) { (result) in
+//            switch result {
+//            case .success(let peripheral):
+//                debugPrint("Connection to \(peripheral.identifier) successful.")
+//            case .cancelled:
+//                debugPrint("Connection to \(peripheralIdentifier.uuid.uuidString) cancelled.")
+//            case .failure(let error):
+//                debugPrint("Connection to \(peripheralIdentifier.uuid.uuidString) failed with error: \(error.localizedDescription)")
+//            }
+//        }
         
         // application stuff
         dailyGoal.text = "Daily Goal: " + String(goal) + " minutes"
@@ -92,95 +132,117 @@ class HomeViewController: UIViewController, CBCentralManagerDelegate, CBPeripher
 
     }
     
-    // bluetooth stuff
-    
-    // Called after CBCentralManager instance is finished creating.
-    func centralManagerDidUpdateState(_ central: CBCentralManager) {
-        // if Bluetooth is available (as in "turned on"), you can start scanning for devices.
-        if (central.state == CBManagerState.poweredOn) {
-            central.scanForPeripherals(withServices: nil, options: nil)
-        } else {
-            print("Bluetooth not available.")
-        }
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+//        readFromSerial()
+        writeToSerial()
     }
     
-    // connecting to the device
-    func centralManager(
-        central: CBCentralManager,
-        didDiscoverPeripheral peripheral: CBPeripheral,
-        advertisementData: [String : AnyObject],
-        RSSI: NSNumber) {
-        let device = (advertisementData as NSDictionary)
-            .object(forKey: CBAdvertisementDataLocalNameKey)
-            as? NSString
+    func readFromSerial() {
         
-        if device?.contains(BEAN_NAME) == true {
-            self.manager.stopScan()
-            
-            self.peripheral = peripheral
-            self.peripheral.delegate = self
-            
-            manager.connect(peripheral, options: nil)
+        guard let bluejay = bluejay else {
+            print("unable to read.")
+            return
         }
-    }
-    
-    // getting characteristics of the device
-    func peripheral(
-        peripheral: CBPeripheral,
-        didDiscoverServices error: Error?) {
-        for service in peripheral.services! {
-            let thisService = service as CBService
-            
-            if service.uuid == BEAN_SERVICE_UUID {
-                peripheral.discoverCharacteristics(
-                    nil,
-                    for: thisService
-                )
+        print("about to read")
+        let bean_scratch_uuid = "FFE1"
+//        let bean_service_uuid = ServiceIdentifier(uuid: "0000ffe1-0000-1000-8000-00805f9b34fb")
+        let characteristicUUID = CharacteristicIdentifier(uuid: bean_scratch_uuid, service: serviceUUID)
+//         let characteristicUUID = CharacteristicIdentifier(uuid: bean_scratch_uuid, service: bean_service_uuid)
+        print("char ID: " + String(describing: characteristicUUID))
+
+        bluejay.read(from: characteristicUUID) { [weak self] (result:ReadResult<String>) in
+            guard let weakSelf = self else {
+                return
+            }
+            switch result {
+            case .success:
+                debugPrint("Reading to sensor location is successful.")
+            case .cancelled:
+                debugPrint("Cancelled reading to sensor location.")
+            case .failure(let error):
+                debugPrint("Failed to reading to sensor location with error: \(error.localizedDescription)")
             }
         }
     }
     
-    // setup notifications
-    func peripheral(
-        peripheral: CBPeripheral,
-        didDiscoverCharacteristicsForService service: CBService,
-        error: NSError?) {
-        for characteristic in service.characteristics! {
-            let thisCharacteristic = characteristic as CBCharacteristic
-            
-            if thisCharacteristic.uuid == BEAN_SCRATCH_UUID {
-                self.peripheral.setNotifyValue(
-                    true,
-                    for: thisCharacteristic
-                )
-            }
+    func writeToSerial() {
+        
+        guard let bluejay = bluejay else {
+            print("unable to write.")
+            return
         }
+        print("about to write")
+        let bean_scratch_uuid = "FFE1"
+        let characteristicUUID = CharacteristicIdentifier(uuid: bean_scratch_uuid, service: serviceUUID)
+
+        print("char ID: " + String(describing: characteristicUUID))
+        
+        bluejay.write(to: characteristicUUID, value: UInt8(4), completion: { [weak self]  (result) in
+            guard let weakSelf = self else {
+                return
+            }
+            switch result {
+            case .success:
+                debugPrint("Writing to sensor location is successful.")
+            case .cancelled:
+                debugPrint("Cancelled writing to sensor location.")
+            case .failure(let error):
+                debugPrint("Failed to writing to sensor location with error: \(error.localizedDescription)")
+            }
+        })
     }
     
-    // Any characteristic changes setup receive notifications for will call this delegate method
-    func peripheral(
-        peripheral: CBPeripheral,
-        didUpdateValueForCharacteristic characteristic: CBCharacteristic,
-        error: NSError?) {
-        var count:UInt32 = 0;
+//    func centralManager(_ central: CBCentralManager, didConnect peripheral: CBPeripheral) {
+//        //peripheral.discoverServices(nil)
+//        //peripheral.discoverServices([CBUUID(string: "6e400001-b5a3-f393-e0a9-e50e24dcca9e")])
 //
-//        if characteristic.uuid == BEAN_SCRATCH_UUID {
-//            characteristic.value!.getBytes(&count, length: sizeof(UInt32))
-//            labelCount.text = NSString(format: "%llu", count) as String
-//        }
-    }
+//        // Disover peripheral with service UUID that was given to us during initialization (self.serviceUUID)
+//        peripheral.discoverServices([CBUUID(string: self.serviceUUID)])
+//    }
     
-    func centralManager(
-        central: CBCentralManager,
-        didDisconnectPeripheral peripheral: CBPeripheral,
-        error: NSError?) {
-        central.scanForPeripherals(withServices: nil, options: nil)
-    }
+//    func scanSensors() {
+//        bluejay.scan(
+//            serviceIdentifiers: [serviceUUID],
+//            discovery: { [weak self] (discovery, discoveries) -> ScanAction in
+//                guard let weakSelf = self else {
+//                    return .stop
+//                }
+//
+//                weakSelf.peripherals = discoveries
+//                print(discoveries)
+//
+//                return .continue
+//            },
+//            stopped: { (discoveries, error) in
+//                if let error = error {
+//                    debugPrint("Scan stopped with error: \(error.localizedDescription)")
+//                }
+//                else {
+//                    debugPrint("Scan stopped without error.")
+//                }
+//        })
+//    }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
 
+}
+
+
+extension HomeViewController: ConnectionObserver {
+    
+    func connected(to peripheral: Peripheral) {
+        print("Connected Bluetooth")
+//        readFromSerial()
+        writeToSerial()
+    }
+    
+    func disconnected(from peripheral: Peripheral) {
+        print("Disconnected Bluetooth")
+    }
+    
 }
 

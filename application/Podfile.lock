@@ -1,6 +1,5 @@
 PODS:
   - Bluejay (0.4.6)
-  - BluetoothKit (0.2.1)
   - Charts (3.0.4):
     - Charts/Core (= 3.0.4)
   - Charts/Core (3.0.4)
@@ -8,7 +7,6 @@ PODS:
 
 DEPENDENCIES:
   - Bluejay (from `https://github.com/steamclock/bluejay.git`, branch `master`)
-  - BluetoothKit (~> 0.2.0)
   - Charts
   - SwiftProtobuf (~> 1.0)
 
@@ -24,10 +22,9 @@ CHECKOUT OPTIONS:
 
 SPEC CHECKSUMS:
   Bluejay: c41b85de5206fceb0cb35714f936c515203bc07f
-  BluetoothKit: c1dfd8f529a1d4d2c0778b97a8937b5b68c75395
   Charts: 0705898046257443f0afbbc3179f4b67507b6e48
   SwiftProtobuf: e41d205c91eac0fb46823f2561712407fefdaf4e
 
-PODFILE CHECKSUM: f0e06bd3736939f3b5fc1b375df011c0941fbb1a
+PODFILE CHECKSUM: 8fd4c034836630959ef54d094fc0c6dcaa9f3d06
 
 COCOAPODS: 1.3.1
