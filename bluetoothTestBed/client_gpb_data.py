@@ -18,7 +18,7 @@ class Requester(GATTRequester):
         self.num_lines = num;
 
     def on_notification(self, handle, data):
-        message = data_pb2.Data()
+        message = data_pb2.GoYoData()
         data_striped = data.replace('\x1b%\x00', '')
         message.ParseFromString(data_striped)
         print(message)
