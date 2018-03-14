@@ -32,8 +32,10 @@ class MillisRequester(GATTRequester):
         self.bulk_data = data
 
     def on_notification(self, handle, data):
-        data_striped = data.replace('\x1b%\x00', '')
+        data_striped = data.replace('\x1b%\x00m', '')
+        # import pdb; pdb.set_trace()
         self.bulk_data = data_striped.replace('\r\n', '')
+        print(self.bulk_data)
         self.set_done(True)
 
 
@@ -145,7 +147,7 @@ def test_get_millis():
         continue
     time1 = req.get_bulk_data()
     req.disconnect()
-    req = setup_request()
+    req = setup_request(MillisRequester)
     req.write_by_handle(WRITE_HANDLE, 'm')
     while req.is_done() != True:
         continue
@@ -173,7 +175,7 @@ def test_dump_from_csv():
 
 def main():
     # test_get_millis()
-    # test_many_dumps(1)
+    test_many_dumps(3)
     test_dump_from_csv()
 
 
