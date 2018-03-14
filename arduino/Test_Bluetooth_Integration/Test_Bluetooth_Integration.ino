@@ -69,10 +69,6 @@ void dumpData(int32_t* data) {
   point.x_accel = data[1];
   point.y_accel = data[2];
   point.z_accel = data[3];
-//  Serial.println(data[0]);
-//  Serial.println(data[1]);
-//  Serial.println(data[2]);
-//  Serial.println(data[3]);
   if (!pb_encode(&pb_out, GoYoData_fields, &point)) {
     Serial.println(PB_GET_ERROR(&pb_out));
   }
@@ -91,7 +87,7 @@ pb_ostream_s as_pb_ostream(Print& p) {
 void readFile() {
   const int line_buffer_size = 18;
   char buffer[line_buffer_size];
-  ifstream sdin("integration_test.csv");
+  ifstream sdin("00000001.csv");
   int line_number = 0;
 
   while (sdin.getline(buffer, line_buffer_size, '\n') || sdin.gcount()) {
@@ -107,20 +103,15 @@ void readFile() {
       int ci1 = buf.indexOf(',');
       int ci2 = buf.indexOf(',', ci1+1);
       int ci3 = buf.indexOf(',', ci2+1);
-
       tmp_data[0] = (int32_t)buf.substring(0,ci1).toInt();
       tmp_data[1] = (int32_t)buf.substring(ci1+1, ci2).toInt()*-1;
       tmp_data[2] = (int32_t)buf.substring(ci2+1, ci3).toInt();
       tmp_data[3] = (int32_t)buf.substring(ci3+1).toInt();
-//      Serial.println("line");
-//      Serial.println(tmp_data[0]);
-//      Serial.println(tmp_data[1]);
-//      Serial.println(tmp_data[2]);
-//      Serial.println(tmp_data[3]);
       dumpData(tmp_data);
       delay(10);
     }
   }
+  Serial.println("00000001");
 }
 
 

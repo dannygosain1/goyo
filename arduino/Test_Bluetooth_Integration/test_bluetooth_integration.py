@@ -66,9 +66,7 @@ class Requester(GATTRequester):
                 self.set_done(True)
                 self.num_lines = self.num_lines + 1
                 return
-        print(message)
         self.num_lines = self.num_lines + 1
-        # print(self.num_lines)
         self.bulk_data.append(message)
 
 
@@ -164,12 +162,13 @@ def test_dump_from_csv():
     req.write_by_handle(WRITE_HANDLE, 'f')
     start_time = time.time()
     while req.is_done() != True:
-        # if time.time() > start_time+10:
-        #     end_time = BROKEN_END
-        #     return start_time, end_time
+        if time.time() > start_time+10:
+            end_time = BROKEN_END
+            return start_time, end_time
         continue
     end_time = time.time()
-    return start_time,end_time
+    print("num_lines = {}".format(req.num_lines))
+    print("duration = {}".format(end_time-start_time))
 
 
 def main():
