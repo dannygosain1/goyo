@@ -58,7 +58,7 @@ void loop()
           Serial.println(millis()); 
         } else if (String(c).equals("f")) {
           // dump from SD card  
-          char filename[] = "00000002.csv";
+          char filename[] = "00000012.csv";
           readFile(filename);
         }
     }
