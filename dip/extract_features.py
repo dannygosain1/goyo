@@ -16,7 +16,6 @@ def extract_windowed_features(data, window_size, sample_freq):
     sample_bandpower = lambda a: bandpower(a, sample_freq, a.min(), a.max())
     data_win = data.rolling(window_size)
     sample_win = int(window_size/2)
-
     # NOTE:[sample_win::sample_win+1] extracts the last element off the rolling window
     data_features = {
         'x_mean': data_win.x_acc.mean()[sample_win::sample_win+1],
@@ -37,7 +36,7 @@ def extract_windowed_features(data, window_size, sample_freq):
 def process_features(features):
     #reorder columns
     reordered_columns = [
-        'is_walking', 
+        'is_walking',
         'fsr_med',
         'x_mean',
         'y_mean',
@@ -66,7 +65,7 @@ def generate_features(raw_data):
 
 def create_feature_file(filename):
     raw_data = pandas.read_csv(filename)
-    features = generate_features(raw_data) 
+    features = generate_features(raw_data)
     features_filename = "%s_extracted_features.csv" % filename.split(".")[0]
     features.to_csv(features_filename, index=False)
 
