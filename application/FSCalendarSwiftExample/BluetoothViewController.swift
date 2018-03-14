@@ -22,12 +22,13 @@ class BluetoothViewController: UIViewController, ConnectionObserver {
     let RAUNAQ_UUID_GOYO = "07A5C33B-8707-B0EB-7C04-0F7B6E8BDAEE"
     let DANNY_UUID_GOYO = "D9B0BD7F-E600-034A-C795-119E77AAB719"
     let RAUNAQ_UUID_POOP = "F0868D31-552D-22E6-5C1C-6B0F955395AA"
+    let RAUNAQ_UUID_RAUNAQ = "AE6B5FDB-E7F7-496E-5078-839B17C01535"
     
     override func viewDidLoad() {
         super.viewDidLoad()
         bluejay.start()
         
-        var peripheralUUID = UUID.init(uuidString: self.RAUNAQ_UUID_POOP)
+        var peripheralUUID = UUID.init(uuidString: self.RAUNAQ_UUID_RAUNAQ)
         var peripheralIdentifier = PeripheralIdentifier(uuid: peripheralUUID!)
         bluejay.connect(peripheralIdentifier, timeout: Timeout.seconds(30) )  { [weak self] (result) in
             switch result {

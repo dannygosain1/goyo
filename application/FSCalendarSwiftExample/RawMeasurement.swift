@@ -19,25 +19,43 @@ struct RawMeasurement: Receivable {
     var millis: Int32 = 0
     
     
-    init(bluetoothData: Data) throws {
-        if(bluetoothData.count <= 10) { // millis
-            let b64data = bluetoothData.base64EncodedString()
-            if let decodedData = NSData(base64Encoded: b64data, options: .ignoreUnknownCharacters) {
-                let decodedString = NSString(data: decodedData as Data, encoding: String.Encoding.utf8.rawValue)
-                millis = decodedString!.intValue
-                
+    init(bluetoothData: Data) {
+        do {
+            if(bluetoothData.count <= 4) { // millis
+                let b64data = bluetoothData.base64EncodedString()
+                if let decodedData = NSData(base64Encoded: b64data, options: .ignoreUnknownCharacters) {
+                    let decodedString = NSString(data: decodedData as Data, encoding: String.Encoding.utf8.rawValue)
+                    millis = decodedString!.intValue
+                    
+                }
+            } else {
+                let b64data = bluetoothData.base64EncodedString()
+                let data = b64data.data(using: .utf8, allowLossyConversion: false)
+                if let decodedData = NSData(base64Encoded: b64data, options: .ignoreUnknownCharacters) {
+                    let decodedString = NSString(data: decodedData as Data, encoding: String.Encoding.utf8.rawValue)
+                    let deserializedData = try? GoYoData(serializedData: decodedData as Data)
+                    if deserializedData != nil {
+                        fsr = deserializedData!.fsr
+                        x = deserializedData!.xAccel
+                        y = deserializedData!.yAccel
+                        z = deserializedData!.zAccel
+                    } else {
+                        print("Failed to decode")
+                        let b64data = bluetoothData.base64EncodedString()
+                        if let decodedData = NSData(base64Encoded: b64data, options: .ignoreUnknownCharacters) {
+                            let decodedString = NSString(data: decodedData as Data, encoding: String.Encoding.utf8.rawValue)
+                            if try decodedString?.intValue != nil {
+                                millis = decodedString!.intValue
+                            }
+                        }
+                    }
+                    print(fsr)
+                }
             }
-        } else {
-            let b64data = bluetoothData.base64EncodedString()
-            let data = b64data.data(using: .utf8, allowLossyConversion: false)
-            if let decodedData = NSData(base64Encoded: b64data, options: .ignoreUnknownCharacters) {
-                let decodedString = NSString(data: decodedData as Data, encoding: String.Encoding.utf8.rawValue)
-                let deserializedData = try GoYoData(serializedData: decodedData as Data)
-                fsr = deserializedData.fsr
-                x = deserializedData.xAccel
-                y = deserializedData.yAccel
-                z = deserializedData.zAccel
-            }
+        } catch is SwiftProtobuf.BinaryDecodingError {
+            debugPrint("Could not decode binary to raw data")
+        } catch {
+            debugPrint("error getting raw data")
         }
 //        var binaryStr: String = ""
 //        for hex in hexData {
