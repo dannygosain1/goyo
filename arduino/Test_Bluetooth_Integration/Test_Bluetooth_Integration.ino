@@ -29,12 +29,14 @@ void loop()
 {    
     if (Serial.available()){
         c = Serial.read(); 
+        Serial.println(String(c));
         if (String(c).equals("d")) {
           for (int i=1; i<=testLength; i++){
             dumpData(test_data[i%3]);
-            delay(10);
+            delay(8);
           }
-          dumpData(term_char);
+          delay(4);
+          Serial.println(millis()); 
         } else if (String(c).equals("m")) {
           Serial.println(millis()); 
         }

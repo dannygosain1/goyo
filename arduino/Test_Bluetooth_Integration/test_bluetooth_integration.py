@@ -12,6 +12,31 @@ test_length = 50
 BROKEN_END = 9999999999999999999999999999999
 
 
+class MillisRequester(GATTRequester):
+    def is_done(self):
+        return self.done
+
+    def set_done(self, state):
+        self.done = state
+
+    def num_lines(self):
+        return self.num_lines
+
+    def set_num_lines(self, num):
+        self.num_lines = num;
+
+    def get_bulk_data(self):
+        return self.bulk_data;
+
+    def set_bulk_data(self, data):
+        self.bulk_data = data
+
+    def on_notification(self, handle, data):
+        data_striped = data.replace('\x1b%\x00', '')
+        self.bulk_data = data_striped.replace('\r\n', '')
+        self.set_done(True)
+
+
 class Requester(GATTRequester):
     def is_done(self):
         return self.done
@@ -34,24 +59,25 @@ class Requester(GATTRequester):
     def on_notification(self, handle, data):
         message = data_pb2.GoYoData()
         data_striped = data.replace('\x1b%\x00', '')
-        if '\r\n' in data_striped:
-            self.bulk_data = data_striped.replace('\r\n', '')
-            self.set_done(True)
-        else:
+        try:
             message.ParseFromString(data_striped)
-            self.num_lines = self.num_lines + 1
-            self.bulk_data.append(message)
-            if message.fsr == 999:
+        except:
+            if re.match('[\d]*\\r\\n', data_striped).group(0):
                 self.set_done(True)
+                self.num_lines = self.num_lines + 1
+                return
+        self.num_lines = self.num_lines + 1
+        self.bulk_data.append(message)
 
 
 # MAC_ADDRESS = '58:7A:62:4F:99:03'
-MAC_ADDRESS = '58:7A:62:4F:9D:75'
+# MAC_ADDRESS = '58:7A:62:4F:9D:75'
+MAC_ADDRESS = '58:7A:62:4F:E1:1F'
 WRITE_HANDLE = 0x0025
 
 
-def setup_request():
-    req = Requester(MAC_ADDRESS)
+def setup_request(RequesterType):
+    req = RequesterType(MAC_ADDRESS)
     req.set_done(False)
     req.set_num_lines(0)
     req.set_bulk_data([])
@@ -62,7 +88,7 @@ def dump_data(req):
     req.write_by_handle(WRITE_HANDLE, 'd')
     start_time = time.time()
     while req.is_done() != True:
-        if time.time() > start_time+5:
+        if time.time() > start_time+10:
             end_time = BROKEN_END
             return start_time, end_time
         continue
@@ -85,7 +111,7 @@ def test_many_dumps(num_dumps):
     print("\nTesting {} dumps".format(num_dumps))
     dump_stats = []
     for i in range(0,num_dumps):
-        req = setup_request()
+        req = setup_request(Requester)
         start_time, end_time = dump_data(req)
         req.disconnect()
         print("dump {} duration = {}".format(i, end_time-start_time))
@@ -113,7 +139,7 @@ def test_many_dumps(num_dumps):
 def test_get_millis():
     delay_time = 10;
     print("\nTesting millis")
-    req = setup_request()
+    req = setup_request(MillisRequester)
     req.write_by_handle(WRITE_HANDLE, 'm')
     while req.is_done() != True:
         continue
@@ -132,7 +158,7 @@ def test_get_millis():
 
 def main():
     # test_get_millis()
-    test_many_dumps(4)
+    test_many_dumps(3)
 
 
 if __name__ == "__main__":
