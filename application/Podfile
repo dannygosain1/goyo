@@ -9,7 +9,7 @@ target 'FSCalendarSwiftExample' do
   pod 'Charts'  
   pod 'SwiftProtobuf', '~> 1.0'
   pod 'Bluejay', :git => 'https://github.com/steamclock/bluejay.git', :branch => 'master'
-
+  pod 'SQLite.swift', '~> 0.11.4'
 
  target 'FSCalendarSwiftExampleUITests' do
     inherit! :search_paths

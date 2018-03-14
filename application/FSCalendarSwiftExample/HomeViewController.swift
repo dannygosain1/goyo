@@ -11,6 +11,7 @@
 import UIKit
 import Bluejay
 import CoreBluetooth
+import SQLite
 
 class HomeViewController: UIViewController {
     
@@ -39,11 +40,34 @@ class HomeViewController: UIViewController {
 //
 //        }
 //    }
-    
+    let GOYO_SAMPLING_RATE = 50
     
     // bluejay stuff
     weak var bluejay: Bluejay?
     var peripheralIdentifier: PeripheralIdentifier?
+    
+    var db: Connection?
+    
+    //raw data table
+    var raw_data: Table?
+    let xAcc = Expression<Double>("x_acc")
+    let yAcc = Expression<Double>("y_acc")
+    let zAcc = Expression<Double>("z_acc")
+    var timestamp = Expression<Int64>("timestamp")
+    let fsr = Expression<Int64>("fsr")
+    var recordedMillis: Int32 = 0
+    
+    var features: Table?
+    let xMean = Expression<Double>("x_mean")
+    let yMean = Expression<Double>("y_mean")
+    let zMean = Expression<Double>("z_mean")
+    let xVariance = Expression<Double>("x_var")
+    let yVariance = Expression<Double>("y_var")
+    let zVariance = Expression<Double>("z_var")
+    let isWalking = Expression<Bool>("is_walking")
+    let windowStart = Expression<Int64>("window_start")
+    let windowEnd = Expression<Int64>("window_end")
+    let medianFsr = Expression<Int64>("median_fsr")
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -57,6 +81,39 @@ class HomeViewController: UIViewController {
         bluejay.register(observer: self)
         let peripheralIdentifier = self.peripheralIdentifier!
         print("registered")
+        do {
+        let path = NSSearchPathForDirectoriesInDomains(
+            .documentDirectory, .userDomainMask, true
+            ).first!
+        
+        db = try Connection("\(path)/goyo.sqlite3")
+        raw_data = Table("raw_data")
+            
+        try db!.run(raw_data!.drop(ifExists: true)) // TODO: Delete in prod
+        try db!.run(raw_data!.create(ifNotExists: true) { t in
+            t.column(xAcc)
+            t.column(yAcc)
+            t.column(zAcc)
+            t.column(fsr)
+            t.column(timestamp)
+        })
+            
+        features = Table("features")
+            try db!.run(features!.create(ifNotExists: true) { t in
+                t.column(xMean)
+                t.column(yMean)
+                t.column(zMean)
+                t.column(xVariance)
+                t.column(yVariance)
+                t.column(zVariance)
+                t.column(medianFsr)
+                t.column(isWalking)
+                t.column(windowStart)
+                t.column(windowEnd)
+            })
+        } catch {
+            fatalError("unable to create db")
+        }
         
         // application stuff
         dailyGoal.text = "Daily Goal: " + String(goal) + " minutes"
@@ -90,16 +147,16 @@ class HomeViewController: UIViewController {
         message.numberOfLines = 0
         
         
-        for (index, data) in tempData.enumerated() {
-            guard let walkingOutput = try? model_random_forest.prediction(fromFsr_med: data[0], x_mean: data[1], y_mean: data[2], z_mean: data[3], x_var: data[4], y_var: data[5], z_var: data[6], x_energy: data[7], y_energy: data[8], z_energy: data[9]) else {
-                fatalError("Unexpected Runtime Error.")
-            }
-            
-            let isWalking = walkingOutput
-            print("classfiedData: " + String(describing: classifiedData[index]))
-            print("isWalking: " + String(describing: isWalking.is_walking))
-
-        }
+//        for (index, data) in tempData.enumerated() {
+//            guard let walkingOutput = try? model_random_forest.prediction(fromFsr_med: data[0], x_mean: data[1], y_mean: data[2], z_mean: data[3], x_var: data[4], y_var: data[5], z_var: data[6], x_energy: data[7], y_energy: data[8], z_energy: data[9]) else {
+//                fatalError("Unexpected Runtime Error.")
+//            }
+//
+//            let isWalking = walkingOutput
+//            print("classfiedData: " + String(describing: classifiedData[index]))
+//            print("isWalking: " + String(describing: isWalking.is_walking))
+//
+//        }
 
     }
     
@@ -110,7 +167,11 @@ class HomeViewController: UIViewController {
     }
 
     @objc func syncButtonTapped() {
+        if !self.listeningToSerial {
+            listenFromSerial()
+        }
         writeToSerial()
+        debugPrint(NSDate().timeIntervalSince1970 * 1000)
     }
 
     func readFromSerial() {
@@ -120,10 +181,8 @@ class HomeViewController: UIViewController {
             return
         }
         print("about to read")
-        let bean_scratch_uuid = "FFE1"
-//        let bean_service_uuid = ServiceIdentifier(uuid: "0000ffe1-0000-1000-8000-00805f9b34fb")
-        let characteristicUUID = CharacteristicIdentifier(uuid: bean_scratch_uuid, service: serviceUUID)
-//         let characteristicUUID = CharacteristicIdentifier(uuid: bean_scratch_uuid, service: bean_service_uuid)
+        let char_uuid = "FFE1"
+        let characteristicUUID = CharacteristicIdentifier(uuid: char_uuid, service: serviceUUID)
         print("char ID: " + String(describing: characteristicUUID))
 
         bluejay.read(from: characteristicUUID) { [weak self] (result:ReadResult<String>) in
@@ -169,6 +228,8 @@ class HomeViewController: UIViewController {
     }
 
     func listenFromSerial() {
+        var num_data_points = 1
+        let start_time = NSDate().timeIntervalSince1970
         print("In listen function")
         if listeningToSerial {
             return
@@ -180,7 +241,7 @@ class HomeViewController: UIViewController {
 
         let bean_scratch_uuid = "FFE1"
         let characteristicUUID = CharacteristicIdentifier(uuid: bean_scratch_uuid, service: serviceUUID)
-
+        
         bluejay.listen(to: characteristicUUID) { [weak self] (result: ReadResult<RawMeasurement>) in
             guard let weakSelf = self else {
                 return
@@ -188,15 +249,60 @@ class HomeViewController: UIViewController {
 
             switch result {
             case .success(let dataResult):
-                debugPrint(dataResult.fsr)
                 weakSelf.listeningToSerial = true
+                if dataResult.millis == 0 {
+                    do{
+                        let data_time =  start_time * 1000 + Double(1000/weakSelf.GOYO_SAMPLING_RATE) * Double(num_data_points)
+                        try weakSelf.db!.run(weakSelf.raw_data!.insert(
+                            weakSelf.xAcc <- Double(dataResult.x) / 100.0,
+                            weakSelf.yAcc <- Double(dataResult.y) / 100.0,
+                            weakSelf.zAcc <- Double(dataResult.z) / 100.0,
+                            weakSelf.fsr <- Int64(dataResult.fsr) ,
+                            weakSelf.timestamp <- Int64(data_time)
+                        ))
+                        num_data_points+=1
+                    } catch {
+                            debugPrint("unable to insert data point")
+                    }
+                } else {
+                    weakSelf.listeningToSerial = false
+                    weakSelf.recordedMillis = dataResult.millis
+                    
+                    let insertedData = weakSelf.raw_data!.order(weakSelf.timestamp.desc).limit(num_data_points)
+                    do {
+                        try weakSelf.db!.run(insertedData.update(weakSelf.timestamp -= Int64(weakSelf.recordedMillis)))
+                    } catch {
+                        debugPrint("Unable to update timestamps in raw data with millis")
+                    }
+                    
+                    num_data_points = 1
+                    weakSelf.recordedMillis = 0
+                    do  {
+                         try weakSelf.stopCollectingData()
+                    } catch {
+                        debugPrint(error)
+                    }
+                }
             case .cancelled:
                 debugPrint("Cancelled listen to goyo.")
-//                weakSelf.isMonitoringHeartRate = false
+                weakSelf.listeningToSerial = false
             case .failure(let error):
                 debugPrint("Failed to listen to goyo with error: \(error.localizedDescription)")
-//                weakSelf.isMonitoringHeartRate = false
+                weakSelf.listeningToSerial = false
             }
+        }
+    }
+    func stopCollectingData() throws {
+        guard let bluejay = bluejay else {
+            print("unable to stop listening.")
+            return
+        }
+        let notify_uuid = "FFE1"
+        let characteristicUUID = CharacteristicIdentifier(uuid: notify_uuid, service: serviceUUID)
+        bluejay.endListen(to: characteristicUUID)
+        self.listeningToSerial = false
+        for data in try self.db!.prepare(self.raw_data!) {
+            print("xAcc: \(data[xAcc]), fsr: \(data[fsr]), ts: \(data[timestamp])")
         }
     }
 
@@ -235,7 +341,7 @@ extension HomeViewController: ConnectionObserver {
     
     func connected(to peripheral: Peripheral) {
         print("Connected to Bluetooth")
-        listenFromSerial()
+//        listenFromSerial()
 //        readFromSerial()
 //        writeToSerial()
     }

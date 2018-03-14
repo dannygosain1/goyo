@@ -14,9 +14,9 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "321672EC1444638C5DC5DC32F7A0591A"
-               BuildableName = "Pods_FSCalendarSwiftExample.framework"
-               BlueprintName = "Pods-FSCalendarSwiftExample"
+               BlueprintIdentifier = "69A923FB34AAD43364705F06770346EC"
+               BuildableName = "SQLite.framework"
+               BlueprintName = "SQLite.swift"
                ReferencedContainer = "container:Pods.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -47,9 +47,9 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "321672EC1444638C5DC5DC32F7A0591A"
-            BuildableName = "Pods_FSCalendarSwiftExample.framework"
-            BlueprintName = "Pods-FSCalendarSwiftExample"
+            BlueprintIdentifier = "69A923FB34AAD43364705F06770346EC"
+            BuildableName = "SQLite.framework"
+            BlueprintName = "SQLite.swift"
             ReferencedContainer = "container:Pods.xcodeproj">
          </BuildableReference>
       </MacroExpansion>

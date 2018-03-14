@@ -34,8 +34,6 @@
 		1A4D77BD20576D7B008DD3B7 /* data.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A4D77BC20576D7B008DD3B7 /* data.pb.swift */; };
 		1A7CCD52204FD4D700A0F862 /* DashboardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A7CCD51204FD4D700A0F862 /* DashboardViewController.swift */; };
 		1A7CCDA9205080C600A0F862 /* SettingsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A7CCDA8205080C600A0F862 /* SettingsTableViewCell.swift */; };
-		1A7CCDB32053350700A0F862 /* Data00_extracted_features.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1A7CCDB22053350700A0F862 /* Data00_extracted_features.plist */; };
-		1A7CCDB720534CFD00A0F862 /* data00.json in Resources */ = {isa = PBXBuildFile; fileRef = 1A7CCDB620534CFD00A0F862 /* data00.json */; };
 		1A7CCDB92053512300A0F862 /* svm.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = 1A7CCDB82053512300A0F862 /* svm.mlmodel */; };
 		1A7CCDBB2053566D00A0F862 /* random_forest.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = 1A7CCDBA2053566D00A0F862 /* random_forest.mlmodel */; };
 		3024AF171E164F8C008B6001 /* CalendarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3024AF161E164F8C008B6001 /* CalendarViewController.swift */; };
@@ -116,8 +114,6 @@
 		1A4D77BC20576D7B008DD3B7 /* data.pb.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = data.pb.swift; path = ../../gpb/Data/data.pb.swift; sourceTree = "<group>"; };
 		1A7CCD51204FD4D700A0F862 /* DashboardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardViewController.swift; sourceTree = "<group>"; };
 		1A7CCDA8205080C600A0F862 /* SettingsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsTableViewCell.swift; sourceTree = "<group>"; };
-		1A7CCDB22053350700A0F862 /* Data00_extracted_features.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Data00_extracted_features.plist; path = ../../dip/features/Data00_extracted_features.plist; sourceTree = "<group>"; };
-		1A7CCDB620534CFD00A0F862 /* data00.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = data00.json; sourceTree = "<group>"; };
 		1A7CCDB82053512300A0F862 /* svm.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; name = svm.mlmodel; path = ../dip/svm.mlmodel; sourceTree = "<group>"; };
 		1A7CCDBA2053566D00A0F862 /* random_forest.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; name = random_forest.mlmodel; path = ../dip/random_forest.mlmodel; sourceTree = "<group>"; };
 		3024AF161E164F8C008B6001 /* CalendarViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalendarViewController.swift; sourceTree = "<group>"; };
@@ -247,8 +243,6 @@
 		EE0954A91B97DDE0007F6964 /* FSCalendarSwiftExample */ = {
 			isa = PBXGroup;
 			children = (
-				1A7CCDB22053350700A0F862 /* Data00_extracted_features.plist */,
-				1A7CCDB620534CFD00A0F862 /* data00.json */,
 				1A0CD162204EAC3B00A41C50 /* CosmosDistrib.swift */,
 				EE0954AC1B97DDE0007F6964 /* AppDelegate.swift */,
 				1A4D77BC20576D7B008DD3B7 /* data.pb.swift */,
@@ -386,9 +380,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				1A0CD10B204EA20700A41C50 /* Info.plist in Resources */,
-				1A7CCDB720534CFD00A0F862 /* data00.json in Resources */,
 				EE0954B21B97DDE0007F6964 /* Main.storyboard in Resources */,
-				1A7CCDB32053350700A0F862 /* Data00_extracted_features.plist in Resources */,
 				EE0954B71B97DDE0007F6964 /* LaunchScreen.xib in Resources */,
 				EE0954B41B97DDE0007F6964 /* Images.xcassets in Resources */,
 			);
@@ -497,12 +489,14 @@
 				"${SRCROOT}/Pods/Target Support Files/Pods-FSCalendarSwiftExample/Pods-FSCalendarSwiftExample-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Bluejay/Bluejay.framework",
 				"${BUILT_PRODUCTS_DIR}/Charts/Charts.framework",
+				"${BUILT_PRODUCTS_DIR}/SQLite.swift/SQLite.framework",
 				"${BUILT_PRODUCTS_DIR}/SwiftProtobuf/SwiftProtobuf.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Bluejay.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Charts.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SQLite.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftProtobuf.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
