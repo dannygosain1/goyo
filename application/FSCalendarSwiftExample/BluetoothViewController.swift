@@ -5,6 +5,8 @@
 //  Created by Danny Gosain on 2018-03-12.
 //  Copyright © 2018 wenchao. All rights reserved.
 //
+// 07A5C33B-8707-B0EB-7C04-0F7B6E8BDAEE - RAUNAQ UUID
+// D9B0BD7F-E600-034A-C795-119E77AAB719 - DANNY UUID
 
 import UIKit
 import Bluejay
@@ -20,7 +22,7 @@ class BluetoothViewController: UIViewController, ConnectionObserver {
         super.viewDidLoad()
         bluejay.start()
         
-        var peripheralUUID = UUID.init(uuidString: "D9B0BD7F-E600-034A-C795-119E77AAB719")
+        var peripheralUUID = UUID.init(uuidString: "07A5C33B-8707-B0EB-7C04-0F7B6E8BDAEE")
         var peripheralIdentifier = PeripheralIdentifier(uuid: peripheralUUID!)
         bluejay.connect(peripheralIdentifier, timeout: Timeout.seconds(30) )  { [weak self] (result) in
             switch result {

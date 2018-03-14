@@ -12,7 +12,7 @@ import UIKit
 import Bluejay
 import CoreBluetooth
 import SQLite
-
+import SigmaSwiftStatistics
 class HomeViewController: UIViewController {
     
     @IBOutlet weak var dailyGoal: UILabel!
@@ -40,7 +40,9 @@ class HomeViewController: UIViewController {
 //
 //        }
 //    }
-    let GOYO_SAMPLING_RATE = 50
+    let GOYO_SAMPLING_RATE_HZ = 50
+    let GOYO_WINDOW_SIZE_MS: Int64 = 2000
+    let GOYO_WINDOW_OVERLAP_MS: Int64 = 1000
     
     // bluejay stuff
     weak var bluejay: Bluejay?
@@ -56,6 +58,10 @@ class HomeViewController: UIViewController {
     var timestamp = Expression<Int64>("timestamp")
     let fsr = Expression<Int64>("fsr")
     var recordedMillis: Int32 = 0
+    
+    //Intermediary information
+    var goyoStartTime: Int64 = 0
+    var goyoEndTime: Int64 = 0
     
     var features: Table?
     let xMean = Expression<Double>("x_mean")
@@ -207,8 +213,8 @@ class HomeViewController: UIViewController {
             return
         }
         print("about to write")
-        let bean_scratch_uuid = "FFE1"
-        let characteristicUUID = CharacteristicIdentifier(uuid: bean_scratch_uuid, service: serviceUUID)
+        let char_uuid = "FFE1"
+        let characteristicUUID = CharacteristicIdentifier(uuid: char_uuid, service: serviceUUID)
 
         print("char ID: " + String(describing: characteristicUUID))
 
@@ -228,8 +234,8 @@ class HomeViewController: UIViewController {
     }
 
     func listenFromSerial() {
-        var num_data_points = 1
-        let start_time = NSDate().timeIntervalSince1970
+        var numDataPoints = 1
+        let startCollectingTime = NSDate().timeIntervalSince1970
         print("In listen function")
         if listeningToSerial {
             return
@@ -239,8 +245,8 @@ class HomeViewController: UIViewController {
             return
         }
 
-        let bean_scratch_uuid = "FFE1"
-        let characteristicUUID = CharacteristicIdentifier(uuid: bean_scratch_uuid, service: serviceUUID)
+        let char_uuid = "FFE1"
+        let characteristicUUID = CharacteristicIdentifier(uuid: char_uuid, service: serviceUUID)
         
         bluejay.listen(to: characteristicUUID) { [weak self] (result: ReadResult<RawMeasurement>) in
             guard let weakSelf = self else {
@@ -252,7 +258,7 @@ class HomeViewController: UIViewController {
                 weakSelf.listeningToSerial = true
                 if dataResult.millis == 0 {
                     do{
-                        let data_time =  start_time * 1000 + Double(1000/weakSelf.GOYO_SAMPLING_RATE) * Double(num_data_points)
+                        let data_time =  startCollectingTime * 1000 + Double(1000/weakSelf.GOYO_SAMPLING_RATE_HZ) * Double(numDataPoints)
                         try weakSelf.db!.run(weakSelf.raw_data!.insert(
                             weakSelf.xAcc <- Double(dataResult.x) / 100.0,
                             weakSelf.yAcc <- Double(dataResult.y) / 100.0,
@@ -260,22 +266,24 @@ class HomeViewController: UIViewController {
                             weakSelf.fsr <- Int64(dataResult.fsr) ,
                             weakSelf.timestamp <- Int64(data_time)
                         ))
-                        num_data_points+=1
+                        numDataPoints+=1
                     } catch {
                             debugPrint("unable to insert data point")
                     }
                 } else {
                     weakSelf.listeningToSerial = false
                     weakSelf.recordedMillis = dataResult.millis
-                    
-                    let insertedData = weakSelf.raw_data!.order(weakSelf.timestamp.desc).limit(num_data_points)
+                    weakSelf.goyoStartTime = Int64(startCollectingTime * 1000 - Double(weakSelf.recordedMillis))
+                    weakSelf.goyoEndTime = Int64(startCollectingTime * 1000 + Double(1000/weakSelf.GOYO_SAMPLING_RATE_HZ) * Double(numDataPoints) - Double(weakSelf.recordedMillis))
+                
+                    let insertedData = weakSelf.raw_data!.order(weakSelf.timestamp.desc).limit(numDataPoints)
                     do {
                         try weakSelf.db!.run(insertedData.update(weakSelf.timestamp -= Int64(weakSelf.recordedMillis)))
                     } catch {
                         debugPrint("Unable to update timestamps in raw data with millis")
                     }
                     
-                    num_data_points = 1
+                    numDataPoints = 1
                     weakSelf.recordedMillis = 0
                     do  {
                          try weakSelf.stopCollectingData()
@@ -301,33 +309,48 @@ class HomeViewController: UIViewController {
         let characteristicUUID = CharacteristicIdentifier(uuid: notify_uuid, service: serviceUUID)
         bluejay.endListen(to: characteristicUUID)
         self.listeningToSerial = false
-        for data in try self.db!.prepare(self.raw_data!) {
-            print("xAcc: \(data[xAcc]), fsr: \(data[fsr]), ts: \(data[timestamp])")
+//        for data in try self.db!.prepare(self.raw_data!) {
+//            print("xAcc: \(data[xAcc]), fsr: \(data[fsr]), ts: \(data[timestamp])")
+//        }
+        try self.generateFeatures()
+        print(self.goyoStartTime)
+        print(self.goyoEndTime)
+    }
+    
+    func generateFeatures() throws {
+        var startTime: Int64 = self.goyoStartTime
+        var endTime: Int64 = startTime + self.GOYO_WINDOW_SIZE_MS
+        while endTime < self.goyoEndTime {
+            let data_in_window = self.raw_data!.filter(timestamp >= startTime && timestamp <= endTime)
+            
+            let dataX = try self.db!.prepare(data_in_window)
+            let dataY = try self.db!.prepare(data_in_window)
+            let dataZ = try self.db!.prepare(data_in_window)
+            let dataFsr = try self.db!.prepare(data_in_window)
+            let xAccelerations = try dataX.map {try $0.get(self.xAcc)}
+            let yAccelerations = try dataY.map {try $0.get(self.yAcc)}
+            let zAccelerations = try dataZ.map {try $0.get(self.zAcc)}
+            let fsrMeasurements = try dataFsr.map {try Double($0.get(self.fsr))}
+
+            let meanX = Sigma.average(xAccelerations)
+            let varX = Sigma.varianceSample(xAccelerations)
+            
+            let meanY = Sigma.average(yAccelerations)
+            let varY = Sigma.varianceSample(yAccelerations)
+            
+            let meanZ = Sigma.average(zAccelerations)
+            let varZ = Sigma.varianceSample(zAccelerations)
+            
+            let fsrMedian = Sigma.median(fsrMeasurements)
+            
+            print(fsrMedian)
+            
+            
+            startTime += GOYO_WINDOW_OVERLAP_MS
+            endTime += GOYO_WINDOW_OVERLAP_MS
+            
         }
     }
-
-//    func scanSensors() {
-//        bluejay.scan(
-//            serviceIdentifiers: [serviceUUID],
-//            discovery: { [weak self] (discovery, discoveries) -> ScanAction in
-//                guard let weakSelf = self else {
-//                    return .stop
-//                }
-//
-//                weakSelf.peripherals = discoveries
-//                print(discoveries)
-//
-//                return .continue
-//            },
-//            stopped: { (discoveries, error) in
-//                if let error = error {
-//                    debugPrint("Scan stopped with error: \(error.localizedDescription)")
-//                }
-//                else {
-//                    debugPrint("Scan stopped without error.")
-//                }
-//        })
-//    }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
