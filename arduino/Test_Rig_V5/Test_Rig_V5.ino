@@ -70,6 +70,10 @@
   #include <SPI.h>
   #include "SdFat.h"
 
+  // For GPB and bluetooth
+  #include <data.pb.h>
+  #include <pb_encode.h>
+
 //
 // GLOBAL CONSTANTS
 //
@@ -89,15 +93,13 @@
   const char DELIMITER = ',';
   #define SAMPLING_RATE 50 // Hz
   const uint32_t SAMPLE_INTERVAL = 1000/SAMPLING_RATE; 
-  #define BUFFER_SIZE 10
 
   // Bluetooth
-  #define BT_ENABLED false
+  #define BT_ENABLED true
   #define BAUD 57600
   #define BT_RX 0
   #define BT_TX 1
-  #define BT_BUFFER_SIZE 80
-  #define BT_WRITE_MODE DEC //DEC, BIN, HEX
+  #define DATA_LENGTH 4
 
   // FSR
   #define FSR 0 //Analog Pin
@@ -151,9 +153,6 @@
   void setupMPU6050();
   void getAccData();
 
-  // Record Functions
-  void recordButtonPressed(); // runs on button press to toggle record mode
-
   // SD Functions
   void setupSD();
   void setupLogFile();
@@ -161,7 +160,11 @@
   
   // Log / Buffer Data
   void logData();
-  void writeBuffer();
+
+  // Bluetooth Funtions
+  void dumpData(int32_t* data);
+  void dumpFile(char * filename);
+  
 
 //
 // GLOBAL VARIABLES
@@ -191,29 +194,31 @@
   
   // Data Variables
   int fsrReading = 0;
+  int32_t tmp_data[DATA_LENGTH] = {1,2,3,4};
+  char read_serial = ' ';
   
   // Record Status
   volatile bool recording = false;
-  volatile bool recordBtnStatus = false;
-  volatile long recordLastPressed = 0;
   volatile bool recordingStateChange = false;
-
-  // Walking
-  bool walking = false;
 
   // SD
   SdFat sd;
   SdFile file;
 
-  // Logging / Buffer
-  short bufferIndex = 0;
+  // GPB output stream
+  pb_ostream_t pb_out;
 
-  long millisBuffer[BUFFER_SIZE];
-  bool isWalkingBuffer[BUFFER_SIZE];
-  short fsrBuffer[BUFFER_SIZE];
-  float xAccBuffer[BUFFER_SIZE];
-  float yAccBuffer[BUFFER_SIZE];
-  float zAccBuffer[BUFFER_SIZE];
+
+  // Functions to support Serial (bluetooth) for gpb encoding
+  static bool pb_print_write(pb_ostream_t *stream, const pb_byte_t *buf, size_t count) {
+      Print* p = reinterpret_cast<Print*>(stream->state);
+      size_t written = p->write(buf, count);
+      return written == count;
+  };
+  
+  pb_ostream_s as_pb_ostream(Print& p) {
+      return {pb_print_write, &p, SIZE_MAX, 0};
+  };
 
 void setup() {
 
@@ -272,15 +277,15 @@ void setup() {
     Serial.print("DEBUG 1: ");
     Serial.println("Setting up Bluetooth");
   }
-  setupBluetooth();
+
+  pb_out = as_pb_ostream(Serial);
   if(DEBUG_ENABLED && DEBUG_LEVEL >= 2){
     Serial.print("DEBUG 2: ");
-    Serial.println("Done setting up Bluetooth");
+    Serial.println("Done setting up Bluetooth encoding");
   }
 
   recording = false;
   recordingStateChange = false;
-  recordLastPressed = millis();
 
   digitalWrite(RED_LED,LOW);
   digitalWrite(GREEN_LED,LOW);
@@ -293,10 +298,6 @@ void setup() {
     Serial.print(" ms or ");
     Serial.print(SAMPLING_RATE);
     Serial.println(" hz");
-
-    Serial.print("DEBUG 2: ");
-    Serial.print("With a Buffer Size of ");
-    Serial.println(BUFFER_SIZE);
   }
 
   if(DEBUG_ENABLED && DEBUG_LEVEL >= 0){
@@ -327,7 +328,6 @@ void loop() {
     digitalWrite(GREEN_LED,HIGH);
     Serial.println(F("Initializing Log File"));
     setupLogFile();
-    
     recordingStateChange = false;
     
   } else if(!recording && recordingStateChange){
@@ -335,11 +335,8 @@ void loop() {
     digitalWrite(RED_LED,HIGH);
     digitalWrite(GREEN_LED,LOW);
     ACC.resetFIFO();
-
     doneLogFile();
-    
-    recordingStateChange = false;
-    
+        
   } else if(recording){
     // Recording
     if(millis() - SAMPLE_INTERVAL >= lastSerialTime){
@@ -348,11 +345,7 @@ void loop() {
       
       logData();
       lastSerialTime = millis() - 7;
-
-      /*if(bufferIndex >= BUFFER_SIZE && LOG_MODE >= 3){
-        writeBuffer();
-        bufferIndex = 0;
-      }*/
+      
     }
     
   } else {
@@ -411,82 +404,15 @@ void writeHeader() {
 
   String headerString = "timestamp,is_walking,fsr,x_acc,y_acc,z_acc";
   
-  if(LOG_MODE == 0 || LOG_MODE == 2 || LOG_MODE == 3 || LOG_MODE == 5){
-    Serial.print(headerString);
-    Serial.println();
-  }
-
-  if(LOG_MODE == 1 || LOG_MODE == 2 || LOG_MODE == 4 || LOG_MODE == 5){
-    file.print(headerString);
-    file.println();
-  }
 }
 
 // Log a single data record to the SD Card via Preestablished File Details
 void logData() {
 
   long curTime = millis();
-  bool wbtn = digitalRead(WALKING_BTN);
   int afsr = analogRead(FSR);
-  String entry = String(curTime) + DELIMITER + String(wbtn) + DELIMITER + String(afsr) + 
-            DELIMITER + String(AccX) + DELIMITER + String(AccY) + DELIMITER + String(AccZ);
+  String entry = String(afsr) + DELIMITER + String(AccX) + DELIMITER + String(AccY) + DELIMITER + String(AccZ);
 
-  if(LOG_MODE == 0 || LOG_MODE == 2){
-    Serial.println(entry);
-  }
-
-  if(LOG_MODE == 1 || LOG_MODE == 2){
-    file.println(entry);
-  }
-
-  if(LOG_MODE == 3 || LOG_MODE == 4 || LOG_MODE == 5){
-    millisBuffer[bufferIndex] = curTime;
-    isWalkingBuffer[bufferIndex] = digitalRead(WALKING_BTN);
-    fsrBuffer[bufferIndex] = analogRead(FSR);
-    xAccBuffer[bufferIndex] = AccX;
-    yAccBuffer[bufferIndex] = AccY;
-    zAccBuffer[bufferIndex] = AccZ;
-
-    bufferIndex++;
-  }
-  
-
-}
-
-void writeBuffer(){
-  if(LOG_MODE == 3 || LOG_MODE == 5){
-    for(int i = 0; i < BUFFER_SIZE; i++){
-      Serial.print(millisBuffer[i]);
-      Serial.write(DELIMITER);
-      Serial.print(isWalkingBuffer[i]);
-      Serial.write(DELIMITER);
-      Serial.print(fsrBuffer[i]);
-      Serial.write(DELIMITER);
-      Serial.print(xAccBuffer[i]);
-      Serial.write(DELIMITER);
-      Serial.print(yAccBuffer[i]);
-      Serial.write(DELIMITER);
-      Serial.print(zAccBuffer[i]);
-      Serial.println();
-    }
-  }
-
-  if(LOG_MODE == 4 || LOG_MODE == 5){
-    for(int i = 0; i < BUFFER_SIZE; i++){
-      file.print(millisBuffer[i]);
-      file.write(DELIMITER);
-      file.print(isWalkingBuffer[i]);
-      file.write(DELIMITER);
-      file.print(fsrBuffer[i]);
-      file.write(DELIMITER);
-      file.print(xAccBuffer[i]);
-      file.write(DELIMITER);
-      file.print(yAccBuffer[i]);
-      file.write(DELIMITER);
-      file.print(zAccBuffer[i]);
-      file.println();
-    }
-  }
 }
 
 void doneLogFile(){
@@ -579,20 +505,49 @@ void getAccData(){
     }
 }
 
-
-// Function called when record button is pressed
-void recordButtonPressed(){
-  if(millis() - recordLastPressed < DEBOUNCE_TIME){
-    // To Close to Previous Button Press (or is debounce)
-    return;
-  } else {
-    recordLastPressed = millis();
-  }
-  recordBtnStatus = digitalRead(RECORD_BTN);
-  if(recordBtnStatus){
-    // Button Pressed
-    recording = !recording;
-    recordingStateChange = true;
-    recordBtnStatus = false;
+// Function to dump data array
+void dumpData(int32_t* data) {
+  GoYoData point = GoYoData_init_default;  
+  point.fsr = data[0];
+  point.x_accel = data[1];
+  point.y_accel = data[2];
+  point.z_accel = data[3];
+  if (!pb_encode(&pb_out, GoYoData_fields, &point)) {
+    Serial.println(PB_GET_ERROR(&pb_out));
   }
 }
+
+// Function to dump a file filled with data given it's name
+void dumpFile(char * filename) {
+  const int line_buffer_size = 18;
+  char buffer[line_buffer_size];
+  ifstream sdin(filename);
+  int line_number = 0;
+
+  while (sdin.getline(buffer, line_buffer_size, '\n') || sdin.gcount()) {
+    int count = sdin.gcount();
+    if (sdin.fail()) {
+//      Serial.println("Partial long line");
+      sdin.clear(sdin.rdstate() & ~ios_base::failbit);
+    } else if (sdin.eof()) {
+//      Serial.println("Partial final line");  // sdin.fail() is false
+    } else {
+      count--;  // Don’t include newline in count
+      String buf = String(buffer);
+      int ci1 = buf.indexOf(',');
+      int ci2 = buf.indexOf(',', ci1+1);
+      int ci3 = buf.indexOf(',', ci2+1);
+      tmp_data[0] = (int32_t)buf.substring(0,ci1).toInt();
+      tmp_data[1] = (int32_t)buf.substring(ci1+1, ci2).toInt()*-1;
+      tmp_data[2] = (int32_t)buf.substring(ci2+1, ci3).toInt();
+      tmp_data[3] = (int32_t)buf.substring(ci3+1).toInt();
+      dumpData(tmp_data);
+//      Serial.println(buf);
+      delay(10);
+    }
+  }
+  String buf = String(filename);
+  int ci1 = buf.indexOf('.');
+  Serial.println(buf.substring(0,ci1));
+}
+
