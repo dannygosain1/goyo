@@ -95,13 +95,11 @@
   const uint32_t SAMPLE_INTERVAL = 1000/SAMPLING_RATE; 
 
   // Bluetooth
-  #define BT_ENABLED false
+  #define BT_ENABLED true
   #define BAUD 57600
   #define BT_RX 0
   #define BT_TX 1
-  #define BT_BUFFER_SIZE 80
-  #define BT_WRITE_MODE DEC //DEC, BIN, HEX
-  #define DATA_LENGTH = 4;
+  #define DATA_LENGTH 4
 
   // FSR
   #define FSR 0 //Analog Pin
@@ -165,6 +163,7 @@
 
   // Bluetooth Funtions
   void dumpData(int32_t* data);
+  void dumpFile(char * filename);
   
 
 //
@@ -195,6 +194,8 @@
   
   // Data Variables
   int fsrReading = 0;
+  int32_t tmp_data[DATA_LENGTH] = {1,2,3,4};
+  char read_serial = ' ';
   
   // Record Status
   volatile bool recording = false;
@@ -204,6 +205,20 @@
   SdFat sd;
   SdFile file;
 
+  // GPB output stream
+  pb_ostream_t pb_out;
+
+
+  // Functions to support Serial (bluetooth) for gpb encoding
+  static bool pb_print_write(pb_ostream_t *stream, const pb_byte_t *buf, size_t count) {
+      Print* p = reinterpret_cast<Print*>(stream->state);
+      size_t written = p->write(buf, count);
+      return written == count;
+  };
+  
+  pb_ostream_s as_pb_ostream(Print& p) {
+      return {pb_print_write, &p, SIZE_MAX, 0};
+  };
 
 void setup() {
 
@@ -262,10 +277,11 @@ void setup() {
     Serial.print("DEBUG 1: ");
     Serial.println("Setting up Bluetooth");
   }
-//  setupBluetooth();
+
+  pb_out = as_pb_ostream(Serial);
   if(DEBUG_ENABLED && DEBUG_LEVEL >= 2){
     Serial.print("DEBUG 2: ");
-    Serial.println("Done setting up Bluetooth");
+    Serial.println("Done setting up Bluetooth encoding");
   }
 
   recording = false;
@@ -487,5 +503,51 @@ void getAccData(){
         AccY = gravityt->y;
         AccZ = gravityt->z;
     }
+}
+
+// Function to dump data array
+void dumpData(int32_t* data) {
+  GoYoData point = GoYoData_init_default;  
+  point.fsr = data[0];
+  point.x_accel = data[1];
+  point.y_accel = data[2];
+  point.z_accel = data[3];
+  if (!pb_encode(&pb_out, GoYoData_fields, &point)) {
+    Serial.println(PB_GET_ERROR(&pb_out));
+  }
+}
+
+// Function to dump a file filled with data given it's name
+void dumpFile(char * filename) {
+  const int line_buffer_size = 18;
+  char buffer[line_buffer_size];
+  ifstream sdin(filename);
+  int line_number = 0;
+
+  while (sdin.getline(buffer, line_buffer_size, '\n') || sdin.gcount()) {
+    int count = sdin.gcount();
+    if (sdin.fail()) {
+//      Serial.println("Partial long line");
+      sdin.clear(sdin.rdstate() & ~ios_base::failbit);
+    } else if (sdin.eof()) {
+//      Serial.println("Partial final line");  // sdin.fail() is false
+    } else {
+      count--;  // Don’t include newline in count
+      String buf = String(buffer);
+      int ci1 = buf.indexOf(',');
+      int ci2 = buf.indexOf(',', ci1+1);
+      int ci3 = buf.indexOf(',', ci2+1);
+      tmp_data[0] = (int32_t)buf.substring(0,ci1).toInt();
+      tmp_data[1] = (int32_t)buf.substring(ci1+1, ci2).toInt()*-1;
+      tmp_data[2] = (int32_t)buf.substring(ci2+1, ci3).toInt();
+      tmp_data[3] = (int32_t)buf.substring(ci3+1).toInt();
+      dumpData(tmp_data);
+//      Serial.println(buf);
+      delay(10);
+    }
+  }
+  String buf = String(filename);
+  int ci1 = buf.indexOf('.');
+  Serial.println(buf.substring(0,ci1));
 }
 
