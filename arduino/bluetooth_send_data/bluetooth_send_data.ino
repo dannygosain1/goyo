@@ -17,7 +17,7 @@ int32_t term_char[] = {999,999,999,999};
 const int DATA_LENGTH = 4;
 
 // Testing setup
-int testLength = 200;
+int testLength = 50;
 int32_t test_data[][DATA_LENGTH] = {{234,134,124,764},{363,518,111,134},{166,646,662,698}};
 
 void setup() 
@@ -37,7 +37,8 @@ void loop()
             dumpData(test_data[i%3]);
             delay(10);
           }
-          dumpData(term_char);
+          delay(2);
+          Serial.println(millis());
         } else if (String(c).equals("m")) {
           Serial.println(millis()); 
         }
