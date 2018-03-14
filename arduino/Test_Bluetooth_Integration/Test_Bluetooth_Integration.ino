@@ -58,7 +58,8 @@ void loop()
           Serial.println(millis()); 
         } else if (String(c).equals("f")) {
           // dump from SD card  
-          readFile();
+          char filename[] = "00000001.csv";
+          readFile(filename);
         }
     }
 }
@@ -84,10 +85,10 @@ pb_ostream_s as_pb_ostream(Print& p) {
     return {pb_print_write, &p, SIZE_MAX, 0};
 };
 
-void readFile() {
+void readFile(char * filename) {
   const int line_buffer_size = 18;
   char buffer[line_buffer_size];
-  ifstream sdin("00000001.csv");
+  ifstream sdin(filename);
   int line_number = 0;
 
   while (sdin.getline(buffer, line_buffer_size, '\n') || sdin.gcount()) {
@@ -111,7 +112,9 @@ void readFile() {
       delay(10);
     }
   }
-  Serial.println("00000001");
+  String buf = String(filename);
+  int ci1 = buf.indexOf('.');
+  Serial.println(buf.substring(0,ci1));
 }
 
 
