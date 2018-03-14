@@ -3,11 +3,15 @@ PODS:
   - Charts (3.0.4):
     - Charts/Core (= 3.0.4)
   - Charts/Core (3.0.4)
+  - SQLite.swift (0.11.4):
+    - SQLite.swift/standard (= 0.11.4)
+  - SQLite.swift/standard (0.11.4)
   - SwiftProtobuf (1.0.2)
 
 DEPENDENCIES:
   - Bluejay (from `https://github.com/steamclock/bluejay.git`, branch `master`)
   - Charts
+  - SQLite.swift (~> 0.11.4)
   - SwiftProtobuf (~> 1.0)
 
 EXTERNAL SOURCES:
@@ -23,8 +27,9 @@ CHECKOUT OPTIONS:
 SPEC CHECKSUMS:
   Bluejay: c41b85de5206fceb0cb35714f936c515203bc07f
   Charts: 0705898046257443f0afbbc3179f4b67507b6e48
+  SQLite.swift: 3e3bee21da701b5b9f87c4a672cb54f233505692
   SwiftProtobuf: e41d205c91eac0fb46823f2561712407fefdaf4e
 
-PODFILE CHECKSUM: 8fd4c034836630959ef54d094fc0c6dcaa9f3d06
+PODFILE CHECKSUM: e528d009e66fc6162534339993ce8e7e7d40bd37
 
 COCOAPODS: 1.3.1
