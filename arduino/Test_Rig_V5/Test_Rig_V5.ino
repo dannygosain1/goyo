@@ -129,7 +129,6 @@
 
   // SD Pins
   #define SD_CHIP_SELECT 10
-  #define FILE_BASE_NAME "Data" //Must be six characters or less
 
   // Errors
   #define ERR_UNCAUGHT 1
@@ -196,6 +195,7 @@
   int fsrReading = 0;
   int32_t tmp_data[DATA_LENGTH] = {1,2,3,4};
   char read_serial = ' ';
+  char filename[14];
   
   // Record Status
   volatile bool recording = false;
@@ -284,8 +284,8 @@ void setup() {
     Serial.println("Done setting up Bluetooth encoding");
   }
 
-  recording = false;
-  recordingStateChange = false;
+  recording = true;
+  recordingStateChange = true;
 
   digitalWrite(RED_LED,LOW);
   digitalWrite(GREEN_LED,LOW);
@@ -370,41 +370,21 @@ void setupLogFile() {
   if(!recording || error != 0){
     return;
   }
-
-  const uint8_t BASE_NAME_SIZE = sizeof(FILE_BASE_NAME) - 1;
-  char fileName[13] = FILE_BASE_NAME "00.csv";
-
-  // Find an unused file name.
-  if (BASE_NAME_SIZE > 6) {
-    error = ERR_SD_FILENAME_TO_LONG;
-  }
-  while (sd.exists(fileName)) {
-    if (fileName[BASE_NAME_SIZE + 1] != '9') {
-      fileName[BASE_NAME_SIZE + 1]++;
-    } else if (fileName[BASE_NAME_SIZE] != '9') {
-      fileName[BASE_NAME_SIZE + 1] = '0';
-      fileName[BASE_NAME_SIZE]++;
-    } else {
-      error = ERR_SD_CANT_CREATE_FILENAME;
-    }
-  }
-  if (!file.open(fileName, O_CREAT | O_WRITE | O_EXCL)) {
+  
+  String strfile = String(millis());
+  strfile.concat(".csv");
+  strfile.toCharArray(filename, 14);
+  
+  if (!file.open(filename, O_CREAT | O_WRITE | O_EXCL)) {
     error = ERR_SD_OPEN_FILE;
   }
 
   Serial.print(F("Logging to: "));
-  Serial.println(fileName);
+  Serial.println(filename);
 
-  writeHeader();
 }
 
 
-// Write data header.
-void writeHeader() {
-
-  String headerString = "timestamp,is_walking,fsr,x_acc,y_acc,z_acc";
-  
-}
 
 // Log a single data record to the SD Card via Preestablished File Details
 void logData() {
