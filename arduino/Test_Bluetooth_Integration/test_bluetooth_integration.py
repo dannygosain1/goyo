@@ -63,17 +63,21 @@ class Requester(GATTRequester):
         data_striped = data.replace('\x1b%\x00', '')
         try:
             message.ParseFromString(data_striped)
+            print(message)
         except:
             if re.match('[\d]*\\r\\n', data_striped):
+                print(data_striped)
                 self.set_done(True)
                 self.num_lines = self.num_lines + 1
                 return
         self.num_lines = self.num_lines + 1
         self.bulk_data.append(message)
 
-
+# poop
 # MAC_ADDRESS = '58:7A:62:4F:99:03'
+# GoYo
 # MAC_ADDRESS = '58:7A:62:4F:9D:75'
+# Raunaq
 MAC_ADDRESS = '58:7A:62:4F:E1:1F'
 WRITE_HANDLE = 0x0025
 
@@ -102,7 +106,7 @@ def determine_correct(test_length, num_recieved_lines, data):
     num_correct = 0
     num_incorrect = test_length-num_recieved_lines+1
     for i in range(0,num_recieved_lines-1):
-        if test_data1[(i+1)%3] == data[i]:
+        if test_data1[(i)%3] == data[i]:
             num_correct += 1
         else:
             num_incorrect += 1
@@ -175,7 +179,7 @@ def test_dump_from_csv():
 
 def main():
     # test_get_millis()
-    test_many_dumps(3)
+    # test_many_dumps(1)
     test_dump_from_csv()
 
 

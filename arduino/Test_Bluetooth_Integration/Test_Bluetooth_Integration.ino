@@ -18,7 +18,7 @@ const int DATA_LENGTH = 4;
 int32_t tmp_data[DATA_LENGTH] = {1,2,3,4};
 
 // Testing setup
-int testLength = 50;
+int testLength = 500;
 int32_t test_data[][DATA_LENGTH] = {{32,1,124,764},{363,518,111,134},{166,646,662,698}};
 
 #define SD_CHIP_SELECT 10
@@ -50,15 +50,15 @@ void loop()
         if (String(c).equals("d")) {
           for (int i=1; i<=testLength; i++){
             dumpData(test_data[i%3]);
-            delay(10);
+            delay(7);
           }
-          delay(2);
+          delay(4);
           Serial.println(millis()); 
         } else if (String(c).equals("m")) {
           Serial.println(millis()); 
         } else if (String(c).equals("f")) {
           // dump from SD card  
-          char filename[] = "00000001.csv";
+          char filename[] = "00000002.csv";
           readFile(filename);
         }
     }
@@ -109,6 +109,7 @@ void readFile(char * filename) {
       tmp_data[2] = (int32_t)buf.substring(ci2+1, ci3).toInt();
       tmp_data[3] = (int32_t)buf.substring(ci3+1).toInt();
       dumpData(tmp_data);
+//      Serial.println(buf);
       delay(10);
     }
   }
