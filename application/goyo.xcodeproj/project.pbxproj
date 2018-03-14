@@ -37,6 +37,7 @@
 		1A7CCDB92053512300A0F862 /* svm.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = 1A7CCDB82053512300A0F862 /* svm.mlmodel */; };
 		1A7CCDBB2053566D00A0F862 /* random_forest.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = 1A7CCDBA2053566D00A0F862 /* random_forest.mlmodel */; };
 		3024AF171E164F8C008B6001 /* CalendarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3024AF161E164F8C008B6001 /* CalendarViewController.swift */; };
+		8BFB1F6720598E4400ACF5B0 /* FeatureScalingFactors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BFB1F6620598E4400ACF5B0 /* FeatureScalingFactors.swift */; };
 		C609D303B5E656DF74C1B61B /* Pods_FSCalendarSwiftExample.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C892D5C6F386B87E998B0C3E /* Pods_FSCalendarSwiftExample.framework */; };
 		CF3D87700427C4321B9374C1 /* Pods_FSCalendarSwiftExampleUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7993D4D98D939E51FEB107AB /* Pods_FSCalendarSwiftExampleUITests.framework */; };
 		EE0954AD1B97DDE0007F6964 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE0954AC1B97DDE0007F6964 /* AppDelegate.swift */; };
@@ -118,6 +119,7 @@
 		1A7CCDBA2053566D00A0F862 /* random_forest.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; name = random_forest.mlmodel; path = ../dip/random_forest.mlmodel; sourceTree = "<group>"; };
 		3024AF161E164F8C008B6001 /* CalendarViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalendarViewController.swift; sourceTree = "<group>"; };
 		7993D4D98D939E51FEB107AB /* Pods_FSCalendarSwiftExampleUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_FSCalendarSwiftExampleUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		8BFB1F6620598E4400ACF5B0 /* FeatureScalingFactors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeatureScalingFactors.swift; sourceTree = "<group>"; };
 		90AE38C7F927387F3387BAEE /* Pods-FSCalendarSwiftExampleUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FSCalendarSwiftExampleUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-FSCalendarSwiftExampleUITests/Pods-FSCalendarSwiftExampleUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		B70E68100FD55C6694239530 /* Pods-FSCalendarSwiftExample.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FSCalendarSwiftExample.debug.xcconfig"; path = "Pods/Target Support Files/Pods-FSCalendarSwiftExample/Pods-FSCalendarSwiftExample.debug.xcconfig"; sourceTree = "<group>"; };
 		C892D5C6F386B87E998B0C3E /* Pods_FSCalendarSwiftExample.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_FSCalendarSwiftExample.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -255,6 +257,7 @@
 				1A7CCD51204FD4D700A0F862 /* DashboardViewController.swift */,
 				EE0954B01B97DDE0007F6964 /* Main.storyboard */,
 				1A7CCDA8205080C600A0F862 /* SettingsTableViewCell.swift */,
+				8BFB1F6620598E4400ACF5B0 /* FeatureScalingFactors.swift */,
 				EE0954B31B97DDE0007F6964 /* Images.xcassets */,
 				EE0954B51B97DDE0007F6964 /* LaunchScreen.xib */,
 				EE0954AA1B97DDE0007F6964 /* Supporting Files */,
@@ -532,6 +535,7 @@
 				1A0CD0FE204EA20700A41C50 /* FSCalendarCalculator.m in Sources */,
 				1A7CCDBB2053566D00A0F862 /* random_forest.mlmodel in Sources */,
 				1A0CD0FC204EA20700A41C50 /* FSCalendar.m in Sources */,
+				8BFB1F6720598E4400ACF5B0 /* FeatureScalingFactors.swift in Sources */,
 				1A0CD102204EA20700A41C50 /* FSCalendarConstants.m in Sources */,
 				1A4D77BB20576B66008DD3B7 /* RawMeasurement.swift in Sources */,
 				EE0954AD1B97DDE0007F6964 /* AppDelegate.swift in Sources */,

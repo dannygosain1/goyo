@@ -73,7 +73,7 @@ class HomeViewController: UIViewController {
     let isWalking = Expression<Bool>("is_walking")
     let windowStart = Expression<Int64>("window_start")
     let windowEnd = Expression<Int64>("window_end")
-    let medianFsr = Expression<Int64>("median_fsr")
+    let medianFsr = Expression<Double>("median_fsr")
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -88,23 +88,24 @@ class HomeViewController: UIViewController {
         let peripheralIdentifier = self.peripheralIdentifier!
         print("registered")
         do {
-        let path = NSSearchPathForDirectoriesInDomains(
-            .documentDirectory, .userDomainMask, true
-            ).first!
-        
-        db = try Connection("\(path)/goyo.sqlite3")
-        raw_data = Table("raw_data")
+            let path = NSSearchPathForDirectoriesInDomains(
+                .documentDirectory, .userDomainMask, true
+                ).first!
             
-        try db!.run(raw_data!.drop(ifExists: true)) // TODO: Delete in prod
-        try db!.run(raw_data!.create(ifNotExists: true) { t in
-            t.column(xAcc)
-            t.column(yAcc)
-            t.column(zAcc)
-            t.column(fsr)
-            t.column(timestamp)
-        })
+            db = try Connection("\(path)/goyo.sqlite3")
+            raw_data = Table("raw_data")
             
-        features = Table("features")
+            try db!.run(raw_data!.drop(ifExists: true)) // TODO: Delete in prod
+            
+            try db!.run(raw_data!.create(ifNotExists: true) { t in
+                t.column(xAcc)
+                t.column(yAcc)
+                t.column(zAcc)
+                t.column(fsr)
+                t.column(timestamp)
+            })
+            
+            features = Table("features")
             try db!.run(features!.create(ifNotExists: true) { t in
                 t.column(xMean)
                 t.column(yMean)
@@ -151,18 +152,6 @@ class HomeViewController: UIViewController {
         starCosmos.settings.updateOnTouch = false
         
         message.numberOfLines = 0
-        
-        
-//        for (index, data) in tempData.enumerated() {
-//            guard let walkingOutput = try? model_random_forest.prediction(fromFsr_med: data[0], x_mean: data[1], y_mean: data[2], z_mean: data[3], x_var: data[4], y_var: data[5], z_var: data[6], x_energy: data[7], y_energy: data[8], z_energy: data[9]) else {
-//                fatalError("Unexpected Runtime Error.")
-//            }
-//
-//            let isWalking = walkingOutput
-//            print("classfiedData: " + String(describing: classifiedData[index]))
-//            print("isWalking: " + String(describing: isWalking.is_walking))
-//
-//        }
 
     }
     
@@ -332,24 +321,82 @@ class HomeViewController: UIViewController {
             let zAccelerations = try dataZ.map {try $0.get(self.zAcc)}
             let fsrMeasurements = try dataFsr.map {try Double($0.get(self.fsr))}
 
-            let meanX = Sigma.average(xAccelerations)
-            let varX = Sigma.varianceSample(xAccelerations)
+            let meanX = normalizeFeature(
+                min: FeatureScalingFactors.X_MEAN_MIN,
+                max: FeatureScalingFactors.X_MEAN_MAX,
+                feature: Sigma.average(xAccelerations)!
+            )
+            let varX = normalizeFeature(
+                min: FeatureScalingFactors.X_VAR_MIN,
+                max: FeatureScalingFactors.X_VAR_MAX,
+                feature: Sigma.varianceSample(xAccelerations)!
+            )
+            let meanY = normalizeFeature(
+                min: FeatureScalingFactors.Y_MEAN_MIN,
+                max: FeatureScalingFactors.Y_MEAN_MAX,
+                feature: Sigma.average(yAccelerations)!
+            )
+            let varY = normalizeFeature(
+                min: FeatureScalingFactors.Y_VAR_MIN,
+                max: FeatureScalingFactors.Y_VAR_MAX,
+                feature: Sigma.varianceSample(yAccelerations)!
+            )
             
-            let meanY = Sigma.average(yAccelerations)
-            let varY = Sigma.varianceSample(yAccelerations)
+            let meanZ = normalizeFeature(
+                min: FeatureScalingFactors.Z_MEAN_MIN,
+                max: FeatureScalingFactors.Z_MEAN_MAX,
+                feature: Sigma.average(zAccelerations)!
+            )
+            let varZ = normalizeFeature(
+                min: FeatureScalingFactors.Z_VAR_MIN,
+                max: FeatureScalingFactors.Z_VAR_MAX,
+                feature: Sigma.varianceSample(zAccelerations)!
+            )
             
-            let meanZ = Sigma.average(zAccelerations)
-            let varZ = Sigma.varianceSample(zAccelerations)
+            let fsrMedian = normalizeFeature(
+                min: FeatureScalingFactors.FSR_MIN,
+                max: FeatureScalingFactors.FSR_MAX,
+                feature: Sigma.median(fsrMeasurements)!
+            )
             
-            let fsrMedian = Sigma.median(fsrMeasurements)
+            guard let modelOutput = try? model_random_forest.prediction(
+                fromFsr_med: fsrMedian,
+                x_mean: meanX,
+                y_mean: meanY,
+                z_mean: meanZ,
+                x_var: varX,
+                y_var: varY,
+                z_var: varZ
+            ) else {
+                debugPrint("unable to classify feature")
+                return
+            }
+            let isWalking = (modelOutput.is_walking == 1)
             
-            print(fsrMedian)
+            try self.db!.run(features!.insert(
+                self.xMean <- meanX,
+                self.yMean <- meanY,
+                self.zMean <- meanZ,
+                self.xVariance <- varX,
+                self.yVariance <- varY,
+                self.zVariance <- varZ,
+                self.medianFsr <- fsrMedian,
+                self.windowStart <- startTime,
+                self.windowEnd <- endTime,
+                self.isWalking <- isWalking
+            ))
+            debugPrint(isWalking)
+            
             
             
             startTime += GOYO_WINDOW_OVERLAP_MS
             endTime += GOYO_WINDOW_OVERLAP_MS
             
         }
+    }
+    
+    func normalizeFeature(min: Double, max: Double, feature: Double) -> Double {
+        return (feature - min) / (max - min)
     }
 
     override func didReceiveMemoryWarning() {
@@ -364,9 +411,6 @@ extension HomeViewController: ConnectionObserver {
     
     func connected(to peripheral: Peripheral) {
         print("Connected to Bluetooth")
-//        listenFromSerial()
-//        readFromSerial()
-//        writeToSerial()
     }
     
     func disconnected(from peripheral: Peripheral) {
