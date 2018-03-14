@@ -18,8 +18,6 @@ class ProfileViewController: UIViewController {
         image.clipsToBounds = true
         button.layer.borderWidth = 2
         button.layer.cornerRadius = 5
-        button.layer.borderColor = UIColor.green.cgColor
-        
     }
 
     override func didReceiveMemoryWarning() {

@@ -27,7 +27,7 @@ class HomeViewController: UIViewController {
     
     var classifiedData: [Double] = [0,0,1,1]
 
-    
+    var listeningToSerial = false
     var goal = 60.0 // to be provided
     var activityCompleted = 44.0 // to be provided
     
@@ -53,40 +53,10 @@ class HomeViewController: UIViewController {
             print("Did not connect.")
             return
         }
-        
+
         bluejay.register(observer: self)
         let peripheralIdentifier = self.peripheralIdentifier!
-        
-//        bluejay.scan(
-//            serviceIdentifiers: [serviceUUID],
-//            discovery: { [weak self] (discovery, discoveries) -> ScanAction in
-//                guard let weakSelf = self else {
-//                    return .stop
-//                }
-//
-//                weakSelf.peripherals = discoveries
-//                print(discoveries)
-//
-//                return .continue
-//            },
-//            stopped: { (discoveries, error) in
-//                if let error = error {
-//                    debugPrint("Scan stopped with error: \(error.localizedDescription)")
-//                }
-//                else {
-//                    debugPrint("Scan stopped without error.")
-//                }
-//        })
-//        bluejay.connect(peripheralIdentifier, timeout: .none) { (result) in
-//            switch result {
-//            case .success(let peripheral):
-//                debugPrint("Connection to \(peripheral.identifier) successful.")
-//            case .cancelled:
-//                debugPrint("Connection to \(peripheralIdentifier.uuid.uuidString) cancelled.")
-//            case .failure(let error):
-//                debugPrint("Connection to \(peripheralIdentifier.uuid.uuidString) failed with error: \(error.localizedDescription)")
-//            }
-//        }
+        print("registered")
         
         // application stuff
         dailyGoal.text = "Daily Goal: " + String(goal) + " minutes"
@@ -102,10 +72,10 @@ class HomeViewController: UIViewController {
             message.text = "Let's get going, you still have " + String(Int(activityLeft)) + " active minutes left."
         } else if (rating > 1.5 && rating < 4) {
             image.image = UIImage(named: "old-man-happy.png")
-            message.text = "Keep up the good work, you only have " + String(Int(activityLeft)) + " active minutes left."
+            message.text = "Keep up the good work, you have completed " + String(Int(activityCompleted)) + " minutes"
         } else if (rating >= 4 && rating < 5){
             image.image = UIImage(named: "old-man-very-happy.png")
-            message.text = "You're ALMOST there, only " + String(Int(activityLeft)) + " active minutes left."
+            message.text = "You're ALMOST there, you have completed" + String(Int(activityCompleted)) + " minutes."
         } else if (rating == 5) {
             image.image = UIImage(named: "old-man-very-happy.png")
             message.text = "Congratulations on the 5 stars, you have reached your daily activity goal."
@@ -138,13 +108,13 @@ class HomeViewController: UIViewController {
 //        readFromSerial()
         syncData.addTarget(self, action: #selector(HomeViewController.syncButtonTapped), for: .touchUpInside)
     }
-    
+
     @objc func syncButtonTapped() {
         writeToSerial()
     }
-    
+
     func readFromSerial() {
-        
+
         guard let bluejay = bluejay else {
             print("unable to read.")
             return
@@ -170,9 +140,9 @@ class HomeViewController: UIViewController {
             }
         }
     }
-    
+
     func writeToSerial() {
-        
+
         guard let bluejay = bluejay else {
             print("unable to write.")
             return
@@ -182,10 +152,8 @@ class HomeViewController: UIViewController {
         let characteristicUUID = CharacteristicIdentifier(uuid: bean_scratch_uuid, service: serviceUUID)
 
         print("char ID: " + String(describing: characteristicUUID))
-        
-        let hex = "ABC".unicodeScalars.filter { $0.isASCII }.map { String(format: "%X", $0.value) }.joined()
-        
-        bluejay.write(to: characteristicUUID, value: hex, type: CBCharacteristicWriteType.withoutResponse, completion: { [weak self]  (result) in
+
+        bluejay.write(to: characteristicUUID, value: "d", type: CBCharacteristicWriteType.withoutResponse, completion: { [weak self]  (result) in
             guard let weakSelf = self else {
                 return
             }
@@ -199,17 +167,20 @@ class HomeViewController: UIViewController {
             }
         })
     }
-    
+
     func listenFromSerial() {
-        
+        print("In listen function")
+        if listeningToSerial {
+            return
+        }
         guard let bluejay = bluejay else {
             print("unable to listen.")
             return
         }
-        
+
         let bean_scratch_uuid = "FFE1"
         let characteristicUUID = CharacteristicIdentifier(uuid: bean_scratch_uuid, service: serviceUUID)
-        
+
         bluejay.listen(to: characteristicUUID) { [weak self] (result: ReadResult<RawMeasurement>) in
             guard let weakSelf = self else {
                 return
@@ -217,19 +188,18 @@ class HomeViewController: UIViewController {
 
             switch result {
             case .success(let dataResult):
-                let deserializedData = try Data(serializedData: dataResult)
-                debugPrint(dataResult)
-                .continue
+                debugPrint(dataResult.fsr)
+                weakSelf.listeningToSerial = true
             case .cancelled:
-                debugPrint("Cancelled listen to heart rate measurement.")
-                weakSelf.isMonitoringHeartRate = false
+                debugPrint("Cancelled listen to goyo.")
+//                weakSelf.isMonitoringHeartRate = false
             case .failure(let error):
-                debugPrint("Failed to listen to heart rate measurement with error: \(error.localizedDescription)")
-                weakSelf.isMonitoringHeartRate = false
+                debugPrint("Failed to listen to goyo with error: \(error.localizedDescription)")
+//                weakSelf.isMonitoringHeartRate = false
             }
         }
     }
-    
+
 //    func scanSensors() {
 //        bluejay.scan(
 //            serviceIdentifiers: [serviceUUID],
@@ -252,7 +222,7 @@ class HomeViewController: UIViewController {
 //                }
 //        })
 //    }
-    
+
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -265,6 +235,7 @@ extension HomeViewController: ConnectionObserver {
     
     func connected(to peripheral: Peripheral) {
         print("Connected to Bluetooth")
+        listenFromSerial()
 //        readFromSerial()
 //        writeToSerial()
     }
