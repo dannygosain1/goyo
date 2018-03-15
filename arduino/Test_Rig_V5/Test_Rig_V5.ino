@@ -78,7 +78,6 @@
 // GLOBAL CONSTANTS
 //
   // General
-  #define DEBOUNCE_TIME 2000
   #define BLINK_TIME 500
 
   // Debug Mode
@@ -97,8 +96,6 @@
   // Bluetooth
   #define BT_ENABLED true
   #define BAUD 57600
-  #define BT_RX 0
-  #define BT_TX 1
   #define DATA_LENGTH 4
 
   // FSR
@@ -129,7 +126,6 @@
 
   // SD Pins
   #define SD_CHIP_SELECT 10
-  #define FILE_BASE_NAME "Data" //Must be six characters or less
 
   // Errors
   #define ERR_UNCAUGHT 1
@@ -139,10 +135,8 @@
   #define ERR_ACC_DMP_FAILURE 5
   #define ERR_ACC_OTHER 6
   #define ERR_SD_INIT_FAILURE 7
-  #define ERR_SD_FILENAME_TO_LONG 8
   #define ERR_SD_OPEN_FILE 9
   #define ERR_SD_CANT_CREATE_FILENAME 10
-  #define ERR_SD_DATA_NOT_FORCED 11
   #define ERR_SD_OTHER 12
 
 //
@@ -163,7 +157,7 @@
 
   // Bluetooth Funtions
   void dumpData(int32_t* data);
-  void dumpFile(char * filename);
+  void dumpFile();
   
 
 //
@@ -196,9 +190,9 @@
   int fsrReading = 0;
   int32_t tmp_data[DATA_LENGTH] = {1,2,3,4};
   char read_serial = ' ';
+  char filename[14];
   
   // Record Status
-  volatile bool recording = false;
   volatile bool recordingStateChange = false;
 
   // SD
@@ -221,7 +215,6 @@
   };
 
 void setup() {
-
   // SETUP SERIAL
   if(BT_ENABLED || DEBUG_ENABLED){
     Serial.begin(BAUD);
@@ -284,8 +277,7 @@ void setup() {
     Serial.println("Done setting up Bluetooth encoding");
   }
 
-  recording = false;
-  recordingStateChange = false;
+  recordingStateChange = true;
 
   digitalWrite(RED_LED,LOW);
   digitalWrite(GREEN_LED,LOW);
@@ -322,7 +314,24 @@ void loop() {
     return;
   }
 
-  if(recording && recordingStateChange){
+  if (Serial.available()){
+    read_serial = Serial.read(); 
+    if (String(read_serial).equals("d")) {
+      // For debug
+      ACC.resetFIFO();
+      doneLogFile();
+      recordingStateChange = true;
+      detachInterrupt(digitalPinToInterrupt(ACC_INTERRUPT));
+      dumpFile();
+      attachInterrupt(digitalPinToInterrupt(ACC_INTERRUPT), accDumpReady, RISING);
+    } else if (String(read_serial).equals("m")) {
+      detachInterrupt(digitalPinToInterrupt(ACC_INTERRUPT));
+      Serial.println(millis()); 
+      attachInterrupt(digitalPinToInterrupt(ACC_INTERRUPT), accDumpReady, RISING);
+    }
+  } 
+
+  if(recordingStateChange){
     //First Run of Recording  
     digitalWrite(RED_LED,LOW);
     digitalWrite(GREEN_LED,HIGH);
@@ -330,28 +339,15 @@ void loop() {
     setupLogFile();
     recordingStateChange = false;
     
-  } else if(!recording && recordingStateChange){
-    // Just finished Recording
-    digitalWrite(RED_LED,HIGH);
-    digitalWrite(GREEN_LED,LOW);
-    ACC.resetFIFO();
-    doneLogFile();
-        
-  } else if(recording){
+  } else {
     // Recording
     if(millis() - SAMPLE_INTERVAL >= lastSerialTime){
-      
       getAccData();
-      
       logData();
       lastSerialTime = millis() - 7;
       
-    }
-    
-  } else {
-     // Not Recording no Error
+    }   
   }
-
 }
 
 // Function to write debug line to Serial
@@ -367,58 +363,40 @@ void setupSD() {
 }
 
 void setupLogFile() {
-  if(!recording || error != 0){
+  if(error != 0){
     return;
   }
+  
+  String strfile = String(millis());
+  strfile.concat(".csv");
+  strfile.toCharArray(filename, 14);
 
-  const uint8_t BASE_NAME_SIZE = sizeof(FILE_BASE_NAME) - 1;
-  char fileName[13] = FILE_BASE_NAME "00.csv";
-
-  // Find an unused file name.
-  if (BASE_NAME_SIZE > 6) {
-    error = ERR_SD_FILENAME_TO_LONG;
+  if (sd.exists(filename)) {
+     error = ERR_SD_CANT_CREATE_FILENAME; 
   }
-  while (sd.exists(fileName)) {
-    if (fileName[BASE_NAME_SIZE + 1] != '9') {
-      fileName[BASE_NAME_SIZE + 1]++;
-    } else if (fileName[BASE_NAME_SIZE] != '9') {
-      fileName[BASE_NAME_SIZE + 1] = '0';
-      fileName[BASE_NAME_SIZE]++;
-    } else {
-      error = ERR_SD_CANT_CREATE_FILENAME;
-    }
-  }
-  if (!file.open(fileName, O_CREAT | O_WRITE | O_EXCL)) {
+  
+  if (!file.open(filename, O_CREAT | O_WRITE | O_EXCL)) {
     error = ERR_SD_OPEN_FILE;
   }
 
   Serial.print(F("Logging to: "));
-  Serial.println(fileName);
-
-  writeHeader();
+  Serial.println(filename);
 }
 
 
-// Write data header.
-void writeHeader() {
-
-  String headerString = "timestamp,is_walking,fsr,x_acc,y_acc,z_acc";
-  
-}
 
 // Log a single data record to the SD Card via Preestablished File Details
 void logData() {
 
-  long curTime = millis();
   int afsr = analogRead(FSR);
-  String entry = String(afsr) + DELIMITER + String(AccX) + DELIMITER + String(AccY) + DELIMITER + String(AccZ);
-
+  String entry = String(afsr) + DELIMITER + String(int(AccX*100)) + DELIMITER + String(int(AccY*100)) + DELIMITER + String(int(AccZ*100));
+  file.println(entry);
 }
 
 void doneLogFile(){
   file.close();
-  Serial.println(F("Done Recording"));
 }
+
 
 // Function to setup MPU6050 and test connection
 void setupMPU6050(){
@@ -501,7 +479,7 @@ void getAccData(){
         
         AccX = gravityt->x;
         AccY = gravityt->y;
-        AccZ = gravityt->z;
+        AccZ = gravityt->z;   
     }
 }
 
@@ -518,7 +496,7 @@ void dumpData(int32_t* data) {
 }
 
 // Function to dump a file filled with data given it's name
-void dumpFile(char * filename) {
+void dumpFile() {
   const int line_buffer_size = 18;
   char buffer[line_buffer_size];
   ifstream sdin(filename);
@@ -542,7 +520,6 @@ void dumpFile(char * filename) {
       tmp_data[2] = (int32_t)buf.substring(ci2+1, ci3).toInt();
       tmp_data[3] = (int32_t)buf.substring(ci3+1).toInt();
       dumpData(tmp_data);
-//      Serial.println(buf);
       delay(10);
     }
   }
