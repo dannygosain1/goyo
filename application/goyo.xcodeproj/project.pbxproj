@@ -341,7 +341,7 @@
 				TargetAttributes = {
 					EE0954A61B97DDE0007F6964 = {
 						CreatedOnToolsVersion = 6.4;
-						DevelopmentTeam = J69AYYZCP8;
+						DevelopmentTeam = 5C4Y4QMK66;
 						LastSwiftMigration = 0900;
 						SystemCapabilities = {
 							com.apple.BackgroundModes = {
@@ -691,11 +691,11 @@
 			baseConfigurationReference = B70E68100FD55C6694239530 /* Pods-FSCalendarSwiftExample.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = J69AYYZCP8;
+				DEVELOPMENT_TEAM = 5C4Y4QMK66;
 				INFOPLIST_FILE = "$(SRCROOT)/FSCalendarSwiftExample/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = corywelch.goyo;
+				PRODUCT_BUNDLE_IDENTIFIER = dannygosain.goyo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "FSCalendarSwiftExample/Objc-Bridge-Header.h";
 				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
@@ -709,11 +709,11 @@
 			baseConfigurationReference = E053AA58E8A75F069B6E7741 /* Pods-FSCalendarSwiftExample.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = J69AYYZCP8;
+				DEVELOPMENT_TEAM = 5C4Y4QMK66;
 				INFOPLIST_FILE = "$(SRCROOT)/FSCalendarSwiftExample/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = corywelch.goyo;
+				PRODUCT_BUNDLE_IDENTIFIER = dannygosain.goyo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "FSCalendarSwiftExample/Objc-Bridge-Header.h";
 				SWIFT_SWIFT3_OBJC_INFERENCE = Default;

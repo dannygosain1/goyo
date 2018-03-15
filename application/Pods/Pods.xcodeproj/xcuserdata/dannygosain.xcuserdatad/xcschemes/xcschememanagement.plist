@@ -39,6 +39,11 @@
 			<key>orderHint</key>
 			<integer>4</integer>
 		</dict>
+		<key>SigmaSwiftStatistics.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>7</integer>
+		</dict>
 		<key>SwiftProtobuf.xcscheme</key>
 		<dict>
 			<key>isShown</key>
