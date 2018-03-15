@@ -207,7 +207,7 @@ class HomeViewController: UIViewController {
 
         print("char ID: " + String(describing: characteristicUUID))
 
-        bluejay.write(to: characteristicUUID, value: "f", type: CBCharacteristicWriteType.withoutResponse, completion: { [weak self]  (result) in
+        bluejay.write(to: characteristicUUID, value: "d", type: CBCharacteristicWriteType.withoutResponse, completion: { [weak self]  (result) in
             guard let weakSelf = self else {
                 return
             }
