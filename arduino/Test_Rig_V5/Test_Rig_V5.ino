@@ -162,7 +162,7 @@
 
   // Bluetooth Funtions
   void dumpData(int32_t* data);
-  void dumpFile(char * filename);
+  void dumpFile();
   
 
 //
@@ -322,6 +322,22 @@ void loop() {
     return;
   }
 
+  if (Serial.available()){
+    read_serial = Serial.read(); 
+    if (String(read_serial).equals("d")) {
+      cli();
+      ACC.resetFIFO();
+      doneLogFile();
+      recordingStateChange = true;
+      dumpFile();
+      sei();
+    } else if (String(read_serial).equals("m")) {
+      cli();
+      Serial.println(millis()); 
+      sei();
+    }
+  } 
+
   if(recording && recordingStateChange){
     //First Run of Recording  
     digitalWrite(RED_LED,LOW);
@@ -330,13 +346,6 @@ void loop() {
     setupLogFile();
     recordingStateChange = false;
     
-  } else if(!recording && recordingStateChange){
-    // Just finished Recording
-    digitalWrite(RED_LED,HIGH);
-    digitalWrite(GREEN_LED,LOW);
-    ACC.resetFIFO();
-    doneLogFile();
-        
   } else if(recording){
     // Recording
     if(millis() - SAMPLE_INTERVAL >= lastSerialTime){
@@ -374,6 +383,10 @@ void setupLogFile() {
   String strfile = String(millis());
   strfile.concat(".csv");
   strfile.toCharArray(filename, 14);
+
+  if (sd.exists(filename)) {
+    error = ERR_SD_CANT_CREATE_FILENAME; 
+  }
   
   if (!file.open(filename, O_CREAT | O_WRITE | O_EXCL)) {
     error = ERR_SD_OPEN_FILE;
@@ -381,7 +394,6 @@ void setupLogFile() {
 
   Serial.print(F("Logging to: "));
   Serial.println(filename);
-
 }
 
 
@@ -389,15 +401,13 @@ void setupLogFile() {
 // Log a single data record to the SD Card via Preestablished File Details
 void logData() {
 
-  long curTime = millis();
   int afsr = analogRead(FSR);
-  String entry = String(afsr) + DELIMITER + String(AccX) + DELIMITER + String(AccY) + DELIMITER + String(AccZ);
+  String entry = String(afsr) + DELIMITER + String(AccX*100) + DELIMITER + String(AccY*100) + DELIMITER + String(AccZ*100);
 
 }
 
 void doneLogFile(){
   file.close();
-  Serial.println(F("Done Recording"));
 }
 
 // Function to setup MPU6050 and test connection
@@ -498,7 +508,7 @@ void dumpData(int32_t* data) {
 }
 
 // Function to dump a file filled with data given it's name
-void dumpFile(char * filename) {
+void dumpFile() {
   const int line_buffer_size = 18;
   char buffer[line_buffer_size];
   ifstream sdin(filename);
