@@ -29,7 +29,7 @@ class HomeViewController: UIViewController {
     var classifiedData: [Double] = [0,0,1,1]
 
     var listeningToSerial = false
-    var goal = 5.0 // to be provided
+    var goal = 6000.0 // to be provided
     var activityCompleted = 0.0 // to be provided
     
     let model_random_forest = random_forest()
@@ -56,6 +56,7 @@ class HomeViewController: UIViewController {
     
     //midnight
     var midnight: Int64 = 0
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -376,19 +377,19 @@ class HomeViewController: UIViewController {
         
         
         if (rating <= 1.5) {
-            image.image = UIImage(named: "old-man-sad.png")
+            image.image = UIImage(named: "sad-emoji.png")
             message.text = "Let's get going, you still have " + String(Int(activityLeft)) + " active minutes left."
         } else if (rating > 1.5 && rating < 4) {
-            image.image = UIImage(named: "old-man-happy.png")
+            image.image = UIImage(named: "happy-emoji.png")
             message.text = "Keep up the good work, you have completed " + String(Int(activityCompleted)) + " minutes"
         } else if (rating >= 4 && rating < 5){
-            image.image = UIImage(named: "old-man-very-happy.png")
-            message.text = "You're ALMOST there, you have completed" + String(Int(activityCompleted)) + " minutes."
+            image.image = UIImage(named: "very-happy-emoji.png")
+            message.text = "You're ALMOST there, you have completed " + String(Int(activityCompleted)) + " minutes."
         } else if (rating >= 5) {
-            image.image = UIImage(named: "old-man-very-happy.png")
+            image.image = UIImage(named: "very-happy-emoji.png")
             message.text = "Congratulations, you have reached your daily activity goal!"
         } else {
-            image.image = UIImage(named: "old-man-happy.png")
+            image.image = UIImage(named: "happy-emoji.png")
             message.text = " "
         }
         

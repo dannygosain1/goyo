@@ -12,6 +12,8 @@ import Charts
 
 class CalendarViewController: UIViewController, FSCalendarDataSource, FSCalendarDelegate, FSCalendarDelegateAppearance {
     
+    @IBOutlet weak var label: UILabel!
+    
     fileprivate weak var calendar: FSCalendar!
     
     fileprivate let gregorian: Calendar = Calendar(identifier: .gregorian)
@@ -27,18 +29,28 @@ class CalendarViewController: UIViewController, FSCalendarDataSource, FSCalendar
     }()
     
     // need the date variables (year, month, day, activity(bool))
-    let activityCompleted = ["2018/02/28": UIColor.green, "2018/03/01": UIColor.green,"2018/03/02": UIColor.green,"2018/03/04": UIColor.green, "2018/03/05": UIColor.green]
+//    let activityCompleted = ["2018/02/28": UIColor(red:18/255,green:135/255,blue:57/255,alpha:1.0), "2018/03/01": UIColor(red:18/255,green:135/255,blue:57/255,alpha:1.0),"2018/03/02": UIColor(red:18/255,green:135/255,blue:57/255,alpha:1.0),"2018/03/04": UIColor(red:18/255,green:135/255,blue:57/255,alpha:1.0), "2018/03/05": UIColor(red:18/255,green:135/255,blue:57/255,alpha:1.0)]
+//
+//    let activityNotCompleted = ["2018/02/27": UIColor.black, "2018/03/03": UIColor.black, "2018/03/06": UIColor.black]
     
-    let activityNotCompleted = ["2018/02/27": UIColor.red, "2018/03/03": UIColor.red, "2018/03/06": UIColor.red]
+    let fillSelectionColors = ["2018/02/28": UIColor(red:35/255,green:209/255,blue:93/255,alpha:1.0), "2018/03/01": UIColor(red:35/255,green:209/255,blue:93/255,alpha:1.0),"2018/03/02": UIColor(red:35/255,green:209/255,blue:93/255,alpha:1.0),"2018/03/04": UIColor(red:35/255,green:209/255,blue:93/255,alpha:1.0), "2018/03/05": UIColor(red:35/255,green:209/255,blue:93/255,alpha:1.0),"2018/03/07": UIColor(red:35/255,green:209/255,blue:93/255,alpha:1.0),"2018/03/10": UIColor(red:35/255,green:209/255,blue:93/255,alpha:1.0),"2018/03/13": UIColor(red:35/255,green:209/255,blue:93/255,alpha:1.0),"2018/03/14": UIColor(red:35/255,green:209/255,blue:93/255,alpha:1.0)] // activityCompleted
+    
+    let fillDefaultColors = ["2018/02/28": UIColor(red:35/255,green:209/255,blue:93/255,alpha:1.0), "2018/03/01": UIColor(red:35/255,green:209/255,blue:93/255,alpha:1.0),"2018/03/02": UIColor(red:35/255,green:209/255,blue:93/255,alpha:1.0),"2018/03/04": UIColor(red:35/255,green:209/255,blue:93/255,alpha:1.0), "2018/03/05": UIColor(red:35/255,green:209/255,blue:93/255,alpha:1.0),"2018/03/07": UIColor(red:35/255,green:209/255,blue:93/255,alpha:1.0),"2018/03/10": UIColor(red:35/255,green:209/255,blue:93/255,alpha:1.0),"2018/03/13": UIColor(red:35/255,green:209/255,blue:93/255,alpha:1.0),"2018/03/14": UIColor(red:35/255,green:209/255,blue:93/255,alpha:1.0)] // activityCompleted
+    
+    let borderDefaultColors = ["2018/02/27": UIColor.black, "2018/03/03": UIColor.black, "2018/03/06": UIColor.black,"2018/03/09": UIColor.black,"2018/03/11": UIColor.black,"2018/03/12": UIColor.black] // activityNotCompleted
+    
+    let borderSelectionColors = ["2018/02/27": UIColor.black, "2018/03/03": UIColor.black, "2018/03/06": UIColor.black,"2018/03/09": UIColor.black,"2018/03/11": UIColor.black,"2018/03/12": UIColor.black, "2018/03/08": UIColor.black] // activityNotCompleted
+    
     
     override func loadView() {
-
-        let view = UIView(frame: UIScreen.main.bounds)
+//        let view = UIView(frame: UIScreen.main.bounds)
+        let rect = CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: 250)
+        let view = UIView(frame: rect)
         view.backgroundColor = UIColor.white
         self.view = view
 
         let height: CGFloat = UIDevice.current.model.hasPrefix("iPad") ? 450 : 300
-        let calendar = FSCalendar(frame: CGRect(x:0, y:64, width:self.view.bounds.size.width, height:height))
+        let calendar = FSCalendar(frame: CGRect(x:0, y:0, width:self.view.bounds.size.width, height:height))
         calendar.dataSource = self
         calendar.delegate = self
         calendar.allowsMultipleSelection = false
@@ -71,6 +83,38 @@ class CalendarViewController: UIViewController, FSCalendarDataSource, FSCalendar
         return 0
     }
     
+    func calendar(_ calendar: FSCalendar, appearance: FSCalendarAppearance, fillSelectionColorFor date: Date) -> UIColor? {
+        let key = self.dateFormatter1.string(from: date)
+        if let color = self.fillSelectionColors[key] {
+            return color
+        }
+        return appearance.selectionColor
+    }
+    
+    func calendar(_ calendar: FSCalendar, appearance: FSCalendarAppearance, fillDefaultColorFor date: Date) -> UIColor? {
+        let key = self.dateFormatter1.string(from: date)
+        if let color = self.fillDefaultColors[key] {
+            return color
+        }
+        return nil
+    }
+    
+    func calendar(_ calendar: FSCalendar, appearance: FSCalendarAppearance, borderDefaultColorFor date: Date) -> UIColor? {
+        let key = self.dateFormatter1.string(from: date)
+        if let color = self.borderDefaultColors[key] {
+            return color
+        }
+        return appearance.borderDefaultColor
+    }
+    
+    func calendar(_ calendar: FSCalendar, appearance: FSCalendarAppearance, borderSelectionColorFor date: Date) -> UIColor? {
+        let key = self.dateFormatter1.string(from: date)
+        if let color = self.borderSelectionColors[key] {
+            return color
+        }
+        return appearance.borderSelectionColor
+    }
+    
 //    func calendar(_ calendar: FSCalendar, appearance: FSCalendarAppearance, eventColorFor date: Date) -> UIColor? {
 //        let dateString = self.dateFormatter2.string(from: date)
 //        if self.activityCompleted.contains(dateString) {
@@ -87,16 +131,32 @@ class CalendarViewController: UIViewController, FSCalendarDataSource, FSCalendar
 //        return nil
 //    }
     
-    func calendar(_ calendar: FSCalendar, appearance: FSCalendarAppearance, borderDefaultColorFor date: Date) -> UIColor? {
-        let key = self.dateFormatter1.string(from: date)
-        if let color = self.activityCompleted[key] {
-            return color
-        }
-        if let color = self.activityNotCompleted[key] {
-            return color
-        }
-        return appearance.borderDefaultColor
-    }
+//    func calendar(_ calendar: FSCalendar, appearance: FSCalendarAppearance, borderDefaultColorFor date: Date) -> UIColor? {
+//        let key = self.dateFormatter1.string(from: date)
+//        if let color = self.activityCompleted[key] {
+//            return color
+//        }
+//        if let color = self.activityNotCompleted[key] {
+//            return color
+//        }
+//        return appearance.borderDefaultColor
+//    }
+    
+//    func calendar(_ calendar: FSCalendar, appearance: FSCalendarAppearance, borderSelectionColorFor date: Date) -> UIColor? {
+//        let key = self.dateFormatter1.string(from: date)
+//        if let color = self.borderSelectionColors[key] {
+//            return color
+//        }
+//        return appearance.borderSelectionColor
+//    }
+//
+//    func calendar(_ calendar: FSCalendar, appearance: FSCalendarAppearance, fillSelectionColorFor date: Date) -> UIColor? {
+//        let key = self.dateFormatter1.string(from: date)
+//        if let color = self.fillSelectionColors[key] {
+//            return color
+//        }
+//        return appearance.selectionColor
+//    }
     
     
     func calendar(_ calendar: FSCalendar, appearance: FSCalendarAppearance, borderRadiusFor date: Date) -> CGFloat {

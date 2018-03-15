@@ -20,8 +20,8 @@ class DashboardViewController: UIViewController, ChartViewDelegate {
     
     @IBOutlet weak var todayPieView: PieChartView!
     
-    var goal = 5.0
-    var activityCompleted = 44.0
+    var goal = 6000.0
+    var activityCompleted = 0.0
     
     //midnight
     var midnight: Int64 = 0
@@ -48,18 +48,30 @@ class DashboardViewController: UIViewController, ChartViewDelegate {
         // getting the last 10 days
         let cal = Calendar.current
         var date = cal.startOfDay(for: Date())
-        var tempDays = [String]()
+        var tempWeekdays = [String]()
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "EE"
+        
+//        let date = NSDate()
+//        let dateFormatter = NSDateFormatter()
+//        dateFormatter.dateFormat  = "EEEE"//"EE" to get short style
+//        let dayInWeek = dateFormatter.stringFromDate(date)
+        
         for i in 1 ... 7 {
-            let day = cal.component(.day, from: date)
-            let month = cal.component(.month, from: date)
+//            let day = cal.component(.day, from: date)
+//            let month = cal.component(.month, from: date)
+//            let weekday = cal.component(.weekday, from: date)
+            let dayInWeek = dateFormatter.string(from: date)
 //            tempDays.append(String(month) + "/" + String(day))
-//            date = cal.date(byAdding: .day, value: -1, to: date)!
+            tempWeekdays.append(dayInWeek)
+            date = cal.date(byAdding: .day, value: -1, to: date)!
         }
+        print(tempWeekdays)
         
         // setting up mock data for bar chart
         
-        days = tempDays.reversed()
-        let active = [20.0, 44.0, 66.0, 33.0, 52.0, 36.0, 41.0, 48.0, 60.0, 55.0] // to be provided
+        days = tempWeekdays.reversed()
+        let active = [20.0, 44.0, 66.0, 52.0, 48.0, 60.0, 55.0] // to be provided
         
         setBarChart(dataPoints: days, values: active)
         
