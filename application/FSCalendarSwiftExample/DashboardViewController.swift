@@ -8,6 +8,7 @@
 
 import UIKit
 import Charts
+import SQLite
 
 class DashboardViewController: UIViewController, ChartViewDelegate {
     
@@ -19,17 +20,28 @@ class DashboardViewController: UIViewController, ChartViewDelegate {
     
     @IBOutlet weak var todayPieView: PieChartView!
     
-    var goal = 60.0
-    var completedMinutes = 44.0
+    var goal = 5.0
+    var activityCompleted = 44.0
     
+    //midnight
+    var midnight: Int64 = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        var remainingMinutes = goal - completedMinutes
+        
+        // getting date components
+        //For Start Date
+        var calendar = NSCalendar.current
+        calendar.timeZone = NSTimeZone.local //OR NSTimeZone.localTimeZone()
+        let dateAtMidnight = calendar.startOfDay(for: NSDate() as Date)
+        self.midnight = Int64(NSInteger(dateAtMidnight.timeIntervalSince1970) * 1000)
+        
+        
+        var remainingMinutes = goal - activityCompleted
         
         // setting up mock data for pie chart
         let dataHeader = ["Completed", "Remaining"] // Headers for Legend if needed
-        let activeMinutes = [completedMinutes, remainingMinutes]
+        let activeMinutes = [activityCompleted, remainingMinutes]
         //        let activeMinutes = [String(completedMinutes) + " minutes completed", String(remainingMinutes) + "minutes remaining"] // enter values to appear on the graph,
         setPieChart(dataPoints: dataHeader, values: activeMinutes)
         
@@ -37,11 +49,11 @@ class DashboardViewController: UIViewController, ChartViewDelegate {
         let cal = Calendar.current
         var date = cal.startOfDay(for: Date())
         var tempDays = [String]()
-        for i in 1 ... 10 {
+        for i in 1 ... 7 {
             let day = cal.component(.day, from: date)
             let month = cal.component(.month, from: date)
-            tempDays.append(String(month) + "/" + String(day))
-            date = cal.date(byAdding: .day, value: -1, to: date)!
+//            tempDays.append(String(month) + "/" + String(day))
+//            date = cal.date(byAdding: .day, value: -1, to: date)!
         }
         
         // setting up mock data for bar chart
@@ -53,9 +65,33 @@ class DashboardViewController: UIViewController, ChartViewDelegate {
         
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        do {
+         try updateUI()
+        } catch {
+            print("error updating pie chart")
+        }
+    }
+    
+    func updateUI() throws {
+        print("updating UI now")
+        var activeRowQuery = try GoYoDB.instance.results!
+            .filter(GoYoDB.instance.frameStartTime >= self.midnight)
+        
+        let count = try GoYoDB.instance.db!.scalar(activeRowQuery.count)
+        print(count)
+        self.activityCompleted = Double(count)
+        let dataHeader = ["Completed", "Remaining"]
+        let remainingMinutes = goal - self.activityCompleted <= 0 ? 0 : goal - self.activityCompleted
+        let activeMinutes = [self.activityCompleted, remainingMinutes]
+        self.setPieChart(dataPoints: dataHeader, values: activeMinutes)
+    }
+    
+    
     func setPieChart(dataPoints: [String], values: [Double]) {
         
-        var remainingMinutes = goal - completedMinutes
+        var remainingMinutes = goal - activityCompleted
         var dataEntries: [ChartDataEntry] = []
         
         for i in 0..<dataPoints.count {
@@ -78,7 +114,7 @@ class DashboardViewController: UIViewController, ChartViewDelegate {
         
         pieChartDataSet.colors = colors
         
-        let percentCompletedBeforeTruncate = String(round(completedMinutes/goal * 100))
+        let percentCompletedBeforeTruncate = String(round(activityCompleted/goal * 100))
         let endIndex = percentCompletedBeforeTruncate.index(percentCompletedBeforeTruncate.endIndex, offsetBy: -2)
         let percentCompleted = percentCompletedBeforeTruncate.substring(to: endIndex) + "% Completed"
         
@@ -86,7 +122,7 @@ class DashboardViewController: UIViewController, ChartViewDelegate {
         // chart characteristics
         todayPieView.data = pieChartData
         todayPieView.chartDescription?.text = ""
-        todayPieView.centerAttributedText = NSMutableAttributedString(string: percentCompleted, attributes: [NSAttributedStringKey.foregroundColor:completedColor, NSAttributedStringKey.font: UIFont(name: "HelveticaNeue-Light", size:16)!])
+        todayPieView.centerAttributedText = NSMutableAttributedString(string: percentCompleted, attributes: [NSAttributedStringKey.foregroundColor:completedColor, NSAttributedStringKey.font: UIFont(name: "HelveticaNeue-Light", size:14)!])
         todayPieView.legend.enabled = false
         todayPieView.data?.setValueTextColor(UIColor.clear)
         

@@ -29,8 +29,8 @@ class HomeViewController: UIViewController {
     var classifiedData: [Double] = [0,0,1,1]
 
     var listeningToSerial = false
-    var goal = 60.0 // to be provided
-    var activityCompleted = 44.0 // to be provided
+    var goal = 5.0 // to be provided
+    var activityCompleted = 0.0 // to be provided
     
     let model_random_forest = random_forest()
     let model_svm = svm()
@@ -40,43 +40,31 @@ class HomeViewController: UIViewController {
 //
 //        }
 //    }
-    let GOYO_SAMPLING_RATE_HZ = 50
+    let GOYO_SAMPLING_RATE_HZ: Int64 = 50
     let GOYO_WINDOW_SIZE_MS: Int64 = 2000
     let GOYO_WINDOW_OVERLAP_MS: Int64 = 1000
     
     // bluejay stuff
     weak var bluejay: Bluejay?
     var peripheralIdentifier: PeripheralIdentifier?
-    
-    var db: Connection?
-    
-    //raw data table
-    var raw_data: Table?
-    let xAcc = Expression<Double>("x_acc")
-    let yAcc = Expression<Double>("y_acc")
-    let zAcc = Expression<Double>("z_acc")
-    var timestamp = Expression<Int64>("timestamp")
-    let fsr = Expression<Int64>("fsr")
     var recordedMillis: Int32 = 0
     
     //Intermediary information
     var goyoStartTime: Int64 = 0
     var goyoEndTime: Int64 = 0
     
-    var features: Table?
-    let xMean = Expression<Double>("x_mean")
-    let yMean = Expression<Double>("y_mean")
-    let zMean = Expression<Double>("z_mean")
-    let xVariance = Expression<Double>("x_var")
-    let yVariance = Expression<Double>("y_var")
-    let zVariance = Expression<Double>("z_var")
-    let isWalking = Expression<Bool>("is_walking")
-    let windowStart = Expression<Int64>("window_start")
-    let windowEnd = Expression<Int64>("window_end")
-    let medianFsr = Expression<Double>("median_fsr")
     
+    //midnight
+    var midnight: Int64 = 0
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        // getting date components
+        //For Start Date
+        var calendar = NSCalendar.current
+        calendar.timeZone = NSTimeZone.local //OR NSTimeZone.localTimeZone()
+        let dateAtMidnight = calendar.startOfDay(for: NSDate() as Date)
+        self.midnight = Int64(NSInteger(dateAtMidnight.timeIntervalSince1970) * 1000)
         
         // bluetooth stuff
         guard let bluejay = bluejay else {
@@ -87,71 +75,8 @@ class HomeViewController: UIViewController {
         bluejay.register(observer: self)
         let peripheralIdentifier = self.peripheralIdentifier!
         print("registered")
-        do {
-            let path = NSSearchPathForDirectoriesInDomains(
-                .documentDirectory, .userDomainMask, true
-                ).first!
-            
-            db = try Connection("\(path)/goyo.sqlite3")
-            raw_data = Table("raw_data")
-            
-            try db!.run(raw_data!.drop(ifExists: true)) // TODO: Delete in prod
-            
-            try db!.run(raw_data!.create(ifNotExists: true) { t in
-                t.column(xAcc)
-                t.column(yAcc)
-                t.column(zAcc)
-                t.column(fsr)
-                t.column(timestamp)
-            })
-            
-            features = Table("features")
-            try db!.run(features!.create(ifNotExists: true) { t in
-                t.column(xMean)
-                t.column(yMean)
-                t.column(zMean)
-                t.column(xVariance)
-                t.column(yVariance)
-                t.column(zVariance)
-                t.column(medianFsr)
-                t.column(isWalking)
-                t.column(windowStart)
-                t.column(windowEnd)
-            })
-        } catch {
-            fatalError("unable to create db")
-        }
         
-        // application stuff
-        dailyGoal.text = "Daily Goal: " + String(goal) + " minutes"
-        
-        let rating = activityCompleted/goal * 5.0 // type double
-        let activityLeft = goal - activityCompleted
-        
-        dailyGoal.text = "Daily Goal: " + String(Int(goal)) + " active minutes"
-        
-        
-        if (rating <= 1.5) {
-            image.image = UIImage(named: "old-man-sad.png")
-            message.text = "Let's get going, you still have " + String(Int(activityLeft)) + " active minutes left."
-        } else if (rating > 1.5 && rating < 4) {
-            image.image = UIImage(named: "old-man-happy.png")
-            message.text = "Keep up the good work, you have completed " + String(Int(activityCompleted)) + " minutes"
-        } else if (rating >= 4 && rating < 5){
-            image.image = UIImage(named: "old-man-very-happy.png")
-            message.text = "You're ALMOST there, you have completed" + String(Int(activityCompleted)) + " minutes."
-        } else if (rating == 5) {
-            image.image = UIImage(named: "old-man-very-happy.png")
-            message.text = "Congratulations on the 5 stars, you have reached your daily activity goal."
-        } else {
-            image.image = UIImage(named: "old-man-happy.png")
-            message.text = " "
-        }
-        
-        starCosmos.rating = rating
-        starCosmos.settings.updateOnTouch = false
-        
-        message.numberOfLines = 0
+        self.updateRating(rating: 0.0)
 
     }
     
@@ -248,12 +173,12 @@ class HomeViewController: UIViewController {
                 if dataResult.millis == 0 {
                     do{
                         let data_time =  startCollectingTime * 1000 + Double(1000/weakSelf.GOYO_SAMPLING_RATE_HZ) * Double(numDataPoints)
-                        try weakSelf.db!.run(weakSelf.raw_data!.insert(
-                            weakSelf.xAcc <- Double(dataResult.x) / 100.0,
-                            weakSelf.yAcc <- Double(dataResult.y) / 100.0,
-                            weakSelf.zAcc <- Double(dataResult.z) / 100.0,
-                            weakSelf.fsr <- Int64(dataResult.fsr) ,
-                            weakSelf.timestamp <- Int64(data_time)
+                        try GoYoDB.instance.db!.run(GoYoDB.instance.raw_data!.insert(
+                            GoYoDB.instance.xAcc <- Double(dataResult.x) / 100.0,
+                            GoYoDB.instance.yAcc <- Double(dataResult.y) / 100.0,
+                            GoYoDB.instance.zAcc <- Double(dataResult.z) / 100.0,
+                            GoYoDB.instance.fsr <- Int64(dataResult.fsr) ,
+                            GoYoDB.instance.timestamp <- Int64(data_time)
                         ))
                         numDataPoints+=1
                     } catch {
@@ -265,9 +190,9 @@ class HomeViewController: UIViewController {
                     weakSelf.goyoStartTime = Int64(startCollectingTime * 1000 - Double(weakSelf.recordedMillis))
                     weakSelf.goyoEndTime = Int64(startCollectingTime * 1000 + Double(1000/weakSelf.GOYO_SAMPLING_RATE_HZ) * Double(numDataPoints) - Double(weakSelf.recordedMillis))
                 
-                    let insertedData = weakSelf.raw_data!.order(weakSelf.timestamp.desc).limit(numDataPoints)
+                    let insertedData = GoYoDB.instance.raw_data!.order(GoYoDB.instance.timestamp.desc).limit(numDataPoints)
                     do {
-                        try weakSelf.db!.run(insertedData.update(weakSelf.timestamp -= Int64(weakSelf.recordedMillis)))
+                        try GoYoDB.instance.db!.run(insertedData.update(GoYoDB.instance.timestamp -= Int64(weakSelf.recordedMillis)))
                     } catch {
                         debugPrint("Unable to update timestamps in raw data with millis")
                     }
@@ -304,22 +229,24 @@ class HomeViewController: UIViewController {
         try self.generateFeatures()
         print(self.goyoStartTime)
         print(self.goyoEndTime)
+        try self.determineActiveFrames()
+        try self.updateUI()
     }
     
     func generateFeatures() throws {
         var startTime: Int64 = self.goyoStartTime
         var endTime: Int64 = startTime + self.GOYO_WINDOW_SIZE_MS
         while endTime < self.goyoEndTime {
-            let data_in_window = self.raw_data!.filter(timestamp >= startTime && timestamp <= endTime)
+            let data_in_window = GoYoDB.instance.raw_data!.filter(GoYoDB.instance.timestamp >= startTime && GoYoDB.instance.timestamp <= endTime)
             
-            let dataX = try self.db!.prepare(data_in_window)
-            let dataY = try self.db!.prepare(data_in_window)
-            let dataZ = try self.db!.prepare(data_in_window)
-            let dataFsr = try self.db!.prepare(data_in_window)
-            let xAccelerations = try dataX.map {try $0.get(self.xAcc)}
-            let yAccelerations = try dataY.map {try $0.get(self.yAcc)}
-            let zAccelerations = try dataZ.map {try $0.get(self.zAcc)}
-            let fsrMeasurements = try dataFsr.map {try Double($0.get(self.fsr))}
+            let dataX = try GoYoDB.instance.db!.prepare(data_in_window)
+            let dataY = try GoYoDB.instance.db!.prepare(data_in_window)
+            let dataZ = try GoYoDB.instance.db!.prepare(data_in_window)
+            let dataFsr = try GoYoDB.instance.db!.prepare(data_in_window)
+            let xAccelerations = try dataX.map {try $0.get(GoYoDB.instance.xAcc)}
+            let yAccelerations = try dataY.map {try $0.get(GoYoDB.instance.yAcc)}
+            let zAccelerations = try dataZ.map {try $0.get(GoYoDB.instance.zAcc)}
+            let fsrMeasurements = try dataFsr.map {try Double($0.get(GoYoDB.instance.fsr))}
 
             let meanX = normalizeFeature(
                 min: FeatureScalingFactors.X_MEAN_MIN,
@@ -373,17 +300,17 @@ class HomeViewController: UIViewController {
             }
             let isWalking = (modelOutput.is_walking == 1)
             
-            try self.db!.run(features!.insert(
-                self.xMean <- meanX,
-                self.yMean <- meanY,
-                self.zMean <- meanZ,
-                self.xVariance <- varX,
-                self.yVariance <- varY,
-                self.zVariance <- varZ,
-                self.medianFsr <- fsrMedian,
-                self.windowStart <- startTime,
-                self.windowEnd <- endTime,
-                self.isWalking <- isWalking
+            try GoYoDB.instance.db!.run(GoYoDB.instance.features!.insert(
+                GoYoDB.instance.xMean <- meanX,
+                GoYoDB.instance.yMean <- meanY,
+                GoYoDB.instance.zMean <- meanZ,
+                GoYoDB.instance.xVariance <- varX,
+                GoYoDB.instance.yVariance <- varY,
+                GoYoDB.instance.zVariance <- varZ,
+                GoYoDB.instance.medianFsr <- fsrMedian,
+                GoYoDB.instance.windowStart <- startTime,
+                GoYoDB.instance.windowEnd <- endTime,
+                GoYoDB.instance.isWalking <- isWalking
             ))
             debugPrint(isWalking)
             
@@ -397,6 +324,78 @@ class HomeViewController: UIViewController {
     
     func normalizeFeature(min: Double, max: Double, feature: Double) -> Double {
         return (feature - min) / (max - min)
+    }
+    
+    func determineActiveFrames(resolutionInSeconds: Int64 = 10) throws {
+        let firstFeature = GoYoDB.instance.features!.select(GoYoDB.instance.isWalking, GoYoDB.instance.windowStart).order(GoYoDB.instance.windowStart.asc)
+        let lastFeature = GoYoDB.instance.features!.select(GoYoDB.instance.isWalking, GoYoDB.instance.windowEnd).order(GoYoDB.instance.windowEnd.desc)
+        var startTime = try GoYoDB.instance.db!.pluck(firstFeature)?.get(GoYoDB.instance.windowStart)
+        let ABS_END_TIME = try GoYoDB.instance.db!.pluck(lastFeature)?.get(GoYoDB.instance.windowEnd)
+        var endTime = startTime! + resolutionInSeconds * 1000
+        while endTime <= ABS_END_TIME! {
+            let successWalkingQuery = GoYoDB.instance.features!.select(GoYoDB.instance.isWalking)
+                .filter(GoYoDB.instance.windowStart >= startTime! && GoYoDB.instance.windowEnd <= endTime && GoYoDB.instance.isWalking == true)
+            let failureWalkingQuery = GoYoDB.instance.features!.select(GoYoDB.instance.isWalking)
+                .filter(GoYoDB.instance.windowStart >= startTime! && GoYoDB.instance.windowEnd <= endTime && GoYoDB.instance.isWalking == false)
+            let successCount = try GoYoDB.instance.db!.scalar(successWalkingQuery.count)
+            let failureCount = try GoYoDB.instance.db!.scalar(failureWalkingQuery.count)
+            
+            let mode = failureCount > successCount ? false : true
+            if mode {
+                try GoYoDB.instance.db!.run(GoYoDB.instance.results!.insert(
+                    GoYoDB.instance.frameStartTime <- startTime!,
+                    GoYoDB.instance.frameEndTime <- endTime
+                ))
+            }
+            
+            startTime! += resolutionInSeconds * 1000
+            endTime += resolutionInSeconds * 1000
+        }
+        print("finished creating result table")
+    }
+    
+    func updateUI() throws {
+        print("updating UI now")
+        var activeRowQuery = try GoYoDB.instance.results!
+            .filter(GoYoDB.instance.frameStartTime >= self.midnight)
+        
+        let count = try GoYoDB.instance.db!.scalar(activeRowQuery.count)
+        print(count)
+        self.activityCompleted = Double(count)
+        let rating = self.activityCompleted / self.goal * 5.0
+        self.updateRating(rating: rating)
+    }
+    
+    func updateRating(rating: Double = 0) {
+        // application stuff
+        dailyGoal.text = "Daily Goal: " + String(goal) + " minutes"
+    
+        let activityLeft = self.goal - self.activityCompleted
+        
+        dailyGoal.text = "Daily Goal: " + String(Int(goal)) + " active minutes"
+        
+        
+        if (rating <= 1.5) {
+            image.image = UIImage(named: "old-man-sad.png")
+            message.text = "Let's get going, you still have " + String(Int(activityLeft)) + " active minutes left."
+        } else if (rating > 1.5 && rating < 4) {
+            image.image = UIImage(named: "old-man-happy.png")
+            message.text = "Keep up the good work, you have completed " + String(Int(activityCompleted)) + " minutes"
+        } else if (rating >= 4 && rating < 5){
+            image.image = UIImage(named: "old-man-very-happy.png")
+            message.text = "You're ALMOST there, you have completed" + String(Int(activityCompleted)) + " minutes."
+        } else if (rating >= 5) {
+            image.image = UIImage(named: "old-man-very-happy.png")
+            message.text = "Congratulations, you have reached your daily activity goal!"
+        } else {
+            image.image = UIImage(named: "old-man-happy.png")
+            message.text = " "
+        }
+        
+        starCosmos.rating = rating
+        starCosmos.settings.updateOnTouch = false
+        
+        message.numberOfLines = 0
     }
 
     override func didReceiveMemoryWarning() {
