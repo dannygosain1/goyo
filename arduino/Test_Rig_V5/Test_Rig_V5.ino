@@ -78,7 +78,6 @@
 // GLOBAL CONSTANTS
 //
   // General
-  #define DEBOUNCE_TIME 2000
   #define BLINK_TIME 500
 
   // Debug Mode
@@ -97,8 +96,6 @@
   // Bluetooth
   #define BT_ENABLED true
   #define BAUD 57600
-  #define BT_RX 0
-  #define BT_TX 1
   #define DATA_LENGTH 4
 
   // FSR
@@ -138,10 +135,8 @@
   #define ERR_ACC_DMP_FAILURE 5
   #define ERR_ACC_OTHER 6
   #define ERR_SD_INIT_FAILURE 7
-  #define ERR_SD_FILENAME_TO_LONG 8
   #define ERR_SD_OPEN_FILE 9
   #define ERR_SD_CANT_CREATE_FILENAME 10
-  #define ERR_SD_DATA_NOT_FORCED 11
   #define ERR_SD_OTHER 12
 
 //
@@ -198,7 +193,6 @@
   char filename[14];
   
   // Record Status
-  volatile bool recording = false;
   volatile bool recordingStateChange = false;
 
   // SD
@@ -221,7 +215,6 @@
   };
 
 void setup() {
-
   // SETUP SERIAL
   if(BT_ENABLED || DEBUG_ENABLED){
     Serial.begin(BAUD);
@@ -284,7 +277,6 @@ void setup() {
     Serial.println("Done setting up Bluetooth encoding");
   }
 
-  recording = true;
   recordingStateChange = true;
 
   digitalWrite(RED_LED,LOW);
@@ -325,20 +317,21 @@ void loop() {
   if (Serial.available()){
     read_serial = Serial.read(); 
     if (String(read_serial).equals("d")) {
-      cli();
+      // For debug
       ACC.resetFIFO();
       doneLogFile();
       recordingStateChange = true;
+      detachInterrupt(digitalPinToInterrupt(ACC_INTERRUPT));
       dumpFile();
-      sei();
+      attachInterrupt(digitalPinToInterrupt(ACC_INTERRUPT), accDumpReady, RISING);
     } else if (String(read_serial).equals("m")) {
-      cli();
+      detachInterrupt(digitalPinToInterrupt(ACC_INTERRUPT));
       Serial.println(millis()); 
-      sei();
+      attachInterrupt(digitalPinToInterrupt(ACC_INTERRUPT), accDumpReady, RISING);
     }
   } 
 
-  if(recording && recordingStateChange){
+  if(recordingStateChange){
     //First Run of Recording  
     digitalWrite(RED_LED,LOW);
     digitalWrite(GREEN_LED,HIGH);
@@ -346,21 +339,15 @@ void loop() {
     setupLogFile();
     recordingStateChange = false;
     
-  } else if(recording){
+  } else {
     // Recording
     if(millis() - SAMPLE_INTERVAL >= lastSerialTime){
-      
       getAccData();
-      
       logData();
       lastSerialTime = millis() - 7;
       
-    }
-    
-  } else {
-     // Not Recording no Error
+    }   
   }
-
 }
 
 // Function to write debug line to Serial
@@ -376,7 +363,7 @@ void setupSD() {
 }
 
 void setupLogFile() {
-  if(!recording || error != 0){
+  if(error != 0){
     return;
   }
   
@@ -385,7 +372,7 @@ void setupLogFile() {
   strfile.toCharArray(filename, 14);
 
   if (sd.exists(filename)) {
-    error = ERR_SD_CANT_CREATE_FILENAME; 
+     error = ERR_SD_CANT_CREATE_FILENAME; 
   }
   
   if (!file.open(filename, O_CREAT | O_WRITE | O_EXCL)) {
@@ -402,13 +389,14 @@ void setupLogFile() {
 void logData() {
 
   int afsr = analogRead(FSR);
-  String entry = String(afsr) + DELIMITER + String(AccX*100) + DELIMITER + String(AccY*100) + DELIMITER + String(AccZ*100);
-
+  String entry = String(afsr) + DELIMITER + String(int(AccX*100)) + DELIMITER + String(int(AccY*100)) + DELIMITER + String(int(AccZ*100));
+  file.println(entry);
 }
 
 void doneLogFile(){
   file.close();
 }
+
 
 // Function to setup MPU6050 and test connection
 void setupMPU6050(){
@@ -491,7 +479,7 @@ void getAccData(){
         
         AccX = gravityt->x;
         AccY = gravityt->y;
-        AccZ = gravityt->z;
+        AccZ = gravityt->z;   
     }
 }
 
@@ -532,7 +520,6 @@ void dumpFile() {
       tmp_data[2] = (int32_t)buf.substring(ci2+1, ci3).toInt();
       tmp_data[3] = (int32_t)buf.substring(ci3+1).toInt();
       dumpData(tmp_data);
-//      Serial.println(buf);
       delay(10);
     }
   }
