@@ -88,9 +88,7 @@ class HomeViewController: UIViewController {
     }
 
     @objc func syncButtonTapped() {
-        if !self.listeningToSerial {
-            listenFromSerial()
-        }
+        listenFromSerial()
         writeToSerial()
         debugPrint(NSDate().timeIntervalSince1970 * 1000)
     }
@@ -122,7 +120,6 @@ class HomeViewController: UIViewController {
     }
 
     func writeToSerial() {
-
         guard let bluejay = bluejay else {
             print("unable to write.")
             return
@@ -152,9 +149,9 @@ class HomeViewController: UIViewController {
         var numDataPoints = 1
         let startCollectingTime = NSDate().timeIntervalSince1970
         print("In listen function")
-        if listeningToSerial {
-            return
-        }
+//        if listeningToSerial {
+//            return
+//        }
         guard let bluejay = bluejay else {
             print("unable to listen.")
             return
@@ -230,8 +227,9 @@ class HomeViewController: UIViewController {
         try self.generateFeatures()
         print(self.goyoStartTime)
         print(self.goyoEndTime)
-        try self.determineActiveFrames()
+        try self.determineActiveFrames(resolutionInSeconds: 20)
         try self.updateUI()
+        print(self.listeningToSerial)
     }
     
     func generateFeatures() throws {
@@ -333,6 +331,7 @@ class HomeViewController: UIViewController {
         var startTime = try GoYoDB.instance.db!.pluck(firstFeature)?.get(GoYoDB.instance.windowStart)
         let ABS_END_TIME = try GoYoDB.instance.db!.pluck(lastFeature)?.get(GoYoDB.instance.windowEnd)
         var endTime = startTime! + resolutionInSeconds * 1000
+        debugPrint("determining modes across windows")
         while endTime <= ABS_END_TIME! {
             let successWalkingQuery = GoYoDB.instance.features!.select(GoYoDB.instance.isWalking)
                 .filter(GoYoDB.instance.windowStart >= startTime! && GoYoDB.instance.windowEnd <= endTime && GoYoDB.instance.isWalking == true)
@@ -357,6 +356,7 @@ class HomeViewController: UIViewController {
     
     func updateUI() throws {
         print("updating UI now")
+        print(self.midnight)
         var activeRowQuery = try GoYoDB.instance.results!
             .filter(GoYoDB.instance.frameStartTime >= self.midnight)
         

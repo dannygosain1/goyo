@@ -29,7 +29,7 @@ class BluetoothViewController: UIViewController, ConnectionObserver {
         super.viewDidLoad()
         bluejay.start()
         
-        var peripheralUUID = UUID.init(uuidString: self.DANNY_UUID_RAUNAQ)
+        var peripheralUUID = UUID.init(uuidString: self.RAUNAQ_UUID_GOYO)
         var peripheralIdentifier = PeripheralIdentifier(uuid: peripheralUUID!)
         bluejay.connect(peripheralIdentifier, timeout: Timeout.seconds(30) )  { [weak self] (result) in
             switch result {
