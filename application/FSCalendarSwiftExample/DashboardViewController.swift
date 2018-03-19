@@ -20,7 +20,7 @@ class DashboardViewController: UIViewController, ChartViewDelegate {
     
     @IBOutlet weak var todayPieView: PieChartView!
     
-    var goal = 6000.0
+    var goal = 30.0
     var activityCompleted = 0.0
     
     //midnight
