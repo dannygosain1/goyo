@@ -112,7 +112,7 @@ class DashboardViewController: UIViewController, ChartViewDelegate {
         }
         
         print(dataEntries[0].data)
-        let pieChartDataSet = PieChartDataSet(values: dataEntries, label: "Active Minutes")
+        let pieChartDataSet = PieChartDataSet(values: dataEntries, label: "Active Seconds")
         let pieChartData = PieChartData(dataSet: pieChartDataSet)
         
         // colors for the graph

@@ -29,7 +29,7 @@ class HomeViewController: UIViewController {
     var classifiedData: [Double] = [0,0,1,1]
 
     var listeningToSerial = false
-    var goal = 6000.0 // to be provided
+    var goal = 30.0 // to be provided
     var activityCompleted = 0.0 // to be provided
     
     let model_random_forest = random_forest()
@@ -88,6 +88,9 @@ class HomeViewController: UIViewController {
     }
 
     @objc func syncButtonTapped() {
+        syncData.isEnabled = false
+        syncData.tintColor = UIColor(red:84, green:86, blue:119, alpha: 0.5)
+        syncData.setTitle("Syncing...", for: .normal)
         listenFromSerial()
         writeToSerial()
         debugPrint(NSDate().timeIntervalSince1970 * 1000)
@@ -143,6 +146,9 @@ class HomeViewController: UIViewController {
                 debugPrint("Failed to writing to sensor location with error: \(error.localizedDescription)")
             }
         })
+        syncData.isEnabled = true
+        syncData.tintColor = UIColor(red:84, green:86, blue:119, alpha: 1.0)
+        syncData.setTitle("Sync Data", for: .normal)
     }
 
     func listenFromSerial() {
@@ -369,22 +375,22 @@ class HomeViewController: UIViewController {
     
     func updateRating(rating: Double = 0) {
         // application stuff
-        dailyGoal.text = "Daily Goal: " + String(goal) + " minutes"
+        dailyGoal.text = "Daily Goal: " + String(goal) + " seconds"
     
         let activityLeft = self.goal - self.activityCompleted
         
-        dailyGoal.text = "Daily Goal: " + String(Int(goal)) + " active minutes"
+        dailyGoal.text = "Daily Goal: " + String(Int(goal)) + " active seconds"
         
         
         if (rating <= 1.5) {
             image.image = UIImage(named: "sad-emoji.png")
-            message.text = "Let's get going, you still have " + String(Int(activityLeft)) + " active minutes left."
+            message.text = "Let's get going, you still have " + String(Int(activityLeft)) + " active seconds left."
         } else if (rating > 1.5 && rating < 4) {
             image.image = UIImage(named: "happy-emoji.png")
-            message.text = "Keep up the good work, you have completed " + String(Int(activityCompleted)) + " minutes"
+            message.text = "Keep up the good work, you have completed " + String(Int(activityCompleted)) + " seconds"
         } else if (rating >= 4 && rating < 5){
             image.image = UIImage(named: "very-happy-emoji.png")
-            message.text = "You're ALMOST there, you have completed " + String(Int(activityCompleted)) + " minutes."
+            message.text = "You're ALMOST there, you have completed " + String(Int(activityCompleted)) + " seconds"
         } else if (rating >= 5) {
             image.image = UIImage(named: "very-happy-emoji.png")
             message.text = "Congratulations, you have reached your daily activity goal!"
