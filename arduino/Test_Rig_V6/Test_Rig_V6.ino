@@ -79,6 +79,7 @@
 //
   // General
   #define BLINK_TIME 500
+  #define ERROR_DELAY 2000
 
   // Debug Mode
   #define DEBUG_ENABLED false
@@ -136,7 +137,7 @@
   #define ERR_ACC_OTHER 6
   #define ERR_SD_INIT_FAILURE 7
   #define ERR_SD_OPEN_FILE 9
-  #define ERR_SD_CANT_CREATE_FILENAME 10
+  #define ERR_SD_FAIL_TO_DELETE_FILE 10
   #define ERR_SD_OTHER 12
 
 //
@@ -166,6 +167,7 @@
   // General
   short error = 0;
   bool errorPrinted = false;
+  short errorBlinksLeft = 0;
   volatile long lastSerialTime = 0;
   long lastBlinkTime = 0;
 
@@ -304,12 +306,17 @@ void loop() {
     if(!errorPrinted){
       Serial.print("Error: ");
       Serial.println(error);
+      errorBlinksLeft = error * 2;
       errorPrinted = true;
     }
-    if(millis() - lastBlinkTime > BLINK_TIME){
+    if(millis() - lastBlinkTime > BLINK_TIME && errorBlinksLeft > 0){
       digitalWrite(GREEN_LED,LOW);
       digitalWrite(RED_LED,!digitalRead(RED_LED));
       lastBlinkTime = millis();
+      errorBlinksLeft--;
+    }
+    if(millis() - lastBlinkTime > ERROR_DELAY){
+      errorBlinksLeft = error*2;
     }
     return;
   }
@@ -318,6 +325,8 @@ void loop() {
     read_serial = Serial.read(); 
     if (String(read_serial).equals("d")) {
       // For debug
+      digitalWrite(GREEN_LED,LOW);
+      digitalWrite(BLUE_LED,HIGH);
       ACC.resetFIFO();
       doneLogFile();
       recordingStateChange = true;
@@ -328,14 +337,22 @@ void loop() {
       detachInterrupt(digitalPinToInterrupt(ACC_INTERRUPT));
       Serial.println(millis()); 
       attachInterrupt(digitalPinToInterrupt(ACC_INTERRUPT), accDumpReady, RISING);
-    }
+    } else if (String(read_serial).equals("s")) {
+        file.close();
+        digitalWrite(GREEN_LED,LOW);
+        digitalWrite(RED_LED,LOW);
+        digitalWrite(BLUE_LED,LOW);
+      }
   } 
 
   if(recordingStateChange){
     //First Run of Recording  
-    digitalWrite(RED_LED,LOW);
     digitalWrite(GREEN_LED,HIGH);
-    Serial.println(F("Initializing Log File"));
+    digitalWrite(BLUE_LED,LOW);
+    if(DEBUG_ENABLED && DEBUG_LEVEL >= 2){
+      Serial.print("DEBUG 2: ");
+      Serial.println(F("Initializing Log File"));
+    }
     setupLogFile();
     recordingStateChange = false;
     
@@ -358,7 +375,8 @@ void debug(){
 // Function to setup SD card, get next test number 
 void setupSD() {
   if (!sd.begin(SD_CHIP_SELECT, SD_SCK_MHZ(50))) {
-    sd.initErrorHalt();
+    error = ERR_SD_INIT_FAILURE;
+    //sd.initErrorHalt();
   }
 }
 
@@ -372,15 +390,21 @@ void setupLogFile() {
   strfile.toCharArray(filename, 14);
 
   if (sd.exists(filename)) {
-     error = ERR_SD_CANT_CREATE_FILENAME; 
+    if(!sd.remove(filename)){
+      error = ERR_SD_FAIL_TO_DELETE_FILE;
+    };
+
   }
   
   if (!file.open(filename, O_CREAT | O_WRITE | O_EXCL)) {
     error = ERR_SD_OPEN_FILE;
   }
 
-  Serial.print(F("Logging to: "));
-  Serial.println(filename);
+  if(DEBUG_ENABLED && DEBUG_LEVEL >= 1){
+    Serial.print("DEBUG 1: ");
+    Serial.print(F("Logging to: "));
+    Serial.println(filename);
+  }
 }
 
 

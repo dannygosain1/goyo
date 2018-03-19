@@ -29,7 +29,7 @@ class HomeViewController: UIViewController {
     var classifiedData: [Double] = [0,0,1,1]
 
     var listeningToSerial = false
-    var goal = 5.0 // to be provided
+    var goal = 6000.0 // to be provided
     var activityCompleted = 0.0 // to be provided
     
     let model_random_forest = random_forest()
@@ -56,6 +56,7 @@ class HomeViewController: UIViewController {
     
     //midnight
     var midnight: Int64 = 0
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -87,9 +88,7 @@ class HomeViewController: UIViewController {
     }
 
     @objc func syncButtonTapped() {
-        if !self.listeningToSerial {
-            listenFromSerial()
-        }
+        listenFromSerial()
         writeToSerial()
         debugPrint(NSDate().timeIntervalSince1970 * 1000)
     }
@@ -121,7 +120,6 @@ class HomeViewController: UIViewController {
     }
 
     func writeToSerial() {
-
         guard let bluejay = bluejay else {
             print("unable to write.")
             return
@@ -151,9 +149,9 @@ class HomeViewController: UIViewController {
         var numDataPoints = 1
         let startCollectingTime = NSDate().timeIntervalSince1970
         print("In listen function")
-        if listeningToSerial {
-            return
-        }
+//        if listeningToSerial {
+//            return
+//        }
         guard let bluejay = bluejay else {
             print("unable to listen.")
             return
@@ -229,8 +227,9 @@ class HomeViewController: UIViewController {
         try self.generateFeatures()
         print(self.goyoStartTime)
         print(self.goyoEndTime)
-        try self.determineActiveFrames()
+        try self.determineActiveFrames(resolutionInSeconds: 20)
         try self.updateUI()
+        print(self.listeningToSerial)
     }
     
     func generateFeatures() throws {
@@ -332,6 +331,7 @@ class HomeViewController: UIViewController {
         var startTime = try GoYoDB.instance.db!.pluck(firstFeature)?.get(GoYoDB.instance.windowStart)
         let ABS_END_TIME = try GoYoDB.instance.db!.pluck(lastFeature)?.get(GoYoDB.instance.windowEnd)
         var endTime = startTime! + resolutionInSeconds * 1000
+        debugPrint("determining modes across windows")
         while endTime <= ABS_END_TIME! {
             let successWalkingQuery = GoYoDB.instance.features!.select(GoYoDB.instance.isWalking)
                 .filter(GoYoDB.instance.windowStart >= startTime! && GoYoDB.instance.windowEnd <= endTime && GoYoDB.instance.isWalking == true)
@@ -356,6 +356,7 @@ class HomeViewController: UIViewController {
     
     func updateUI() throws {
         print("updating UI now")
+        print(self.midnight)
         var activeRowQuery = try GoYoDB.instance.results!
             .filter(GoYoDB.instance.frameStartTime >= self.midnight)
         
@@ -376,19 +377,19 @@ class HomeViewController: UIViewController {
         
         
         if (rating <= 1.5) {
-            image.image = UIImage(named: "old-man-sad.png")
+            image.image = UIImage(named: "sad-emoji.png")
             message.text = "Let's get going, you still have " + String(Int(activityLeft)) + " active minutes left."
         } else if (rating > 1.5 && rating < 4) {
-            image.image = UIImage(named: "old-man-happy.png")
+            image.image = UIImage(named: "happy-emoji.png")
             message.text = "Keep up the good work, you have completed " + String(Int(activityCompleted)) + " minutes"
         } else if (rating >= 4 && rating < 5){
-            image.image = UIImage(named: "old-man-very-happy.png")
-            message.text = "You're ALMOST there, you have completed" + String(Int(activityCompleted)) + " minutes."
+            image.image = UIImage(named: "very-happy-emoji.png")
+            message.text = "You're ALMOST there, you have completed " + String(Int(activityCompleted)) + " minutes."
         } else if (rating >= 5) {
-            image.image = UIImage(named: "old-man-very-happy.png")
+            image.image = UIImage(named: "very-happy-emoji.png")
             message.text = "Congratulations, you have reached your daily activity goal!"
         } else {
-            image.image = UIImage(named: "old-man-happy.png")
+            image.image = UIImage(named: "happy-emoji.png")
             message.text = " "
         }
         
@@ -402,7 +403,10 @@ class HomeViewController: UIViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-
+    
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return .lightContent
+    }
 }
 
 

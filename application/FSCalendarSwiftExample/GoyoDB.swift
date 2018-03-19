@@ -67,6 +67,7 @@ struct GoYoDB {
             })
             
             features = Table("features")
+            try db!.run(features!.drop(ifExists: true)) // TODO: Delete in prod
             try db!.run(features!.create(ifNotExists: true) { t in
                 t.column(xMean)
                 t.column(yMean)
