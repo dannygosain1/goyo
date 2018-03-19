@@ -1,0 +1,41 @@
+@startuml
+start
+:Extract features from
+raw data;
+:Normalize features;
+  fork
+    :70% training
+    subset;
+    fork
+      :3NN;
+    fork again
+      :5NN;
+    fork again
+      :SVM;
+    fork again
+      :decision 
+      tree;
+    fork again
+      :random
+      forest;
+    end fork
+    :5 fold cross
+    validation;
+  fork again
+    :30% validation
+    subset;
+  end fork
+  :test each model against
+  30% validation subset;
+  :report;
+  fork
+    :accuracy;
+  fork again
+    :precsion;
+  fork again
+    :recall;
+  fork again
+    :F1 score;
+  end fork
+  end
+@enduml

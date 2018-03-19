@@ -1,0 +1,17 @@
+@startuml
+start
+:setup SD;
+:setup MPU6050;
+:setup Bluetooth;
+repeat
+  if (error) then (yes)
+    stop
+  elseif (recieved 'd'
+  over bluetooth) then (yes)
+    :stop recording;
+    :dump data;
+    :restart recording;
+  endif
+  :record data to SD;
+repeat while 
+@enduml

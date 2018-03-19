@@ -1,0 +1,9 @@
+@startuml
+Computer -[#blue]-> Arduino : Request data dump
+
+database SDCard
+
+Arduino --> SDCard: Read file
+Computer <-[#blue]- Arduino: Send file line by line
+Computer <-[#blue]- Arduino: Send terminating character
+@enduml
