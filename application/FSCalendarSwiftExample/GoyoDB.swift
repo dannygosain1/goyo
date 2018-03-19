@@ -43,7 +43,9 @@ struct GoYoDB {
                 .documentDirectory, .userDomainMask, true
                 ).first!
             
-            db = try Connection("\(path)/goyo.sqlite3")
+//            db = try Connection("\(path)/goyo.sqlite3")
+            
+            db = try Connection()
             
             results = Table("results")
             try db!.run(results!.drop(ifExists: true))

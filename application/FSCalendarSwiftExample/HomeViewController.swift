@@ -29,7 +29,7 @@ class HomeViewController: UIViewController {
     var classifiedData: [Double] = [0,0,1,1]
 
     var listeningToSerial = false
-    var goal = 30.0 // to be provided
+    var goal = 30.0 // in seconds
     var activityCompleted = 0.0 // to be provided
     
     let model_random_forest = random_forest()
@@ -146,9 +146,6 @@ class HomeViewController: UIViewController {
                 debugPrint("Failed to writing to sensor location with error: \(error.localizedDescription)")
             }
         })
-        syncData.isEnabled = true
-        syncData.tintColor = UIColor(red:84, green:86, blue:119, alpha: 1.0)
-        syncData.setTitle("Sync Data", for: .normal)
     }
 
     func listenFromSerial() {
@@ -233,7 +230,7 @@ class HomeViewController: UIViewController {
         try self.generateFeatures()
         print(self.goyoStartTime)
         print(self.goyoEndTime)
-        try self.determineActiveFrames(resolutionInSeconds: 20)
+        try self.determineActiveFrames(resolutionInSeconds: 10)
         try self.updateUI()
         print(self.listeningToSerial)
     }
@@ -368,9 +365,13 @@ class HomeViewController: UIViewController {
         
         let count = try GoYoDB.instance.db!.scalar(activeRowQuery.count)
         print(count)
-        self.activityCompleted = Double(count)
+        self.activityCompleted = Double(count * 10)
         let rating = self.activityCompleted / self.goal * 5.0
         self.updateRating(rating: rating)
+        syncData.isEnabled = true
+        syncData.tintColor = UIColor(red:84, green:86, blue:119, alpha: 1.0)
+        syncData.setTitle("Sync Data", for: .normal)
+
     }
     
     func updateRating(rating: Double = 0) {
@@ -393,7 +394,7 @@ class HomeViewController: UIViewController {
             message.text = "You're ALMOST there, you have completed " + String(Int(activityCompleted)) + " seconds"
         } else if (rating >= 5) {
             image.image = UIImage(named: "very-happy-emoji.png")
-            message.text = "Congratulations, you have reached your daily activity goal!"
+            message.text = "Congratulations! You have completed " + String(Int(activityCompleted)) + " seconds"
         } else {
             image.image = UIImage(named: "happy-emoji.png")
             message.text = " "
